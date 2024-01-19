@@ -1,6 +1,6 @@
 # 1PROJ
 > [!NOTE]
-> The company "Smart Games" specializes in the digital adaptation of abstract combinatorial strategy games. She now wants to develop the game "Yinsh" designed by Kris Burm and marketed in physical form by Huch & Friends. To do this, it launched a call for tenders to entrust this project to a subcontractor.
+> The company "Smart Games" specializes in the digital adaptation of abstract combinatorial strategy games. They now want to develop the game "Yinsh" designed by Kris Burm and marketed in physical form by Huch & Friends. To do this, it launched a call for tenders to entrust this project to a subcontractor.
 >
 >Your team is therefore competing to win this contract.
 >
