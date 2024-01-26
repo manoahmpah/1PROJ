@@ -1,4 +1,3 @@
-
 def board():
     board_2d = []
     for (a, b, c) in [(6, 4, 1), (4, 7, 0), (3, 8, 0), (2, 9, 0), (1, 10, 0), (1, 9, 1), (0, 10, 1), (0, 9, 2),
@@ -8,12 +7,12 @@ def board():
     return board_2d
 
 
-def Display(board, n):
+def Display(board_2D, n):
     for row in range(n):
         for col in range(n):
-            if board[row][col] == 9:
+            if board_2D[row][col] == 9:
                 print(".", end=" ")
-            elif board[row][col] == 1:
+            elif board_2D[row][col] == 1:
                 print("0", end=" ")
         print("")
 
