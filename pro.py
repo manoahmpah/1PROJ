@@ -9,12 +9,11 @@ def board():
 
 
 def Display(board, n):
-    board_2d = board
     for row in range(n):
         for col in range(n):
             if board[row][col] == 9:
                 print(".", end=" ")
-            if board[row][col] == 1:
+            elif board[row][col] == 1:
                 print("0", end=" ")
         print("")
 
