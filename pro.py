@@ -1,6 +1,7 @@
 class Pawn:
-    def __init__(self, player):
+    def __init__(self, player, name):
         self.__player = player
+        self.__name = name
 
 
 class Logic:
