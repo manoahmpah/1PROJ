@@ -17,7 +17,7 @@ Follow these steps to install and run the game:
    git clone https://github.com/manoahmpah/1PROJ.git
 
 ## Colaborator
-1. [Shérine](https://github.com/sher1ne) - [@sher1ne]
-2. [Manoah](https://github.com/manoahmpah) - [@manoahmpah]
-3. [Maëlys](https://github.com/mae2spy) - [@mae2spy]
-4. [Léa](https://github.com/riamoon) - [@riamoon]
+- [Shérine](https://github.com/sher1ne) - [@sher1ne]
+- [Manoah](https://github.com/manoahmpah) - [@manoahmpah]
+- [Maëlys](https://github.com/mae2spy) - [@mae2spy]
+- [Léa](https://github.com/riamoon) - [@riamoon]
