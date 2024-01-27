@@ -16,7 +16,7 @@ Follow these steps to install and run the game:
    ```bash
    git clone https://github.com/manoahmpah/1PROJ.git
 
-## Colaborator
+## contributing
 - [Shérine](https://github.com/sher1ne) - [@sher1ne]
 - [Manoah](https://github.com/manoahmpah) - [@manoahmpah]
 - [Maëlys](https://github.com/mae2spy) - [@mae2spy]
