@@ -70,11 +70,11 @@ class Pawn:
 
 
 class Logic:
-    def __init__(self, name):
+    def __init__(self, name1, name2):
         self.__n = 11
         self.__Board = self.board()
         self.__PlayerToPlay = 1
-        self.__PlayerName = name
+        self.__name1, self.__name2 = name1, name2
 
     def getBoard(self):
         return self.__Board
@@ -95,8 +95,10 @@ class Logic:
                     print(".", end=" ")
                 elif self.__Board[row][col] == 1:
                     print("0", end=" ")
-                elif isinstance(self.__Board[row][col], Pawn):
+                elif isinstance(self.__Board[row][col], Pawn) and self.__PlayerToPlay == 1:
                     print("*", end=" ")
+                elif isinstance(self.__Board[row][col], Pawn) and self.__PlayerToPlay == 2:
+                    print("_", end=" ")
             print("")
 
     def PossibleToPut(self, i, j):
@@ -104,12 +106,17 @@ class Logic:
 
     def Put(self, i, j):
         if self.PossibleToPut(i, j):
-            self.__Board[i][j] = Pawn(self.__PlayerToPlay, self.__PlayerName)
+            if self.__PlayerToPlay == 1:
+                self.__Board[i][j] = Pawn(self.__PlayerToPlay, self.__name1)
+            else:
+                self.__Board[i][j] = Pawn(self.__PlayerToPlay, self.__name2)
+
         else:
             print("Cette position est impossible !")
 
 
-logic_obj = Logic('Luc')
+
+logic_obj = Logic('Luc', 'Jean-Marc')
 # logic_obj.Display()
 logic_obj.Put(0, 7)
 logic_obj.Display()
