@@ -26,6 +26,7 @@ def isMoveValid(gameState, destination):
 
 def ringMoves(board, ringCoord):
     # Check that the ring coordinate is on the board
+    # numCols & numRow while be remplace by self.__n
     if not (0 <= ringCoord[0] < numRows and 0 <= ringCoord[1] < numCols):
         return []
 
