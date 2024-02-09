@@ -3,6 +3,7 @@ class Pawn:
         self.__player = player
         self.__name = name
 
+
 class Logic:
     def __init__(self, name1, name2):
         self.__n = 11
@@ -51,6 +52,35 @@ class Logic:
 
         else:
             print("Cette position est impossible !")
+
+    def OneDirection(self, PositionY, PositionX, i, j):
+
+        # Condition d'arrêt : la case est à l'intérieur du plateau et contient un pion adverse
+        return 1 + self.OneDirection(PositionY + i, PositionX + j, i, j) \
+            if (0 <= PositionX + j < self.__n
+                and 0 <= PositionY + i < self.__n
+                and self.__Board[PositionY + i][PositionX + j] == (-self.__PlayerToPlay)) \
+            else 0
+
+    # Méthode pour vérifier si un alignement de pions est présent dans toutes les directions depuis la position spécifiée
+    def AllDirection(self, PositionY, PositionX):
+        # Initialisation des compteurs pour chaque direction
+        column, line, Slash, = 0, 0, 0
+
+        # Parcours de toutes les directions
+        for index, (i, j) in enumerate([(0, -1), (0, 1), (-1, 0), (1, 0), (-1, 1), (1, -1)]):
+
+            # Comptage du nombre de pions adverses dans chaque direction
+            if index < 2:
+                column += self.OneDirection(PositionY, PositionX, i, j)
+            elif 2 <= index < 4:
+                line += self.OneDirection(PositionY, PositionX, i, j)
+            else:
+                Slash += self.OneDirection(PositionY, PositionX, i, j)
+
+        # Vérification s'il y a suffisamment de pions adverses dans au moins une direction
+        return True if column + 1 >= 5 or line + 1 >= 5 or Slash + 1 >= 5 else False
+
 
     def isMoveValid(self, gameState, destination):
         # Check that the destination coordinate is on the board and within the range
