@@ -1,3 +1,4 @@
+
 class Pawn:
     def __init__(self, player, name):
         self.__player = player
@@ -151,3 +152,4 @@ logic_obj = Logic('Luc', 'Jean-Marc')
 # logic_obj.Display()
 logic_obj.Put(0, 7)
 logic_obj.Display()
+
