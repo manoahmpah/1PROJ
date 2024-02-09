@@ -81,7 +81,6 @@ class Logic:
         # Vérification s'il y a suffisamment de pions adverses dans au moins une direction
         return True if column + 1 >= 5 or line + 1 >= 5 or Slash + 1 >= 5 else False
 
-
     def isMoveValid(self, gameState, destination):
         # Check that the destination coordinate is on the board and within the range
         if not (0 <= destination[0] < self.__n and 0 <= destination[1] < self.__n):
