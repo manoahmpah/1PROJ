@@ -11,8 +11,14 @@ class Logic:
         self.__PlayerToPlay = 1
         self.__name1, self.__name2 = name1, name2
 
-    def getBoard(self):
-        return self.__Board
+    def switch_player(self):
+        if self.__PlayerToPlay == 1:
+            self.__PlayerToPlay = 2
+        else:
+            self.__PlayerToPlay = 1
+
+    def get_current_player(self):
+        return self.__PlayerToPlay
 
     def board(self):
         board_2d = []
@@ -22,6 +28,49 @@ class Logic:
             boardAnex = [9 for _ in range(a)] + [1 for _ in range(b)] + [9 for _ in range(c)]
             board_2d.append(boardAnex)
         return board_2d
+
+    def is_winner(self):
+        for row in range(self.__n):
+            for col in range(self.__n):
+                if isinstance(self.__Board[row][col], Pawn):
+                    if self.check_five_in_row(row, col):
+                        return True
+        return False
+
+    def check_five_in_row(self, PositionY, PositionX):
+        # Check horizontal
+        if self.check_five(PositionY, PositionX, 0, 1):
+            return True
+        # Check vertical
+        if self.check_five(PositionY, PositionX, 1, 0):
+            return True
+        # Check diagonal (main)
+        if self.check_five(PositionY, PositionX, 1, 1):
+            return True
+        # Check diagonal (anti-main)
+        if self.check_five(PositionY, PositionX, -1, 1):
+            return True
+        return False
+
+    def check_five(self, PositionY, PositionX, dirY, dirX):
+        player = self.__Board[PositionY][PositionX].get_player()
+        count = 1
+        y, x = PositionY + dirY, PositionX + dirX
+        while 0 <= y < self.__n and 0 <= x < self.__n and isinstance(self.__Board[y][x], Pawn) \
+                and self.__Board[y][x].get_player() == player:
+            count += 1
+            y += dirY
+            x += dirX
+        y, x = PositionY - dirY, PositionX - dirX
+        while 0 <= y < self.__n and 0 <= x < self.__n and isinstance(self.__Board[y][x], Pawn) \
+                and self.__Board[y][x].get_player() == player:
+            count += 1
+            y -= dirY
+            x -= dirX
+        return count >= 5
+
+    # Reste du code ici...
+
 
     def Display(self):
         for row in range(self.__n):
