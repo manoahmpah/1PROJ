@@ -11,18 +11,9 @@ class Logic:
         self.__PlayerToPlay = 1
         self.__name1, self.__name2 = name1, name2
 
-<<<<<<< Updated upstream
-    def switch_player(self):
-        if self.__PlayerToPlay == 1:
-            self.__PlayerToPlay = 2
-        else:
-            self.__PlayerToPlay = 1
-
     def get_current_player(self):
         return self.__PlayerToPlay
 
-=======
->>>>>>> Stashed changes
     def board(self):
         board_2d = []
         for (a, b, c) in [(6, 4, 1), (4, 7, 0), (3, 8, 0), (2, 9, 0), (1, 10, 0), (1, 9, 1), (0, 10, 1), (0, 9, 2),
@@ -74,12 +65,12 @@ class Logic:
 
     # Reste du code ici...
 
-
     def Display(self):
         for row in range(self.__n):
+            print(" "*row, end=" ")
             for col in range(self.__n):
                 if self.__Board[row][col] == 9:
-                    print(".", end=" ")
+                    print(" ", end=" ")
                 elif self.__Board[row][col] == 1:
                     print("0", end=" ")
                 elif isinstance(self.__Board[row][col], Pawn) and self.__PlayerToPlay == 1:
@@ -129,8 +120,6 @@ class Logic:
         # Vérification s'il y a suffisamment de pions adverses dans au moins une direction
         return True if column + 1 >= 5 or line + 1 >= 5 or Slash + 1 >= 5 else False
 
-
-     
     def isMoveValid(self, gameState, destination):
         # Check that the destination coordinate is on the board and within the range
         if not (0 <= destination[0] < self.__n and 0 <= destination[1] < self.__n):
