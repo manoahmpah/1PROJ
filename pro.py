@@ -148,6 +148,7 @@ class Logic:
 
         return False
 
+
     def freeCoord(self, board, coord):
         row, col = coord
         return board[row][col] is None
