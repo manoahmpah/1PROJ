@@ -26,16 +26,17 @@ class Logic:
 
     def Display(self):
         for row in range(self.__n):
+            print(" " * row, end= " ")
             for col in range(self.__n):
                 if self.__Board[row][col] == 9:
-                    print(".", end=" ")
+                    print(" ", end=" ")
                 elif self.__Board[row][col] == 1:
                     print("0", end=" ")
                 elif isinstance(self.__Board[row][col], Pawn) and self.__PlayerToPlay == 1:
                     print("*", end=" ")
                 elif isinstance(self.__Board[row][col], Pawn) and self.__PlayerToPlay == 2:
                     print("_", end=" ")
-            print("")
+            print("") #Saut de ligne
 
     def PossibleToPut(self, i, j):
         return True if 0 <= i < self.__n and 0 <= j < self.__n and self.__Board[i][j] == 1 else False
