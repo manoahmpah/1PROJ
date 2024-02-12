@@ -1,3 +1,4 @@
+
 class Pawn:
     def __init__(self, player, name):
         self.__player = player
@@ -94,6 +95,10 @@ class Logic:
                 self.__Board[i][j] = Pawn(self.__PlayerToPlay, self.__name1)
             else:
                 self.__Board[i][j] = Pawn(self.__PlayerToPlay, self.__name2)
+            if self.__PlayerToPlay == 1:
+                print(f"c'est à {self.__name2} de jouer")
+            else:
+                print(f"c'est à {self.__name1} de jouer")
 
         else:
             print("Cette position est impossible !")
@@ -196,3 +201,4 @@ logic_obj = Logic('Luc', 'Jean-Marc')
 # logic_obj.Display()
 logic_obj.Put(0, 7)
 logic_obj.Display()
+
