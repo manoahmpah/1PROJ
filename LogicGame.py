@@ -14,6 +14,9 @@ class Logic:
     def get_current_player(self):
         return self.__PlayerToPlay
 
+    def get_Board(self):
+        return self.__Board
+
     def CreateBoard(self):
 
         for (a, b, c) in [(6, 4, 1), (4, 7, 0), (3, 8, 0), (2, 9, 0), (1, 10, 0), (1, 9, 1), (0, 10, 1), (0, 9, 2),
@@ -23,6 +26,7 @@ class Logic:
             self.__Board.append(boardAnex)
 
     def Display(self):
+        self.CreateBoard()
         for row in range(self.__n):
             print(" " * row, end=" ")
             for col in range(self.__n):
@@ -71,6 +75,6 @@ class Logic:
 
 
 logic_obj = Logic('Luc', 'Jean-Marc')
-# logic_obj.Display()
+logic_obj.CreateBoard()
 logic_obj.Put(0, 7)
 logic_obj.Display()
