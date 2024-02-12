@@ -26,7 +26,7 @@ class Logic:
 
     def Display(self):
         for row in range(self.__n):
-            print(" " * row, end= " ")
+            print(" " * row, end=" ") # Création du décalage
             for col in range(self.__n):
                 if self.__Board[row][col] == 9:
                     print(" ", end=" ")
@@ -36,7 +36,7 @@ class Logic:
                     print("*", end=" ")
                 elif isinstance(self.__Board[row][col], Pawn) and self.__PlayerToPlay == 2:
                     print("_", end=" ")
-            print("") #Saut de ligne
+            print("") # Saut de ligne
 
     def PossibleToPut(self, i, j):
         return True if 0 <= i < self.__n and 0 <= j < self.__n and self.__Board[i][j] == 1 else False
