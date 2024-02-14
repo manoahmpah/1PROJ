@@ -1,11 +1,19 @@
 class Pawn:
     def __init__(self, player, name):
+        """
+        :param player: player number 1 or 2
+        :param name: The name of the players
+        """
         self.__player = player
         self.__name = name
 
 
 class Logic:
     def __init__(self, name1, name2):
+        """
+        :param name1: Name of the players 1
+        :param name2: Name of the players 2
+        """
         self.__n = 11
         self.__Board = []
         self.__PlayerToPlay = 1
@@ -14,8 +22,10 @@ class Logic:
     def get_current_player(self):
         return self.__PlayerToPlay
 
-    def CreateBoard(self):
+    def get_Board(self):
+        return self.__Board
 
+    def CreateBoard(self):
         for (a, b, c) in [(6, 4, 1), (4, 7, 0), (3, 8, 0), (2, 9, 0), (1, 10, 0), (1, 9, 1), (0, 10, 1), (0, 9, 2),
                           (0, 8, 3), (0, 7, 4), (1, 4, 6)]:
             # nine is a null box & one is an empty box
@@ -23,6 +33,7 @@ class Logic:
             self.__Board.append(boardAnex)
 
     def Display(self):
+        self.CreateBoard()
         for row in range(self.__n):
             print(" " * row, end=" ")
             for col in range(self.__n):
@@ -37,6 +48,11 @@ class Logic:
             print("")
 
     def PossibleToPut(self, i, j):
+        """
+        :param i: Coordinate X of player
+        :param j: Coordinate Y of player
+        :return: boolean True or False
+        """
         return True if 0 <= i < self.__n and 0 <= j < self.__n and self.__Board[i][j] == 1 else False
 
     def Put(self, i, j):
@@ -50,6 +66,15 @@ class Logic:
             print("Cette position est impossible !")
 
     def OneDirection(self, PositionY, PositionX, i, j):
+        """
+            Calculate the length of a sequence of opponent's pieces in one direction.
+
+            :param PositionY: The Y coordinate of the current position.
+            :param PositionX: The X coordinate of the current position.
+            :param i: The change in X direction (vector).
+            :param j: The change in Y direction (vector).
+            :return: The number of marks of the current player on the liners of the player's position.
+    """
         return 1 + self.OneDirection(PositionY + i, PositionX + j, i, j) \
             if (0 <= PositionX + j < self.__n
                 and 0 <= PositionY + i < self.__n
@@ -57,6 +82,13 @@ class Logic:
             else 0
 
     def AllDirection(self, PositionY, PositionX):
+        """
+            Check if there is a winning sequence in any direction.
+
+            :param PositionY: The Y coordinate of the current position.
+            :param PositionX: The X coordinate of the current position.
+            :return: True if there's a winning sequence in any direction, False otherwise.
+        """
         column, line, Slash, = 0, 0, 0
         for index, (i, j) in enumerate([(0, -1), (0, 1), (-1, 0), (1, 0), (-1, 1), (1, -1)]):
 
@@ -71,6 +103,6 @@ class Logic:
 
 
 logic_obj = Logic('Luc', 'Jean-Marc')
-# logic_obj.Display()
+logic_obj.CreateBoard()
 logic_obj.Put(0, 7)
 logic_obj.Display()
