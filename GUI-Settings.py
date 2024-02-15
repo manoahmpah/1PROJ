@@ -28,6 +28,12 @@ class GUISettings:
         self.__input_text_surface = None
         self.__input_rect = pygame.Rect(self.__screen.get_width() / 4 + 50, 0, 200, 50)
 
+        # ------- Text Rectangle (need to be automatize) ------- #
+        self.__RectAccount = pygame.Rect(10, 15, 200, 36)
+        self.__RectLanguages = pygame.Rect(10, 55, 200, 36)
+        self.__RectSound = pygame.Rect(10, 95, 200, 36)
+        self.__RectCustomize = pygame.Rect(10, 135, 200, 36)
+
         # ------- BackGround ------- #
         self.__BackGround = pygame.image.load("Assets-Setting/BackGround.png")
 
@@ -44,11 +50,17 @@ class GUISettings:
 
             pygame.draw.rect(self.__screen, (255, 255, 255), self.__input_rect, 2)
 
+            # ------- Text Rectangle (need to be automatize) ------- #
+            pygame.draw.rect(self.__screen, (0, 0, 0), self.__RectAccount, 2)
+            pygame.draw.rect(self.__screen, (0, 0, 0), self.__RectLanguages, 2)
+            pygame.draw.rect(self.__screen, (0, 0, 0), self.__RectSound, 2)
+            pygame.draw.rect(self.__screen, (0, 0, 0), self.__RectCustomize, 2)
+
             # ------- Text ------- #
-            self.__screen.blit(self.__Account, (10, 15))
-            self.__screen.blit(self.__Languages, (10, 55))
-            self.__screen.blit(self.__Sound, (10, 95))
-            self.__screen.blit(self.__Customization, (10, 135))
+            self.__screen.blit(self.__Account, self.__RectAccount)
+            self.__screen.blit(self.__Languages, self.__RectLanguages)
+            self.__screen.blit(self.__Sound, self.__RectSound)
+            self.__screen.blit(self.__Customization, self.__RectCustomize)
 
             # ------- Input Text ------- #
             self.__input_text_surface = self.__font.render(self.__name1, True, (255, 255, 255))
