@@ -3,6 +3,9 @@ import pygame
 
 class GUISettings:
     def __init__(self):
+        """
+        Initialize the GUI Settings
+        """
 
         # ------- Initialize ------- #
 
@@ -29,6 +32,10 @@ class GUISettings:
         self.__BackGround = pygame.image.load("Assets-Setting/BackGround.png")
 
     def run(self):
+        """
+        Run the GUI
+        :return: Nothing
+        """
         while self.__running:
             # ------- BackGround & Rectangle ------- #
             self.__screen.blit(self.__BackGround, (0, -200))
@@ -57,6 +64,11 @@ class GUISettings:
                 self.KeyBoardEvent(event)
 
     def collisionRect1(self, event):
+        """
+        Collision rect
+        :param event: event of what I need
+        :return: Nothing
+        """
         # ------- Collision ------- #
         if event.type == pygame.MOUSEBUTTONDOWN:
             if self.__input_rect.collidepoint(event.pos):
@@ -65,12 +77,22 @@ class GUISettings:
                 self.__name1Boolean = False
 
     def CloseWindow(self, event):
+        """
+        Close window
+        :param event: event of what I need
+        :return: Nothing
+        """
         # ------- Close windows ------- #
         if event.type == pygame.QUIT:
             self.__running = False
             pygame.quit()
 
     def KeyBoardEvent(self, event):
+        """
+        Keyboard event KeyDown, KeyBackSpace & unicode
+        :param event: event of what I need
+        :return: Nothing
+        """
         # ------- KeyBoard Event ------- #
         if event.type == pygame.KEYDOWN and self.__name1Boolean:
             if event.key == pygame.K_BACKSPACE:
