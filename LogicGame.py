@@ -105,6 +105,5 @@ class Logic:
 if __name__ == '__main__':
     logic_obj = Logic('Luc', 'Jean-Marc')
     logic_obj.CreateBoard()
-    logic_obj.get_Board()
     logic_obj.Put(0, 7)
     logic_obj.Display()
