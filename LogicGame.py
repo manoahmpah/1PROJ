@@ -7,6 +7,9 @@ class Pawn:
         self.__player = player
         self.__name = name
 
+    def getPlayer(self):
+        return self.__player
+
 
 class Logic:
     def __init__(self, name1, name2):
@@ -18,6 +21,7 @@ class Logic:
         self.__Board = []
         self.__PlayerToPlay = 1
         self.__name1, self.__name2 = name1, name2
+        self.__PawnNumberOnBoard = 0
 
     def get_current_player(self):
         return self.__PlayerToPlay
@@ -41,10 +45,14 @@ class Logic:
                     print(" ", end=" ")
                 elif self.__Board[row][col] == 1:
                     print("0", end=" ")
-                elif isinstance(self.__Board[row][col], Pawn) and self.__PlayerToPlay == 1:
+                elif isinstance(self.__Board[row][col], Pawn) and self.__Board[row][col].getPlayer == 1:
                     print("*", end=" ")
                 elif isinstance(self.__Board[row][col], Pawn) and self.__PlayerToPlay == 2:
                     print("_", end=" ")
+                elif self.__Board[row][col] == -1:
+                    print("@", end=" ")
+                elif self.__Board[row][col] == -2:
+                    print("%", end=" ")
             print("")
 
     def PossibleToPut(self, i, j):
@@ -101,10 +109,27 @@ class Logic:
 
         return True if column + 1 >= 5 or line + 1 >= 5 or Slash + 1 >= 5 else False
 
+    def Move(self, DPositionX, DPositionY, EPositionX, EPositionY):
+        if 0 <= DPositionX < 11 and 0 <= DPositionY < 11 and 0 <= EPositionX < 11 and 0 <= EPositionY < 11:
+            if self.__Board[EPositionX][EPositionY] == 1:
+                if isinstance(self.__Board[DPositionX][DPositionY], Pawn):
+                    Hub = self.__Board[DPositionX][DPositionY]
+                    self.__Board[DPositionX][DPositionY] = -self.__PlayerToPlay
+                    self.__Board[EPositionX][EPositionY] = Hub
+        else:
+            print("impossible to move !")
+
+    def PlayGame(self):
+        while self.__PawnNumberOnBoard < 10:
+            PositionI = int(input("Choose your position X : "))
+            PositionJ = int(input("Choose your position Y : "))
+            self.Put(PositionI, PositionJ)
+            print(self.get_Board())
+            self.__PawnNumberOnBoard += 1
+            self.__PlayerToPlay = (self.__PlayerToPlay % 2) + 1
+
 
 if __name__ == '__main__':
     logic_obj = Logic('Luc', 'Jean-Marc')
     logic_obj.CreateBoard()
-    logic_obj.get_Board()
-    logic_obj.Put(0, 7)
-    logic_obj.Display()
+    logic_obj.PlayGame()
