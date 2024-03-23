@@ -16,7 +16,7 @@ class GUIPlateau:
 
         self.__logic_obj = Logic('Luc', 'Jean-Marc')
         self.__createBoard = self.__logic_obj.CreateBoard()
-        # self.__logic_obj.Put(0, 7)
+        self.__logic_obj.Put(0, 8)
         self.__getBoard = self.__logic_obj.get_Board()
 
         self.__redRectangle = pygame.Rect(0, 0, self.__width, self.__height)
@@ -25,6 +25,8 @@ class GUIPlateau:
                                            self.__height / 1.2)
         self.__circle_radius = 30
         self.__circle_spacing = 30
+        self.__circle_surface = pygame.Surface((self.__circle_radius * 2, self.__circle_radius * 2),
+                                        pygame.SRCALPHA)
 
     def displayGui(self):
         for row in range(len(self.__getBoard)):
@@ -34,16 +36,14 @@ class GUIPlateau:
                 circle_y = (self.__vertRectangle.top + row * self.__circle_spacing) * 1.7
 
                 # Création d'une surface transparente
-                circle_surface = pygame.Surface((self.__circle_radius * 2, self.__circle_radius * 2),
-                                                pygame.SRCALPHA)
 
-                if self.__getBoard[row][col] == 1:
-                    if col + 1 < len(self.__getBoard[row]) and self.__getBoard[row][col + 1] == 1:
+                if self.__getBoard[row][col] != 9:
+                    if col + 1 < len(self.__getBoard[row]) and self.__getBoard[row][col + 1] != 9:
                         pygame.draw.line(self.__screen, (0, 0, 0), (circle_x, circle_y), (
                             (self.__vertRectangle.left + (col + 1) * circle_spacing + row * self.__circle_spacing),
                             ((self.__vertRectangle.top + row * self.__circle_spacing) * 1.7)), 2)
 
-                    if row + 1 < len(self.__getBoard[row]) and self.__getBoard[row + 1][col] == 1:
+                    if row + 1 < len(self.__getBoard[row]) and self.__getBoard[row + 1][col] != 9:
                         pygame.draw.line(self.__screen, (0, 0, 0), (circle_x, circle_y),
                                          (
                                              (self.__vertRectangle.left + (col + 1) * circle_spacing + (
@@ -51,23 +51,25 @@ class GUIPlateau:
                                              ((self.__vertRectangle.top + (row + 1) * self.__circle_spacing) * 1.7)
                                          )
                                          , 2)
-                    if row + 1 < len(self.__getBoard) and col - 1 < len(self.__getBoard) and self.__getBoard[row + 1][col - 1] == 1:
+                    if row + 1 < len(self.__getBoard) and col - 1 < len(self.__getBoard) and self.__getBoard[row + 1][
+                        col - 1] != 9:
                         pygame.draw.line(self.__screen, (0, 0, 0), (circle_x, circle_y),
                                          (
-                            (self.__vertRectangle.left + (col + 1) * circle_spacing + (row - 3) * self.__circle_spacing),
-                            ((self.__vertRectangle.top + (row + 1) * self.__circle_spacing) * 1.7)
+                                             (self.__vertRectangle.left + (col + 1) * circle_spacing + (
+                                                         row - 3) * self.__circle_spacing),
+                                             ((self.__vertRectangle.top + (row + 1) * self.__circle_spacing) * 1.7)
                                          ), 2)
 
-                    pygame.draw.circle(circle_surface, (0, 0, 0, 0), (circle_x, circle_y), self.__circle_radius, 1)
+                    pygame.draw.circle(self.__screen, (0, 0, 0, 255), (circle_x, circle_y), self.__circle_radius, 1)
+
                 elif isinstance(self.__getBoard[row][col], Pawn) and self.__PlayerToPlay == 1:
-                    pygame.draw.circle(circle_surface, (255, 0, 0, 0), (circle_x, circle_y), self.__circle_radius, 1)
+                    pygame.draw.circle(self.__circle_surface, (255, 0, 0, 0), (circle_x, circle_y), self.__circle_radius, 1)
                 elif isinstance(self.__getBoard[row][col], Pawn) and self.__PlayerToPlay == 2:
-                    pygame.draw.circle(circle_surface, (0, 255, 0, 0), (circle_x, circle_y), self.__circle_radius, 1)
+                    pygame.draw.circle(self.__circle_surface, (0, 255, 0, 0), (circle_x, circle_y), self.__circle_radius, 1)
                 else:
 
-                    pygame.draw.circle(circle_surface, (255, 255, 0, 0), (self.__circle_radius, self.__circle_radius),
+                    pygame.draw.circle(self.__circle_surface, (255, 255, 0, 0), (self.__circle_radius, self.__circle_radius),
                                        self.__circle_radius, 0)
-
 
         pygame.display.flip()
 
@@ -88,6 +90,7 @@ class GUIPlateau:
                     self.__running = False
                     pygame.quit()
                     print("Fermeture du jeu")
+
             pygame.draw.rect(self.__screen, (255, 0, 0), self.__redRectangle, 2)
             pygame.draw.rect(self.__screen, (0, 255, 0), self.__vertRectangle, 2)
 
