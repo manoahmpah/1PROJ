@@ -23,55 +23,59 @@ class GUIPlateau:
         self.__vertRectangle = pygame.Rect(self.__redRectangle.centerx - (self.__width / 1.2) / 2,
                                            self.__redRectangle.centery - (self.__height / 1.2) / 2, self.__width / 1.2,
                                            self.__height / 1.2)
-        self.__circle_radius = 30
+        self.__circle_radius = 25
         self.__circle_spacing = 30
         self.__circle_surface = pygame.Surface((self.__circle_radius * 2, self.__circle_radius * 2),
-                                        pygame.SRCALPHA)
+                                               pygame.SRCALPHA)
 
     def displayGui(self):
+        rectangles = []  # Liste pour stocker les rectangles
         for row in range(len(self.__getBoard)):
-            circle_spacing = self.__circle_spacing * 2  # Espacement entre les cercles, ajusté pour chaque ligne
+            circle_spacing = self.__circle_spacing * 2
             for col in range(len(self.__getBoard[row])):
                 circle_x = self.__vertRectangle.left + col * circle_spacing + row * self.__circle_spacing
                 circle_y = (self.__vertRectangle.top + row * self.__circle_spacing) * 1.7
 
-                # Création d'une surface transparente
+                # Création d'un rectangle
+                rect_width = self.__circle_radius * 2 + 10
+                rect_height = self.__circle_radius * 2 + 3
+                circle_rect = pygame.Rect(circle_x - self.__circle_radius, circle_y - self.__circle_radius,
+                                          rect_width, rect_height)
 
+                if pygame.mouse.get_pressed()[0]:
+                    mouse_pos = pygame.mouse.get_pos()
+                    if circle_rect.collidepoint(mouse_pos):
+                        print("Collision détectée avec le rectangle à la position :", (100 + (int(circle_y//100) - 1) * 100, circle_x, circle_y + (50 * circle_y/100) if (circle_y//100) % 2 else circle_y + 100))
+
+                # Dessiner le cercle à l'intérieur du rectangle
+                pygame.draw.rect(self.__screen, (255, 255, 255), circle_rect, 1)  # Dessiner un rectangle blanc
+
+                rectangles.append(circle_rect)  # Ajouter le rectangle à la liste
+
+                # Dessiner les lignes pour les cercles adjacents
                 if self.__getBoard[row][col] != 9:
                     if col + 1 < len(self.__getBoard[row]) and self.__getBoard[row][col + 1] != 9:
-                        pygame.draw.line(self.__screen, (0, 0, 0), (circle_x, circle_y), (
-                            (self.__vertRectangle.left + (col + 1) * circle_spacing + row * self.__circle_spacing),
-                            ((self.__vertRectangle.top + row * self.__circle_spacing) * 1.7)), 2)
+                        pygame.draw.line(self.__screen, (0, 0, 0), (circle_x, circle_y),
+                                         ((self.__vertRectangle.left + (
+                                                 col + 1) * circle_spacing + row * self.__circle_spacing),
+                                          ((self.__vertRectangle.top + row * self.__circle_spacing) * 1.7)), 2)
 
                     if row + 1 < len(self.__getBoard[row]) and self.__getBoard[row + 1][col] != 9:
                         pygame.draw.line(self.__screen, (0, 0, 0), (circle_x, circle_y),
-                                         (
-                                             (self.__vertRectangle.left + (col + 1) * circle_spacing + (
-                                                     row - 1) * self.__circle_spacing),
-                                             ((self.__vertRectangle.top + (row + 1) * self.__circle_spacing) * 1.7)
-                                         )
-                                         , 2)
+                                         ((self.__vertRectangle.left + col * circle_spacing + (
+                                                 row + 1) * self.__circle_spacing),
+                                          ((self.__vertRectangle.top + (row + 1) * self.__circle_spacing) * 1.7)), 2)
+
                     if row + 1 < len(self.__getBoard) and col - 1 < len(self.__getBoard) and self.__getBoard[row + 1][
                         col - 1] != 9:
                         pygame.draw.line(self.__screen, (0, 0, 0), (circle_x, circle_y),
-                                         (
-                                             (self.__vertRectangle.left + (col + 1) * circle_spacing + (
-                                                         row - 3) * self.__circle_spacing),
-                                             ((self.__vertRectangle.top + (row + 1) * self.__circle_spacing) * 1.7)
-                                         ), 2)
+                                         ((self.__vertRectangle.left + (col - 1) * circle_spacing + (
+                                                 row + 1) * self.__circle_spacing),
+                                          ((self.__vertRectangle.top + (row + 1) * self.__circle_spacing) * 1.7)), 2)
 
-                    pygame.draw.circle(self.__screen, (0, 0, 0, 255), (circle_x, circle_y), self.__circle_radius, 1)
-
-                elif isinstance(self.__getBoard[row][col], Pawn) and self.__PlayerToPlay == 1:
-                    pygame.draw.circle(self.__circle_surface, (255, 0, 0, 0), (circle_x, circle_y), self.__circle_radius, 1)
-                elif isinstance(self.__getBoard[row][col], Pawn) and self.__PlayerToPlay == 2:
-                    pygame.draw.circle(self.__circle_surface, (0, 255, 0, 0), (circle_x, circle_y), self.__circle_radius, 1)
-                else:
-
-                    pygame.draw.circle(self.__circle_surface, (255, 255, 0, 0), (self.__circle_radius, self.__circle_radius),
-                                       self.__circle_radius, 0)
 
         pygame.display.flip()
+
 
     def Run(self):
         while self.__running:
@@ -90,7 +94,6 @@ class GUIPlateau:
                     self.__running = False
                     pygame.quit()
                     print("Fermeture du jeu")
-
             pygame.draw.rect(self.__screen, (255, 0, 0), self.__redRectangle, 2)
             pygame.draw.rect(self.__screen, (0, 255, 0), self.__vertRectangle, 2)
 
