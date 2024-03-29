@@ -23,59 +23,56 @@ class GUIPlateau:
         self.__vertRectangle = pygame.Rect(self.__redRectangle.centerx - (self.__width / 1.2) / 2,
                                            self.__redRectangle.centery - (self.__height / 1.2) / 2, self.__width / 1.2,
                                            self.__height / 1.2)
-        self.__circle_radius = 25
-        self.__circle_spacing = 30
-        self.__circle_surface = pygame.Surface((self.__circle_radius * 2, self.__circle_radius * 2),
-                                               pygame.SRCALPHA)
+        self.__halfDimension = 25
+        self.__paddingRect = 30
+
+    def createHitBox(self, pos_x, pos_y, hitBox):
+        if pygame.mouse.get_pressed()[0]:
+            mouse_pos = pygame.mouse.get_pos()
+            if hitBox.collidepoint(mouse_pos):
+                return int(((pos_x - (30 * ((pos_y // 51) - 2))) // 60) - 1), int(pos_y // 51) - 2
 
     def displayGui(self):
-        rectangles = []  # Liste pour stocker les rectangles
         for row in range(len(self.__getBoard)):
-            circle_spacing = self.__circle_spacing * 2
+            dimension = self.__paddingRect * 2
             for col in range(len(self.__getBoard[row])):
-                circle_x = self.__vertRectangle.left + col * circle_spacing + row * self.__circle_spacing
-                circle_y = (self.__vertRectangle.top + row * self.__circle_spacing) * 1.7
+                pos_x = self.__vertRectangle.left + col * dimension + row * self.__paddingRect
+                pos_y = (self.__vertRectangle.top + row * self.__paddingRect) * 1.7
 
                 # Création d'un rectangle
-                rect_width = self.__circle_radius * 2 + 10
-                rect_height = self.__circle_radius * 2 + 3
-                circle_rect = pygame.Rect(circle_x - self.__circle_radius, circle_y - self.__circle_radius,
+                rect_width = self.__halfDimension * 2 + 5
+                rect_height = self.__halfDimension * 2
+
+                hitBox = pygame.Rect(pos_x - self.__halfDimension, pos_y - self.__halfDimension,
                                           rect_width, rect_height)
 
-                if pygame.mouse.get_pressed()[0]:
-                    mouse_pos = pygame.mouse.get_pos()
-                    if circle_rect.collidepoint(mouse_pos):
-                        print("Collision détectée avec le rectangle à la position :", (100 + (int(circle_y//100) - 1) * 100, circle_x, circle_y + (50 * circle_y/100) if (circle_y//100) % 2 else circle_y + 100))
+
 
                 # Dessiner le cercle à l'intérieur du rectangle
-                pygame.draw.rect(self.__screen, (255, 255, 255), circle_rect, 1)  # Dessiner un rectangle blanc
-
-                rectangles.append(circle_rect)  # Ajouter le rectangle à la liste
+                pygame.draw.rect(self.__screen, (255, 255, 255), hitBox, 1)
 
                 # Dessiner les lignes pour les cercles adjacents
                 if self.__getBoard[row][col] != 9:
                     if col + 1 < len(self.__getBoard[row]) and self.__getBoard[row][col + 1] != 9:
-                        pygame.draw.line(self.__screen, (0, 0, 0), (circle_x, circle_y),
+                        pygame.draw.line(self.__screen, (0, 0, 0), (pos_x, pos_y),
                                          ((self.__vertRectangle.left + (
-                                                 col + 1) * circle_spacing + row * self.__circle_spacing),
-                                          ((self.__vertRectangle.top + row * self.__circle_spacing) * 1.7)), 2)
+                                                 col + 1) * dimension + row * self.__paddingRect),
+                                          ((self.__vertRectangle.top + row * self.__paddingRect) * 1.7)), 2)
 
                     if row + 1 < len(self.__getBoard[row]) and self.__getBoard[row + 1][col] != 9:
-                        pygame.draw.line(self.__screen, (0, 0, 0), (circle_x, circle_y),
-                                         ((self.__vertRectangle.left + col * circle_spacing + (
-                                                 row + 1) * self.__circle_spacing),
-                                          ((self.__vertRectangle.top + (row + 1) * self.__circle_spacing) * 1.7)), 2)
+                        pygame.draw.line(self.__screen, (0, 0, 0), (pos_x, pos_y),
+                                         ((self.__vertRectangle.left + col * dimension + (
+                                                 row + 1) * self.__paddingRect),
+                                          ((self.__vertRectangle.top + (row + 1) * self.__paddingRect) * 1.7)), 2)
 
                     if row + 1 < len(self.__getBoard) and col - 1 < len(self.__getBoard) and self.__getBoard[row + 1][
                         col - 1] != 9:
-                        pygame.draw.line(self.__screen, (0, 0, 0), (circle_x, circle_y),
-                                         ((self.__vertRectangle.left + (col - 1) * circle_spacing + (
-                                                 row + 1) * self.__circle_spacing),
-                                          ((self.__vertRectangle.top + (row + 1) * self.__circle_spacing) * 1.7)), 2)
+                        pygame.draw.line(self.__screen, (0, 0, 0), (pos_x, pos_y),
+                                         ((self.__vertRectangle.left + (col - 1) * dimension + (
+                                                 row + 1) * self.__paddingRect),
+                                          ((self.__vertRectangle.top + (row + 1) * self.__paddingRect) * 1.7)), 2)
 
-
-        pygame.display.flip()
-
+        # pygame.display.flip()
 
     def Run(self):
         while self.__running:
