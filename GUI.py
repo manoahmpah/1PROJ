@@ -101,6 +101,7 @@ class GUIPlateau:
 
 	def game(self):
 		self.display_gui()
+		pygame.display.flip()
 		
 	def run(self):
 		while self.__running:

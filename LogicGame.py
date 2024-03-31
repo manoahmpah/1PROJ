@@ -72,22 +72,20 @@ class Logic:
 				self._board[i][j] = Pawn(self._player_to_play, self.__name2)
 
 		else:
-			print("Cette position est impossible !")
+			print("This position is not valid !")
 
 	def one_direction(self, position_y, position_x, i, j):
 		"""
-			Calculate the length of a sequence of opponent's pieces in one direction.
+		Calculate the length of a sequence of opponent's pieces in one direction.
 
-			:param position_y: The Y coordinate of the current position.
-			:param position_x: The X coordinate of the current position.
-			:param i: The change in X direction (vector).
-			:param j: The change in Y direction (vector).
-			:return: The number of marks of the current player on the liners of the player's position.
-	"""
+		:param position_y: The Y coordinate of the current position.
+		:param position_x: The X coordinate of the current position.
+		:param i: The change in X direction (vector).
+		:param j: The change in Y direction (vector).
+		:return: The number of marks of the current player on the liners of the player's position.
+		"""
 		return 1 + self.one_direction(position_y + i, position_x + j, i, j) \
-			if (0 <= position_x + j < self.__n
-			    and 0 <= position_y + i < self.__n
-			    and self._board[position_y + i][position_x + j] == (-self._player_to_play)) else 0
+			if (0 <= position_x + j < self.__n and 0 <= position_y + i < self.__n and self._board[position_y + i][position_x + j] == (-self._player_to_play)) else 0
 
 	def all_direction(self, position_y, position_x):
 		"""
