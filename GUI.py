@@ -1,12 +1,12 @@
 import pygame
+
 from LogicGame import Logic, Pawn
 
 
 class GUIPlateau:
 	def __init__(self):
-		self.__PlayerToPlay = 2
 		pygame.init()
-		# Générer la fenêtre du jeu
+		# Windows game
 		self.__width = 1080
 		self.__height = 720
 		self.__screen = pygame.display.set_mode((self.__width, self.__height))
@@ -15,95 +15,105 @@ class GUIPlateau:
 		self.__background = (170, 184, 197)
 
 		self.__logic_obj = Logic('Luc', 'Jean-Marc')
-		self.__createBoard = self.__logic_obj.CreateBoard()
-		self.__getBoard = self.__logic_obj.get_Board()
+		self._create_board = self.__logic_obj.CreateBoard()
+		self._get_board = self.__logic_obj.get_Board()
 
-		self.__redRectangle = pygame.Rect(0, 0, self.__width, self.__height)
-		self.__vertRectangle = pygame.Rect(self.__redRectangle.centerx - (self.__width / 1.2) / 2,
-		                                   self.__redRectangle.centery - (self.__height / 1.2) / 2, self.__width / 1.2,
-		                                   self.__height / 1.2)
-		self.__halfDimension = 25
-		self.__paddingRect = 30
+		self._rect_all = pygame.Rect(0, 0, self.__width, self.__height)
+		self._rect_board = pygame.Rect(self._rect_all.centerx - self.__width / 2.4, self._rect_all.centery - self.__height / 2.4, self.__width / 1.2, self.__height / 1.2)
+		self._half_dim_hit_box = 25
+		self._padding_rect = 30
 
-		self.__positionPoints = []
+		self._position_points = []
 
-		self.__rect_width = self.__halfDimension * 2 + 4
-		self.__rect_height = self.__halfDimension * 2
+		self._rect_width = self._half_dim_hit_box * 2 + 4
+		self._rect_height = self._half_dim_hit_box * 2
 
-		self.__position_clickX, self.__position_clickY = -1, -1
+		self._position_click_x, self._position_click_y = -1, -1
 
-	def transformCordIntoIndex(self, Cord_x, Cord_y):
-		return int(((Cord_x - (30 * ((Cord_y // 51) - 2))) // 60) - 1), int(Cord_y // 51) - 2
-
-	def createHitBox(self):
+	def hit_box(self):
 		x, y = pygame.mouse.get_pos()
-		for Point in self.__positionPoints:
-			if (Point['pos_x'] - 30 < x < Point['pos_x'] + 30) and (Point['pos_y'] - 25 < y < Point['pos_y'] + 25):
-				if self.__position_clickY == -1 and self.__position_clickX == -1:
-					self.__position_clickY, self.__position_clickX = self.transformCordIntoIndex(Point['pos_x'],
-					                                                                             Point['pos_y'])
-					self.__logic_obj.Put(self.__position_clickX, self.__position_clickY)
+		for point in self._position_points:
+			if (point['pos_x'] - 30 < x < point['pos_x'] + 30) and (point['pos_y'] - 25 < y < point['pos_y'] + 25):
 
-			# print(self.__position_clickX, self.__position_clickY)
+				if self._position_click_y == -1 and self._position_click_x == -1:
+					self._position_click_y = int(((point['pos_x'] - (30 * ((point['pos_y'] // 51) - 2))) // 60) - 1)
+					self._position_click_x = int(point['pos_y'] // 51) - 2
+					self.__logic_obj.Put(self._position_click_x, self._position_click_y)
 
-		self.__position_clickX, self.__position_clickY = -1, -1
+		# print(self._position_click_x, self._position_click_y)
+
+		# initialise click
+		self._position_click_x, self._position_click_y = -1, -1
 
 		self.__logic_obj.set_PlayerToPlay((self.__logic_obj.get_PlayerToPlay() % 2) + 1)
 
-	def displayGui(self):
-		for row in range(len(self.__getBoard)):
-			dimension = self.__paddingRect * 2
-			for col in range(len(self.__getBoard[row])):
-				pos_x = self.__vertRectangle.left + col * dimension + row * self.__paddingRect
-				pos_y = (self.__vertRectangle.top + row * self.__paddingRect) * 1.7
-				if self.__getBoard[row][col] != 9:
-					self.__positionPoints.append({'pos_x': pos_x, 'pos_y': pos_y})
+	def display_gui(self):
+		for row in range(len(self._get_board)):
+			for col in range(len(self._get_board[row])):
+				pos_x, pos_y = self.calculate_position(row, col)
+				self.draw_circles_and_lines(row, col, pos_x, pos_y)
 
-				# Dessiner les lignes pour les cercles adjacents
-				if self.__getBoard[row][col] != 9:
-					if col + 1 < len(self.__getBoard[row]) and self.__getBoard[row][col + 1] != 9:
-						pygame.draw.line(self.__screen, (0, 0, 0), (pos_x, pos_y),
-						                 ((self.__vertRectangle.left + (
-								                 col + 1) * dimension + row * self.__paddingRect),
-						                  ((self.__vertRectangle.top + row * self.__paddingRect) * 1.7)), 2)
+	def calculate_position(self, row, col):
+		dimension = self._padding_rect * 2
+		pos_x = self._rect_board.left + col * dimension + row * self._padding_rect
+		pos_y = (self._rect_board.top + row * self._padding_rect) * 1.7
+		return pos_x, pos_y
 
-					if row + 1 < len(self.__getBoard[row]) and self.__getBoard[row + 1][col] != 9:
-						pygame.draw.line(self.__screen, (0, 0, 0), (pos_x, pos_y),
-						                 ((self.__vertRectangle.left + col * dimension + (
-								                 row + 1) * self.__paddingRect),
-						                  ((self.__vertRectangle.top + (row + 1) * self.__paddingRect) * 1.7)), 2)
+	def draw_circles_and_lines(self, row, col, pos_x, pos_y):
+		if self._get_board[row][col] != 9:
+			self._position_points.append({'pos_x': pos_x, 'pos_y': pos_y})
 
-					if row + 1 < len(self.__getBoard) and col - 1 < len(self.__getBoard) and self.__getBoard[row + 1][
-						col - 1] != 9:
-						pygame.draw.line(self.__screen, (0, 0, 0), (pos_x, pos_y),
-						                 ((self.__vertRectangle.left + (col - 1) * dimension + (
-								                 row + 1) * self.__paddingRect),
-						                  ((self.__vertRectangle.top + (row + 1) * self.__paddingRect) * 1.7)), 2)
-					if isinstance(self.__getBoard[row][col], Pawn) and self.__getBoard[row][col].getPlayer() == 1:
-						pygame.draw.circle(self.__screen, (255, 255, 255), (pos_x, pos_y), 25, 7)
-					if isinstance(self.__getBoard[row][col], Pawn) and self.__getBoard[row][col].getPlayer() == 2:
-						pygame.draw.circle(self.__screen, (255, 0, 0), (pos_x, pos_y), 25, 7)
+		# Draw lines
+		if self._get_board[row][col] != 9:
+			self.draw_adjacent_lines(row, col, pos_x, pos_y)
 
+		# Draw circles of pawns
+		if isinstance(self._get_board[row][col], Pawn):
+			player = self._get_board[row][col].getPlayer()
+			color = (255, 255, 255) if player == 1 else (0, 0, 0)
+			pygame.draw.circle(self.__screen, color, (pos_x, pos_y), 25, 7)
 
-	def Run(self):
+	def draw_adjacent_lines(self, row, col, pos_x, pos_y):
+		dimension = self._padding_rect * 2
+		board = self._get_board
+		screen = self.__screen
+		rect_board = self._rect_board
+
+		if col + 1 < len(board[row]) and board[row][col + 1] != 9:
+			col_pos_x = rect_board.left + (col + 1) * dimension + row * self._padding_rect
+			col_pos_y = (rect_board.top + row * self._padding_rect) * 1.7
+
+			pygame.draw.line(screen, (0, 0, 0), (pos_x, pos_y), (col_pos_x, col_pos_y), 2)
+
+		if row + 1 < len(board):
+			if col - 1 < len(board) and board[row + 1][col - 1] != 9:
+				diag_col_pos_x = rect_board.left + (col - 1) * dimension + (row + 1) * self._padding_rect
+				diag_col_pos_y = (rect_board.top + (row + 1) * self._padding_rect) * 1.7
+
+				pygame.draw.line(screen, (0, 0, 0), (pos_x, pos_y), (diag_col_pos_x, diag_col_pos_y), 2)
+
+			if board[row + 1][col] != 9:
+				next_row_pos_x = rect_board.left + col * dimension + (row + 1) * self._padding_rect
+				next_row_pos_y = (rect_board.top + (row + 1) * self._padding_rect) * 1.7
+
+				pygame.draw.line(screen, (0, 0, 0), (pos_x, pos_y), (next_row_pos_x, next_row_pos_y), 2)
+
+	def run(self):
 		while self.__running:
 			self.__screen.fill(self.__background)
 
-			self.displayGui()
-
+			self.display_gui()
 			pygame.display.flip()
 
-			# Si le joueur ferme cette fenêtre
+			# if player close windows
 			for event in pygame.event.get():
 				if event.type == pygame.MOUSEBUTTONDOWN:
-					self.createHitBox()
-				# Que l'événement est la fermeture de fenêtre
+					self.hit_box()
 				if event.type == pygame.QUIT:
 					self.__running = False
 					pygame.quit()
-					print("Fermeture du jeu")
 
 
 if __name__ == "__main__":
 	plateau = GUIPlateau()
-	plateau.Run()
+	plateau.run()
