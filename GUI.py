@@ -1,5 +1,4 @@
 import pygame
-
 from LogicGame import Logic, Pawn
 
 
