@@ -15,8 +15,8 @@ class GUIPlateau:
 		self.__background = (170, 184, 197)
 
 		self.__logic_obj = Logic('Luc', 'Jean-Marc')
-		self._create_board = self.__logic_obj.CreateBoard()
-		self._get_board = self.__logic_obj.get_Board()
+		self._create_board = self.__logic_obj.create_board()
+		self._get_board = self.__logic_obj.get_board()
 
 		self._rect_all = pygame.Rect(0, 0, self.__width, self.__height)
 		self._rect_board = pygame.Rect(self._rect_all.centerx - self.__width / 2.4, self._rect_all.centery - self.__height / 2.4, self.__width / 1.2, self.__height / 1.2)
@@ -38,14 +38,16 @@ class GUIPlateau:
 				if self._position_click_y == -1 and self._position_click_x == -1:
 					self._position_click_y = int(((point['pos_x'] - (30 * ((point['pos_y'] // 51) - 2))) // 60) - 1)
 					self._position_click_x = int(point['pos_y'] // 51) - 2
-					self.__logic_obj.Put(self._position_click_x, self._position_click_y)
+					self.__logic_obj.put(self._position_click_x, self._position_click_y)
 
 		# print(self._position_click_x, self._position_click_y)
 
 		# initialise click
-		self._position_click_x, self._position_click_y = -1, -1
+		self.reinitialise_click()
+		self.__logic_obj.set_player_to_play((self.__logic_obj.get_player_to_play() % 2) + 1)
 
-		self.__logic_obj.set_PlayerToPlay((self.__logic_obj.get_PlayerToPlay() % 2) + 1)
+	def reinitialise_click(self):
+		self._position_click_x, self._position_click_y = -1, -1
 
 	def display_gui(self):
 		for row in range(len(self._get_board)):
@@ -69,7 +71,7 @@ class GUIPlateau:
 
 		# Draw circles of pawns
 		if isinstance(self._get_board[row][col], Pawn):
-			player = self._get_board[row][col].getPlayer()
+			player = self._get_board[row][col].get_player()
 			color = (255, 255, 255) if player == 1 else (0, 0, 0)
 			pygame.draw.circle(self.__screen, color, (pos_x, pos_y), 25, 7)
 
@@ -98,6 +100,9 @@ class GUIPlateau:
 
 				pygame.draw.line(screen, (0, 0, 0), (pos_x, pos_y), (next_row_pos_x, next_row_pos_y), 2)
 
+	def game(self):
+		self.display_gui()
+		
 	def run(self):
 		while self.__running:
 			self.__screen.fill(self.__background)
