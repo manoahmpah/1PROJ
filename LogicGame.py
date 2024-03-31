@@ -21,6 +21,7 @@ class Logic:
 		self._board = []
 		self._player_to_play = 1
 		self.__name1, self.__name2 = name1, name2
+		self._pawn_number_on_board = 0
 
 	def get_current_player(self) -> int:
 		return self._player_to_play
@@ -33,6 +34,12 @@ class Logic:
 
 	def set_player_to_play(self, new_payer_to_play: int):
 		self._player_to_play = new_payer_to_play
+
+	def get_pawn_number_on_board(self):
+		return self._pawn_number_on_board
+
+	def set_pawn_number_on_board(self, new_pawn_number_on_board: int):
+		self._pawn_number_on_board = new_pawn_number_on_board
 
 	def create_board(self):
 		for (a, b, c) in [(6, 4, 1), (4, 7, 0), (3, 8, 0), (2, 9, 0), (1, 10, 0), (1, 9, 1), (0, 10, 1), (0, 9, 2),
@@ -65,14 +72,10 @@ class Logic:
 		return True if 0 <= i < self.__n and 0 <= j < self.__n and self._board[i][j] == 1 else False
 
 	def put(self, i, j):
-		if self.possible_to_put(i, j):
-			if self._player_to_play == 1:
-				self._board[i][j] = Pawn(self._player_to_play, self.__name1)
-			elif self._player_to_play == 2:
-				self._board[i][j] = Pawn(self._player_to_play, self.__name2)
-
-		else:
-			print("This position is not valid !")
+		if self._player_to_play == 1:
+			self._board[i][j] = Pawn(self._player_to_play, self.__name1)
+		elif self._player_to_play == 2:
+			self._board[i][j] = Pawn(self._player_to_play, self.__name2)
 
 	def one_direction(self, position_y, position_x, i, j):
 		"""
@@ -106,6 +109,18 @@ class Logic:
 				slash += self.one_direction(position_y, position_x, i, j)
 
 		return True if column + 1 >= 5 or line + 1 >= 5 or slash + 1 >= 5 else False
+
+	def move(self, start_position_x: int, start_position_y: int, end_position_x: int, end_position_y: int):
+		if 0 <= start_position_x < 11 and 0 <= start_position_y < 11 and 0 <= end_position_x < 11 and 0 <= end_position_y < 11:
+			if self._board[end_position_x][end_position_y] == 1:
+				if isinstance(self._board[start_position_x][start_position_y], Pawn):
+					hub = self._board[start_position_x][start_position_y]
+					self._board[start_position_x][start_position_y] = -self._player_to_play
+					self._board[end_position_x][end_position_y] = hub
+				else:
+					print("not the good player to player")
+		else:
+			print("impossible to move !")
 
 
 if __name__ == '__main__':
