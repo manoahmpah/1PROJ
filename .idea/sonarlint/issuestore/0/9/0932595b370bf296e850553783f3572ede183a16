@@ -1,0 +1,29 @@
+
+xpython:S4487"TRemove this unread private attribute '__name' or refactor the code to use its value.(ÍÔâøÿÿÿÿ8¹ì®›é1
+ppython:S100
+"MRename method "getPlayer" to match the regular expression ^[a-z_][a-z0-9_]*$.(‡ãÎÆûÿÿÿÿ8¹ì®›é1
+~python:S116"[Rename this field "__PawnNumberOnBoard" to match the regular expression ^[_a-z][_a-z0-9]*$.(¯·È şÿÿÿÿ8»ì®›é1
+rpython:S116"ORename this field "__Board" to match the regular expression ^[_a-z][_a-z0-9]*$.(…óíéıÿÿÿÿ8»ì®›é1
+ypython:S116"VRename this field "__PlayerToPlay" to match the regular expression ^[_a-z][_a-z0-9]*$.(±ãúÍúÿÿÿÿ8»ì®›é1
+kpython:S100"MRename method "get_Board" to match the regular expression ^[a-z_][a-z0-9_]*$.(åúæƒ8»ì®›é1
+xpython:S117$"ZRename this local variable "boardAnex" to match the regular expression ^[_a-z][a-z0-9_]*$.(ßÎî´8¼ì®›é1
+rpython:S100 "ORename method "CreateBoard" to match the regular expression ^[a-z_][a-z0-9_]*$.(“äÉÄøÿÿÿÿ8¼ì®›é1
+ipython:S100'"KRename method "Display" to match the regular expression ^[a-z_][a-z0-9_]*$.(¸è™Ó8¼ì®›é1
+tpython:S100:"QRename method "PossibleToPut" to match the regular expression ^[a-z_][a-z0-9_]*$.(ÒË™³ÿÿÿÿÿ8¼ì®›é1
+epython:S100B"GRename method "Put" to match the regular expression ^[a-z_][a-z0-9_]*$.(¿¹ËÖ8¼ì®›é1
+spython:S117L"URename this parameter "PositionX" to match the regular expression ^[_a-z][a-z0-9_]*$.(÷–…8¼ì®›é1
+spython:S117L"URename this parameter "PositionY" to match the regular expression ^[_a-z][a-z0-9_]*$.(÷–…8¼ì®›é1
+npython:S100L"PRename method "OneDirection" to match the regular expression ^[a-z_][a-z0-9_]*$.(÷–…8¼ì®›é1
+xpython:S117\"URename this parameter "PositionX" to match the regular expression ^[_a-z][a-z0-9_]*$.(àŒíòûÿÿÿÿ8¼ì®›é1
+xpython:S117\"URename this parameter "PositionY" to match the regular expression ^[_a-z][a-z0-9_]*$.(àŒíòûÿÿÿÿ8¼ì®›é1
+ypython:S117d"VRename this local variable "Slash" to match the regular expression ^[_a-z][a-z0-9_]*$.(ò–Èİúÿÿÿÿ8¼ì®›é1
+spython:S100\"PRename method "AllDirection" to match the regular expression ^[a-z_][a-z0-9_]*$.(àŒíòûÿÿÿÿ8¼ì®›é1
+tpython:S117p"VRename this parameter "DPositionX" to match the regular expression ^[_a-z][a-z0-9_]*$.(‹·ƒÜ8¼ì®›é1
+tpython:S117p"VRename this parameter "DPositionY" to match the regular expression ^[_a-z][a-z0-9_]*$.(‹·ƒÜ8¼ì®›é1
+tpython:S117p"VRename this parameter "EPositionX" to match the regular expression ^[_a-z][a-z0-9_]*$.(‹·ƒÜ8¼ì®›é1
+tpython:S117p"VRename this parameter "EPositionY" to match the regular expression ^[_a-z][a-z0-9_]*$.(‹·ƒÜ8¼ì®›é1
+wpython:S117t"TRename this local variable "Hub" to match the regular expression ^[_a-z][a-z0-9_]*$.(Ä¶©úÿÿÿÿ8¼ì®›é1
+fpython:S100p"HRename method "Move" to match the regular expression ^[a-z_][a-z0-9_]*$.(‹·ƒÜ8¼ì®›é1
+}python:S117|"ZRename this local variable "PositionI" to match the regular expression ^[_a-z][a-z0-9_]*$.( çáÿùÿÿÿÿ8¼ì®›é1
+xpython:S117}"ZRename this local variable "PositionJ" to match the regular expression ^[_a-z][a-z0-9_]*$.(â¿Ÿ‹8¼ì®›é1
+opython:S100z"LRename method "PlayGame" to match the regular expression ^[a-z_][a-z0-9_]*$.(€›ËÑøÿÿÿÿ8¼ì®›é1
