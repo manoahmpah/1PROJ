@@ -1,0 +1,22 @@
+
+qpython:S4487"TRemove this unread private attribute '__name' or refactor the code to use its value.(ÍÔâøÿÿÿÿ
+ipython:S100
+"MRename method "getPlayer" to match the regular expression ^[a-z_][a-z0-9_]*$.(‡ãÎÆûÿÿÿÿ
+kpython:S116"ORename this field "__Board" to match the regular expression ^[_a-z][_a-z0-9]*$.(…óíéıÿÿÿÿ
+rpython:S116"VRename this field "__PlayerToPlay" to match the regular expression ^[_a-z][_a-z0-9]*$.(±ãúÍúÿÿÿÿ
+dpython:S100"MRename method "get_Board" to match the regular expression ^[a-z_][a-z0-9_]*$.(åúæƒ
+kpython:S100"TRename method "get_PlayerToPlay" to match the regular expression ^[a-z_][a-z0-9_]*$.(’¶Ç
+qpython:S117!"ZRename this parameter "newPayerToPlay" to match the regular expression ^[_a-z][a-z0-9_]*$.(š€Çí
+kpython:S100!"TRename method "set_PlayerToPlay" to match the regular expression ^[a-z_][a-z0-9_]*$.(š€Çí
+qpython:S117("ZRename this local variable "boardAnex" to match the regular expression ^[_a-z][a-z0-9_]*$.(ßÎî´
+kpython:S100$"ORename method "CreateBoard" to match the regular expression ^[a-z_][a-z0-9_]*$.(“äÉÄøÿÿÿÿ
+bpython:S100+"KRename method "Display" to match the regular expression ^[a-z_][a-z0-9_]*$.(¸è™Ó
+mpython:S100:"QRename method "PossibleToPut" to match the regular expression ^[a-z_][a-z0-9_]*$.(Å³‰ûÿÿÿÿ
+^python:S100B"GRename method "Put" to match the regular expression ^[a-z_][a-z0-9_]*$.(¿¹ËÖ
+lpython:S117L"URename this parameter "PositionX" to match the regular expression ^[_a-z][a-z0-9_]*$.(÷–…
+lpython:S117L"URename this parameter "PositionY" to match the regular expression ^[_a-z][a-z0-9_]*$.(÷–…
+gpython:S100L"PRename method "OneDirection" to match the regular expression ^[a-z_][a-z0-9_]*$.(÷–…
+qpython:S117\"URename this parameter "PositionX" to match the regular expression ^[_a-z][a-z0-9_]*$.(àŒíòûÿÿÿÿ
+qpython:S117\"URename this parameter "PositionY" to match the regular expression ^[_a-z][a-z0-9_]*$.(àŒíòûÿÿÿÿ
+rpython:S117d"VRename this local variable "Slash" to match the regular expression ^[_a-z][a-z0-9_]*$.(ò–Èİúÿÿÿÿ
+lpython:S100\"PRename method "AllDirection" to match the regular expression ^[a-z_][a-z0-9_]*$.(àŒíòûÿÿÿÿ
