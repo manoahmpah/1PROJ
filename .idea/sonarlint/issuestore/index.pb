@@ -45,3 +45,5 @@ w
 G.idea/sonarlint/issuestore/1/0/10a03f31c4dce92cb371e761ce9429428bb6c176,0\3\030ed2ccb712537825891dfda283154162e458a8
 w
 G.idea/sonarlint/issuestore/1/c/1c2ca51f8b73d3343e8b8e1a7a8da3d10a0230eb,4\a\4ad56fb280cabd48f78f030b9df874463b3c96fc
+Å
+Q.idea/shelf/Uncommitted_changes_before_Checkout_at_31_03_2024_09_59__Changes_.xml,1\c\1c2ca51f8b73d3343e8b8e1a7a8da3d10a0230eb

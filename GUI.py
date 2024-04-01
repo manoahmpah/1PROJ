@@ -1,4 +1,5 @@
 import pygame
+
 from LogicGame import Logic, Pawn
 
 
@@ -29,12 +30,13 @@ class GUIPlateau:
 		self._rect_width = self._half_dim_hit_box * 2 + 4
 		self._rect_height = self._half_dim_hit_box * 2
 
+		self._number_click = 1
 		self._position_click_x, self._position_click_y = -1, -1
 		self._click_x_p1, self._click_y_p1 = None, None
 		self._click_x_p2, self._click_y_p2 = None, None
 
 	def transform_cord_to_pos(self, x, y) -> tuple:
-		return int(((x - (30 * ((y // 51) - 2))) // 60) - 1), int(y // 51) - 2
+		return int(y // 51) - 2, int(((x - (30 * ((y // 51) - 2))) // 60) - 1)
 
 	def hit_box(self) -> tuple:
 		x, y = pygame.mouse.get_pos()
@@ -42,14 +44,14 @@ class GUIPlateau:
 			if (point['pos_x'] - 30 < x < point['pos_x'] + 30) and (point['pos_y'] - 25 < y < point['pos_y'] + 25):
 
 				if self._position_click_y == -1 and self._position_click_x == -1:
-					self._position_click_y, self._position_click_x = self.transform_cord_to_pos(point['pos_x'],
+					self._position_click_x, self._position_click_y = self.transform_cord_to_pos(point['pos_x'],
 					                                                                            point['pos_y'])
 
 					if self.__logic_obj.possible_to_put(self._position_click_x, self._position_click_y):
 						self.__logic_obj.put(self._position_click_x, self._position_click_y)
 						self.__logic_obj.set_player_to_play((self.__logic_obj.get_player_to_play() % 2) + 1)
 						self.__logic_obj.set_pawn_number_on_board(self.__logic_obj.get_pawn_number_on_board() + 1)
-						print(self.__logic_obj.get_pawn_number_on_board())
+					# print(self.__logic_obj.get_pawn_number_on_board())
 					else:
 						print('Impossible to put')
 
@@ -64,31 +66,30 @@ class GUIPlateau:
 				pos_x, pos_y = self.calculate_position(row, col)
 				self.draw_circles_and_lines(row, col, pos_x, pos_y)
 
-	def calculate_position(self, row, col):
+	def calculate_position(self, row: int, col: int) -> tuple:
 		dimension = self._padding_rect * 2
 		pos_x = self._rect_board.left + col * dimension + row * self._padding_rect
 		pos_y = (self._rect_board.top + row * self._padding_rect) * 1.7
 		return pos_x, pos_y
 
-	def draw_circles_and_lines(self, row, col, pos_x, pos_y):
+	def draw_circles_and_lines(self, row: int, col: int, pos_x: int, pos_y: int):
 		if self._get_board[row][col] != 9:
 			self._position_points.append({'pos_x': pos_x, 'pos_y': pos_y})
-
-		# Draw lines
-		if self._get_board[row][col] != 9:
 			self.draw_adjacent_lines(row, col, pos_x, pos_y)
 
-		# Draw circles of pawns
 		if isinstance(self._get_board[row][col], Pawn):
 			player = self._get_board[row][col].get_player()
 			color = (255, 255, 255) if player == 1 else (0, 0, 0)
 			pygame.draw.circle(self.__screen, color, (pos_x, pos_y), 25, 7)
-		if self._get_board[row][col] == -1:
-			pygame.draw.circle(self.__screen, (0, 0, 0), (pos_x, pos_y), 10)
-		elif self._get_board[row][col] == -2:
-			pygame.draw.circle(self.__screen, (255, 255, 255), (pos_x, pos_y), 10)
+			if self._get_board[row][col].get_selected():
+				pygame.draw.circle(self.__screen, color, (pos_x, pos_y), 15)
 
-	def draw_adjacent_lines(self, row, col, pos_x, pos_y):
+		if self._get_board[row][col] == -1:
+			pygame.draw.circle(self.__screen, (255, 255, 255), (pos_x, pos_y), 15)
+		elif self._get_board[row][col] == -2:
+			pygame.draw.circle(self.__screen, (0, 0, 0), (pos_x, pos_y), 15)
+
+	def draw_adjacent_lines(self, row: int, col: int, pos_x: int, pos_y: int):
 		dimension = self._padding_rect * 2
 		board = self._get_board
 		screen = self.__screen
@@ -113,48 +114,54 @@ class GUIPlateau:
 
 				pygame.draw.line(screen, (0, 0, 0), (pos_x, pos_y), (next_row_pos_x, next_row_pos_y), 2)
 
+	def exact_position(self, x: int, y: int) -> tuple:
+		for point in self._position_points:
+			if (point['pos_x'] - 30 < x < point['pos_x'] + 30) and (point['pos_y'] - 25 < y < point['pos_y'] + 25):
+				print(self.transform_cord_to_pos(point['pos_x'], point['pos_y']))
+				return self.transform_cord_to_pos(point['pos_x'], point['pos_y'])
+
+	def move_gui(self):
+		x, y = pygame.mouse.get_pos()
+		exact_pos = self.exact_position(x, y)
+		if exact_pos is not None:
+			x, y = exact_pos
+			if self._number_click == 1 and isinstance(self._get_board[x][y], Pawn) and self._get_board[x][
+				y].get_player() == self.__logic_obj.get_player_to_play():
+				self._click_x_p1, self._click_y_p1 = x, y
+				self._get_board[x][y].set_selected(True)
+				self._number_click = (self._number_click % 2) + 1
+
+			elif self._number_click == 2 and self._get_board[x][y] == 1:
+				self._click_x_p2, self._click_y_p2 = x, y
+				self._number_click = (self._number_click % 2) + 1
+				print(self.__logic_obj.get_player_to_play())
+				self.__logic_obj.move(self._click_x_p1, self._click_y_p1, self._click_x_p2, self._click_y_p2)
+				self._get_board[x][y].set_selected(False)
+				self.__logic_obj.set_player_to_play(self.__logic_obj.get_player_to_play() % 2 + 1)
+				print(self.__logic_obj.get_player_to_play())
+			else:
+				print('Impossible to move !!! ')
+		else:
+			print('Exact position not found!')
+
 	def run(self):
 		while self.__running:
 			self.__screen.fill(self.__background)
-
 			self.display_gui()
 			pygame.display.flip()
-
-			# if player close windows
-			for event in pygame.event.get():
+			event = pygame.event.poll()
+			while event:
 				if event.type == pygame.MOUSEBUTTONDOWN:
 					if self.__logic_obj.get_pawn_number_on_board() < 10:
 						self.hit_box()
 						self.reinitialise_click()
 					else:
-						x, y = pygame.mouse.get_pos()
-						for point in self._position_points:
+						self.move_gui()
 
-							# transforer directement les coordonnées en position
-							if (point['pos_x'] - 30 < x < point['pos_x'] + 30) and (
-									point['pos_y'] - 25 < y < point['pos_y'] + 25):
-
-								index_x, index_y = self.transform_cord_to_pos(point['pos_x'], point['pos_y'])
-
-								if self._click_x_p1 is None:
-									self._click_x_p1, self._click_y_p1 = index_x, index_y
-
-								else:
-									self._click_x_p2, self._click_y_p2 = index_x, index_y
-
-									# look to change the side of click
-									print(self._get_board[self._click_y_p1][self._click_x_p1])
-
-									self.__logic_obj.move(self._click_y_p1, self._click_x_p1, self._click_y_p2, self._click_x_p2)
-									self._click_x_p1, self._click_y_p1 = None, None
-									self._click_x_p2, self._click_y_p2 = None, None
-									self.__logic_obj.set_player_to_play((self.__logic_obj.get_player_to_play() % 2) + 1)
-
-					pygame.display.flip()
-
-				if event.type == pygame.QUIT:
+				elif event.type == pygame.QUIT:
 					self.__running = False
 					pygame.quit()
+				event = pygame.event.poll()
 
 
 if __name__ == "__main__":
