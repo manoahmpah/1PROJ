@@ -4,13 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2998a926-529f-4f17-bf70-9fea3c84f22f" name="Changes" comment="Move 0.5 - GUI Move">
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/c/b/cb73170c39972d4e09b6f4f8d42499f7858c8e00" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/c/b/cb73170c39972d4e09b6f4f8d42499f7858c8e00" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
+    <list default="true" id="2998a926-529f-4f17-bf70-9fea3c84f22f" name="Changes" comment=":heavy_check_mark: Yinsh 0.5 - GUI Move (not with possible to move)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/GUI.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicGame.py" beforeDir="false" afterPath="$PROJECT_DIR$/LogicGame.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +55,7 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="Python tests.Python tests for GUI.TestGUIPlateau">
+  <component name="RunManager">
     <configuration name="Python tests for GUI.TestGUIPlateau" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="1PROJ" />
       <option name="ENV_FILES" value="" />
@@ -146,6 +141,7 @@
       <workItem from="1711881588901" duration="20287000" />
       <workItem from="1711969256021" duration="732000" />
       <workItem from="1711970419714" duration="14680000" />
+      <workItem from="1711991520407" duration="758000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <option name="closed" value="true" />
@@ -187,7 +183,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711916813755</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary=":heavy_check_mark: Yinsh 0.5 - GUI Move (not with possible to move)">
+      <option name="closed" value="true" />
+      <created>1711991961773</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1711991961773</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -225,7 +229,8 @@
     <MESSAGE value="SonarLint resolve" />
     <MESSAGE value="Move" />
     <MESSAGE value="Move 0.2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Move 0.2" />
+    <MESSAGE value=":heavy_check_mark: Yinsh 0.5 - GUI Move (not with possible to move)" />
+    <option name="LAST_COMMIT_MESSAGE" value=":heavy_check_mark: Yinsh 0.5 - GUI Move (not with possible to move)" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/modules_xml$GUI.coverage" NAME="GUI Coverage Results" MODIFIED="1711871672848" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
