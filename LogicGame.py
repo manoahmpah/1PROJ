@@ -6,20 +6,27 @@ class Pawn:
 		"""
 		self.__player = player
 		self._name = name
+		self._selected = False
 
-	def get_player(self):
+	def get_player(self) -> int:
 		return self.__player
+
+	def get_selected(self) -> bool:
+		return self._selected
+
+	def set_selected(self, new_selected: bool):
+		self._selected = new_selected
 
 
 class Logic:
-	def __init__(self, name1, name2):
+	def __init__(self, name1: str, name2: str):
 		"""
 		:param name1: Name of the players 1
 		:param name2: Name of the players 2
 		"""
 		self.__n = 11
 		self._board = []
-		self._player_to_play = 1
+		self._player_to_play = 2
 		self.__name1, self.__name2 = name1, name2
 		self._pawn_number_on_board = 0
 
@@ -71,13 +78,13 @@ class Logic:
 		"""
 		return True if 0 <= i < self.__n and 0 <= j < self.__n and self._board[i][j] == 1 else False
 
-	def put(self, i, j):
+	def put(self, i: int, j: int):
 		if self._player_to_play == 1:
 			self._board[i][j] = Pawn(self._player_to_play, self.__name1)
 		elif self._player_to_play == 2:
 			self._board[i][j] = Pawn(self._player_to_play, self.__name2)
 
-	def one_direction(self, position_y, position_x, i, j):
+	def one_direction(self, position_y: int, position_x: int, i: int, j: int) -> int:
 		"""
 		Calculate the length of a sequence of opponent's pieces in one direction.
 
@@ -90,7 +97,7 @@ class Logic:
 		return 1 + self.one_direction(position_y + i, position_x + j, i, j) \
 			if (0 <= position_x + j < self.__n and 0 <= position_y + i < self.__n and self._board[position_y + i][position_x + j] == (-self._player_to_play)) else 0
 
-	def all_direction(self, position_y, position_x):
+	def all_direction(self, position_y: int, position_x: int) -> bool:
 		"""
 			Check if there is a winning sequence in any direction.
 
