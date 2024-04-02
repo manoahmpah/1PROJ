@@ -47,3 +47,5 @@ w
 G.idea/sonarlint/issuestore/1/c/1c2ca51f8b73d3343e8b8e1a7a8da3d10a0230eb,4\a\4ad56fb280cabd48f78f030b9df874463b3c96fc
 Å
 Q.idea/shelf/Uncommitted_changes_before_Checkout_at_31_03_2024_09_59__Changes_.xml,1\c\1c2ca51f8b73d3343e8b8e1a7a8da3d10a0230eb
+D
+test_unitaire_GUI.py,a\b\abd87d10d8de16de2a2d4e60031b1c9895fdac26
