@@ -1,5 +1,5 @@
 class Pawn:
-	def __init__(self, player, name):
+	def __init__(self, player: int, name: str):
 		"""
 		:param player: player number 1 or 2
 		:param name: The name of the players
@@ -24,11 +24,11 @@ class Logic:
 		:param name1: Name of the players 1
 		:param name2: Name of the players 2
 		"""
-		self.__n = 11
+		self.__n: int = 11
 		self._board = []
-		self._player_to_play = 2
+		self._player_to_play: int = 2
 		self.__name1, self.__name2 = name1, name2
-		self._pawn_number_on_board = 0
+		self._pawn_number_on_board: int = 0
 
 	def get_current_player(self) -> int:
 		return self._player_to_play
@@ -47,6 +47,12 @@ class Logic:
 
 	def set_pawn_number_on_board(self, new_pawn_number_on_board: int):
 		self._pawn_number_on_board = new_pawn_number_on_board
+
+	def get_name1(self):
+		return self.__name1
+
+	def get_name2(self):
+		return self.__name2
 
 	def create_board(self):
 		for (a, b, c) in [(6, 4, 1), (4, 7, 0), (3, 8, 0), (2, 9, 0), (1, 10, 0), (1, 9, 1), (0, 10, 1), (0, 9, 2),
@@ -124,6 +130,7 @@ class Logic:
 					hub = self._board[start_position_x][start_position_y]
 					self._board[start_position_x][start_position_y] = -self._player_to_play
 					self._board[end_position_x][end_position_y] = hub
+					del hub
 				else:
 					print("not the good player to player")
 		else:
