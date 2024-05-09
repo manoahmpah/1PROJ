@@ -1,3 +1,6 @@
+from typing import List, Any
+
+
 class Pawn:
 	def __init__(self, player: int, name: str):
 		"""
@@ -29,12 +32,22 @@ class Logic:
 		self._player_to_play: int = 2
 		self.__name1, self.__name2 = name1, name2
 		self._pawn_number_on_board: int = 0
+		self._list_alignment = [[], [], []]
+
+	def set_list_alignment(self, new_list_alignment: list):
+		self._list_alignment = new_list_alignment
+
+	def get_list_alignment(self):
+		return self._list_alignment
 
 	def get_current_player(self) -> int:
 		return self._player_to_play
 
 	def get_board(self):
 		return self._board
+
+	def set_coord_board(self, x, y, value):
+		self._board[x][y] = value
 
 	def get_player_to_play(self) -> int:
 		return self._player_to_play
@@ -90,51 +103,64 @@ class Logic:
 		elif self._player_to_play == 2:
 			self._board[i][j] = Pawn(self._player_to_play, self.__name2)
 
-	def one_direction(self, position_y: int, position_x: int, i: int, j: int) -> int:
+	def append_alignment_in_list(self, position_y: int, position_x: int, i: int, j: int, index_list_alignment: int):
+		if 0 <= position_x + j < self.__n and 0 <= position_y + i < self.__n:
+			if self._board[position_y + i][position_x + j] == (-self._player_to_play):
+				self._list_alignment[index_list_alignment].append((position_y + i, position_x + j))
+
+	def aligned_mark_number(self, position_y: int, position_x: int, i: int, j: int, index_list_alignment: int) -> int:
 		"""
 		Calculate the length of a sequence of opponent's pieces in one direction.
 
+		:param index_list_alignment:
 		:param position_y: The Y coordinate of the current position.
 		:param position_x: The X coordinate of the current position.
 		:param i: The change in X direction (vector).
 		:param j: The change in Y direction (vector).
 		:return: The number of marks of the current player on the liners of the player's position.
 		"""
-		return 1 + self.one_direction(position_y + i, position_x + j, i, j) \
-			if (0 <= position_x + j < self.__n and 0 <= position_y + i < self.__n and self._board[position_y + i][position_x + j] == (-self._player_to_play)) else 0
+		self.append_alignment_in_list(position_y, position_x, i, j, index_list_alignment)
 
-	def all_direction(self, position_y: int, position_x: int) -> bool:
-		"""
-			Check if there is a winning sequence in any direction.
+		if 0 <= position_x + j < self.__n and 0 <= position_y + i < self.__n:
+			if self._board[position_y + i][position_x + j] == (-self._player_to_play):
+				return 1 + self.aligned_mark_number(position_y + i, position_x + j, i, j, index_list_alignment)
+			else:
+				return 0
+		else:
+			return 0
 
-			:param position_y: The Y coordinate of the current position.
-			:param position_x: The X coordinate of the current position.
-			:return: True if there's a winning sequence in any direction, False otherwise.
-		"""
+	def check_win(self, position_y: int, position_x: int) -> bool:
 		column, line, slash, = 0, 0, 0
 		for index, (i, j) in enumerate([(0, -1), (0, 1), (-1, 0), (1, 0), (-1, 1), (1, -1)]):
 
 			if index < 2:
-				column += self.one_direction(position_y, position_x, i, j)
+				column += self.aligned_mark_number(position_y, position_x, i, j, 0)
 			elif 2 <= index < 4:
-				line += self.one_direction(position_y, position_x, i, j)
+				line += self.aligned_mark_number(position_y, position_x, i, j, 1)
 			else:
-				slash += self.one_direction(position_y, position_x, i, j)
+				slash += self.aligned_mark_number(position_y, position_x, i, j, 2)
 
 		return True if column + 1 >= 5 or line + 1 >= 5 or slash + 1 >= 5 else False
 
-	def move(self, start_position_x: int, start_position_y: int, end_position_x: int, end_position_y: int):
+	def move(self, start_position_x: int, start_position_y: int, end_position_x: int, end_position_y: int, wining_move: bool = False):
 		if 0 <= start_position_x < 11 and 0 <= start_position_y < 11 and 0 <= end_position_x < 11 and 0 <= end_position_y < 11:
-			if self._board[end_position_x][end_position_y] == 1:
+			if self._board[end_position_x][end_position_y] == 1 and not wining_move:
 				if isinstance(self._board[start_position_x][start_position_y], Pawn):
-					hub = self._board[start_position_x][start_position_y]
+					self.put(end_position_x, end_position_y)
 					self._board[start_position_x][start_position_y] = -self._player_to_play
-					self._board[end_position_x][end_position_y] = hub
-					del hub
 				else:
 					print("not the good player to player")
+			elif wining_move:
+				self.put(end_position_x, end_position_y)
+				self._board[start_position_x][start_position_y] = 1
 		else:
 			print("impossible to move !")
+
+	def delete_on_alignment(self):
+		for lists_coord_alignment in self._list_alignment:
+			if len(lists_coord_alignment) >= 4:
+				for coord_alignment in lists_coord_alignment:
+					self._board[coord_alignment[0]][coord_alignment[1]] = 1
 
 
 if __name__ == '__main__':
