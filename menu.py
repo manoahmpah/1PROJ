@@ -1,6 +1,7 @@
 import pygame
 import sys
-import subprocess
+from GUI import GUIPlateau
+
 
 # Initialisation de Pygame
 pygame.init()
@@ -79,7 +80,9 @@ def menu():
                      WINDOW_WIDTH // 2 + play_button_image.get_width() // 2 and \
                      WINDOW_HEIGHT - 120 <= mouse_pos[1] <= WINDOW_HEIGHT - 70:
                     # Ouvrir "Gui.py" en utilisant subprocess.call()
-                    subprocess.call(["python", "Gui.py"])
+                    plateau = GUIPlateau()
+                    plateau.run()
+                    # subprocess.call(["python", "Gui.py"])
                     pygame.quit()  # Quitter Pygame après le lancement de "Gui.py"
                     sys.exit()     # Quitter le script actuel après le lancement de "Gui.py"
 
