@@ -157,10 +157,10 @@ class Logic:
 			print("impossible to move !")
 
 	def delete_on_alignment(self):
-		for lists_coord_alignment in self._list_alignment:
-			if len(lists_coord_alignment) >= 4:
-				for coord_alignment in lists_coord_alignment:
-					self._board[coord_alignment[0]][coord_alignment[1]] = 1
+		for list_coord_alignment in self._list_alignment:
+			if len(list_coord_alignment) >= 4:
+				for index_coord_to_delete in range(4):
+					self._board[list_coord_alignment[index_coord_to_delete][0]][list_coord_alignment[index_coord_to_delete][1]] = 1
 
 
 if __name__ == '__main__':
