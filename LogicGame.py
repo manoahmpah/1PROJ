@@ -80,7 +80,7 @@ class Logic:
 			print(" " * row, end=" ")
 			for col in range(self.__n):
 				if self._board[row][col] == 9:
-					print(" ", end=" ")
+					print("+", end=" ")
 				elif self._board[row][col] == 1:
 					print("0", end=" ")
 				elif isinstance(self._board[row][col], Pawn) and self._player_to_play == 1:
@@ -143,7 +143,7 @@ class Logic:
 		return True if column + 1 >= 5 or line + 1 >= 5 or slash + 1 >= 5 else False
 
 	def move(self, start_position_x: int, start_position_y: int, end_position_x: int, end_position_y: int, wining_move: bool = False):
-		if 0 <= start_position_x < 11 and 0 <= start_position_y < 11 and 0 <= end_position_x < 11 and 0 <= end_position_y < 11:
+		if 0 <= start_position_x < 11 and 0 <= start_position_y < 11 and 0 <= end_position_x < 11 and 0 <= end_position_y < 11 :
 			if self._board[end_position_x][end_position_y] == 1 and not wining_move:
 				if isinstance(self._board[start_position_x][start_position_y], Pawn):
 					self.put(end_position_x, end_position_y)
@@ -160,7 +160,30 @@ class Logic:
 		for list_coord_alignment in self._list_alignment:
 			if len(list_coord_alignment) >= 4:
 				for index_coord_to_delete in range(4):
-					self._board[list_coord_alignment[index_coord_to_delete][0]][list_coord_alignment[index_coord_to_delete][1]] = 1
+					self._board[list_coord_alignment[index_coord_to_delete][0]][
+						list_coord_alignment[index_coord_to_delete][1]] = 1
+
+	@staticmethod
+	def possible_to_move(start_position_x: int, start_position_y: int, end_position_x: int, end_position_y: int) -> bool:
+		"""
+		:param start_position_x: The X coordinate of the start position.
+		:param start_position_y: The Y coordinate of the start position.
+		:param end_position_x: The X coordinate of the end position.
+		:param end_position_y: The Y coordinate of the end position.
+		:return: True if the move is possible, False otherwise.
+		"""
+		if 0 <= start_position_x < 11 and 0 <= start_position_y < 11 and 0 <= end_position_x < 11 and 0 <= end_position_y < 11 :
+			coefficient_diagonal_x = (end_position_x - start_position_x)/1
+			coefficient_diagonal_y = (end_position_y - start_position_y)/-1
+
+			if start_position_x == end_position_x and start_position_y != end_position_y:
+				return True
+			elif start_position_x != end_position_x and start_position_y == end_position_y:
+				return True
+			elif coefficient_diagonal_x == coefficient_diagonal_y:
+				return True
+			else:
+				return False
 
 
 if __name__ == '__main__':
