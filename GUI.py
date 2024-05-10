@@ -42,7 +42,10 @@ class GUIPlateau:
 		self._rect_error = pygame.Rect(self._rect_all.centerx - 100, self._rect_all.bottom - 100, 200, 50)
 		self._error_message = ""
 
-	def transform_cord_to_pos(self, x, y) -> tuple:
+		self._winning_move_player_one, self._winning_move_player_two = 0, 0
+
+	@staticmethod
+	def transform_cord_to_pos(x, y) -> tuple:
 		return int(y // 51) - 2, int(((x - (30 * ((y // 51) - 2))) // 60) - 1)
 
 	def pixel_to_coordinate_transformation(self, x: int, y: int) -> tuple:
@@ -145,6 +148,11 @@ class GUIPlateau:
 			if self.__logic_obj.check_win(self._click_x_p1, self._click_y_p1):
 				self.__logic_obj.delete_on_alignment()
 				winning_move = True
+				if self.__logic_obj.get_player_to_play() == 1:
+					self._winning_move_player_one += 1
+				else:
+					self._winning_move_player_two += 1
+				print(f'Player 1: {self._winning_move_player_one} - Player 2: {self._winning_move_player_two}')
 
 			self._click_x_p2, self._click_y_p2 = mouse_coordinate_x, mouse_coordinate_y
 			self._move_click = 1
