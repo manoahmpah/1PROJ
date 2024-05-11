@@ -158,19 +158,24 @@ class GUIPlateau:
 
 		elif winning_move:
 			print("Congratulations! You have aligned 5 pawns.")
-			print("Click on the pawn you want to remove.")
+			print("Please click on the pawn you want to remove.")
 
 			valid_selection = False
 			while not valid_selection:
+				# Implement the logic for the player to select a pawn to remove
 				for event in pygame.event.get():
 					if event.type == pygame.MOUSEBUTTONDOWN:
+						# Get the mouse coordinates
 						mouse_x, mouse_y = pygame.mouse.get_pos()
+
+						# Calculate the row and column based on mouse coordinates
 						row, column = self.pixel_to_coordinate_transformation(mouse_x, mouse_y)
+
 						if 0 <= row < 11 and 0 <= column < 11 and isinstance(self._get_board[row][column], Pawn):
 							pawn_to_remove = (row, column)
 							valid_selection = True
 						else:
-							print("Please click on a valid pawn.")
+							print("Invalid selection. Please click on a valid pawn.")
 
 	def move_pawns(self):
 		mouse_coordinate = self.pixel_to_coordinate_transformation(*pygame.mouse.get_pos())
