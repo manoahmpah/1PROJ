@@ -124,6 +124,8 @@ class GUIPlateau:
 		self._error_message = ''
 
 	def handle_second_click_move(self, mouse_coordinate_x, mouse_coordinate_y):
+
+		print(self.__logic_obj.possible_to_move(self._click_x_p1, self._click_y_p1, mouse_coordinate_x, mouse_coordinate_y))
 		winning_move = False
 
 		self.__logic_obj.set_list_alignment([[], [], []])
@@ -139,7 +141,7 @@ class GUIPlateau:
 				self._error_message = 'You can not move on a pawn or a mark !'
 				self._refresh = True
 				self.refresh()
-		else:
+		elif self.__logic_obj.possible_to_move(self._click_x_p1, self._click_y_p1, mouse_coordinate_x, mouse_coordinate_y):
 			if self.__logic_obj.check_win(self._click_x_p1, self._click_y_p1):
 				self.__logic_obj.delete_on_alignment()
 				winning_move = True
@@ -151,6 +153,8 @@ class GUIPlateau:
 			self.refresh()
 			self._error_message = ''
 			self.__logic_obj.set_player_to_play(self.__logic_obj.get_player_to_play() % 2 + 1)
+		elif not self.__logic_obj.possible_to_move(self._click_x_p1, self._click_y_p1, mouse_coordinate_x, mouse_coordinate_y):
+			self._error_message = 'Impossible to move here !'
 
 	def move_pawns(self):
 		mouse_coordinate = self.pixel_to_coordinate_transformation(*pygame.mouse.get_pos())

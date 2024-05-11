@@ -6,6 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="2998a926-529f-4f17-bf70-9fea3c84f22f" name="Changes" comment=":sparkles: alignment but not counter">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/GUI.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogicGame.py" beforeDir="false" afterPath="$PROJECT_DIR$/LogicGame.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -229,7 +231,7 @@
       <workItem from="1715091844150" duration="1000" />
       <workItem from="1715093886219" duration="14012000" />
       <workItem from="1715170442996" duration="12223000" />
-      <workItem from="1715416675357" duration="2900000" />
+      <workItem from="1715416675357" duration="4764000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <option name="closed" value="true" />
@@ -310,6 +312,11 @@
     <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="f28334f8-6e47-4d44-b8af-3831ce54f6e7" value="TOOL_WINDOW" />
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
@@ -327,6 +334,11 @@
                 </map>
               </option>
             </State>
+          </value>
+        </entry>
+        <entry key="f28334f8-6e47-4d44-b8af-3831ce54f6e7">
+          <value>
+            <State />
           </value>
         </entry>
       </map>
