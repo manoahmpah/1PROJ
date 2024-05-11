@@ -165,36 +165,36 @@ class Logic:
 
 @staticmethod
 def possible_to_move(start_position_x: int, start_position_y: int, end_position_x: int, end_position_y: int) -> bool:
-        """
-        :param start_position_x: The X coordinate of the start position.
-        :param start_position_y: The Y coordinate of the start position.
-        :param end_position_x: The X coordinate of the end position.
-        :param end_position_y: The Y coordinate of the end position.
-        :return: True if the move is possible, False otherwise.
-        """
-        if not (
-                0 <= start_position_x < 11 and 0 <= start_position_y < 11 and 0 <= end_position_x < 11 and 0 <= end_position_y < 11):
-            print("Coordinates are outside the board limits.")
-            return False
+    """
+    :param start_position_x: The X coordinate of the start position.
+    :param start_position_y: The Y coordinate of the start position.
+    :param end_position_x: The X coordinate of the end position.
+    :param end_position_y: The Y coordinate of the end position.
+    :return: True if the move is possible, False otherwise.
+    """
+    if not (0 <= start_position_x < 11 and 0 <= start_position_y < 11 and 0 <= end_position_x < 11 and 0 <= end_position_y < 11):
+        print("Coordinates are outside the board limits.")
+        return False  # Les coordonnées de la souris sont en dehors des limites du plateau
 
-        if start_position_x == end_position_x and start_position_y == end_position_y:
-            print("Start and end coordinates are the same.")
-            return False
+    if start_position_x == end_position_x and start_position_y == end_position_y:
+        print("Start and end coordinates are the same.")
+        return False  # Les coordonnées de départ et d'arrivée sont les mêmes
 
-        if start_position_x == end_position_x or start_position_y == end_position_y:
-            return True
+    if start_position_x == end_position_x or start_position_y == end_position_y:
+        return True  # Le mouvement est vertical ou horizontal
 
-        coefficient_diagonal_x = (end_position_x - start_position_x) / 1
-        coefficient_diagonal_y = (end_position_y - start_position_y) / -1
+    coefficient_diagonal_x = (end_position_x - start_position_x) / 1
+    coefficient_diagonal_y = (end_position_y - start_position_y) / -1
 
-        if coefficient_diagonal_x == coefficient_diagonal_y:
-            return True
+    if coefficient_diagonal_x == coefficient_diagonal_y:
+        return True  # Le mouvement est diagonal
 
-        if start_position_x != end_position_x and start_position_y != end_position_y:
-            print("Invalid move. It must be vertical, horizontal, or diagonal.")
-            return False
+    if start_position_x != end_position_x and start_position_y != end_position_y:
+        print("Invalid move. It must be vertical, horizontal, or diagonal.")
+        return False  # Le mouvement n'est ni vertical, ni horizontal, ni diagonal
 
-        return False
+    return False  # Le mouvement est invalide
+
 
 if __name__ == '__main__':
 	logic_obj = Logic('Luc', 'Jean-Marc')
