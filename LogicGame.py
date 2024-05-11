@@ -167,21 +167,26 @@ class Logic:
 	def possible_to_move(start_position_x: int, start_position_y: int, end_position_x: int,
 						 end_position_y: int) -> bool:
 		"""
-		:param start_position_x: The X coordinate of the start position.
+        :param start_position_x: The X coordinate of the start position.
         :param start_position_y: The Y coordinate of the start position.
         :param end_position_x: The X coordinate of the end position.
         :param end_position_y: The Y coordinate of the end position.
         :return: True if the move is possible, False otherwise.
         """
 		if 0 <= start_position_x < 11 and 0 <= start_position_y < 11 and 0 <= end_position_x < 11 and 0 <= end_position_y < 11:
-			if start_position_x == end_position_x or start_position_y == end_position_y:
+			coefficient_diagonal_x = (end_position_x - start_position_x) / 1
+			coefficient_diagonal_y = (end_position_y - start_position_y) / -1
+
+			if start_position_x == end_position_x and start_position_y != end_position_y:
 				return True
-			elif (end_position_x - start_position_x) == -(end_position_y - start_position_y):
+			elif start_position_x != end_position_x and start_position_y == end_position_y:
+				return True
+			elif coefficient_diagonal_x == coefficient_diagonal_y:
 				return True
 			else:
 				return False
 		else:
-			return False
+			return False  
 
 
 if __name__ == '__main__':
