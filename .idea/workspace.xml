@@ -4,14 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2998a926-529f-4f17-bf70-9fea3c84f22f" name="Changes" comment=":white_check_mark: Change Mark / Not possible Pawn">
+    <list default="true" id="2998a926-529f-4f17-bf70-9fea3c84f22f" name="Changes" comment=":tada: check_valid_jumps">
+      <change afterPath="$PROJECT_DIR$/GameBoard/BoardRenderer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GameBoard/EventHandler.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GameBoard/GUIBoard.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GameBoard/GameLogicHandler.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GameBoard/LogicGame.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/0/9/0932595b370bf296e850553783f3572ede183a16" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/0/9/0932595b370bf296e850553783f3572ede183a16" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/GUI.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogicGame.py" beforeDir="false" afterPath="$PROJECT_DIR$/LogicGame.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/menu.py" beforeDir="false" afterPath="$PROJECT_DIR$/menu.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,45 +66,72 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Python tests.Python tests for GUI.TestGUIPlateau.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for GUI.TestGUIPlateau.test_hit_box_with_no_pawn.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for GUI.TestGUIPlateau.test_hit_box_with_selected_pawn.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test_unitaire_GUI.TestGUIPlateau.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test_unitaire_GUI.TestGUIPlateau.test_move_gui_with_no_exact_position.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test_unitaire_GUI.TestGUIPlateau.test_move_gui_with_pawn_and_first_click.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test_unitaire_GUI.TestLogicMethods.test_get_current_player.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test_unitaire_GUI.TestLogicMethods.test_move.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test_unitaire_GUI.TestLogicMethods.test_put.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests in LogicGame.py.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests in test_unitaire_GUI.py.executor&quot;: &quot;Run&quot;,
-    &quot;Python.GUI-Settings.executor&quot;: &quot;Run&quot;,
-    &quot;Python.GUI.executor&quot;: &quot;Run&quot;,
-    &quot;Python.LogicGame.executor&quot;: &quot;Run&quot;,
-    &quot;Python.menu.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Developement&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/SupInfo/1 ANNEE/1ARIT&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Python tests.Python tests for GUI.TestGUIPlateau.executor": "Run",
+    "Python tests.Python tests for GUI.TestGUIPlateau.test_hit_box_with_no_pawn.executor": "Run",
+    "Python tests.Python tests for GUI.TestGUIPlateau.test_hit_box_with_selected_pawn.executor": "Run",
+    "Python tests.Python tests for test_unitaire_GUI.TestGUIPlateau.executor": "Run",
+    "Python tests.Python tests for test_unitaire_GUI.TestGUIPlateau.test_move_gui_with_no_exact_position.executor": "Run",
+    "Python tests.Python tests for test_unitaire_GUI.TestGUIPlateau.test_move_gui_with_pawn_and_first_click.executor": "Run",
+    "Python tests.Python tests for test_unitaire_GUI.TestLogicMethods.test_get_current_player.executor": "Run",
+    "Python tests.Python tests for test_unitaire_GUI.TestLogicMethods.test_move.executor": "Run",
+    "Python tests.Python tests for test_unitaire_GUI.TestLogicMethods.test_put.executor": "Run",
+    "Python tests.Python tests in LogicGame.py.executor": "Run",
+    "Python tests.Python tests in test_unitaire_GUI.py.executor": "Run",
+    "Python.GUI-Settings.executor": "Run",
+    "Python.GUI.executor": "Run",
+    "Python.GUIBoard.executor": "Run",
+    "Python.LogicGame.executor": "Run",
+    "Python.menu.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
+    "git-widget-placeholder": "Developement",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/MPAH/PycharmProjects/1PROJ/GameBoard",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\MPAH\PycharmProjects\1PROJ\GameBoard" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\MPAH\PycharmProjects\1PROJ\asset_plateau" />
     </key>
   </component>
   <component name="RunManager">
+    <configuration name="GUIBoard" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="1PROJ" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/GameBoard" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/GameBoard/GUIBoard.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="Python tests for test_unitaire_GUI.TestLogicMethods.test_get_current_player" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="1PROJ" />
       <option name="ENV_FILES" value="" />
@@ -114,22 +145,6 @@
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
       <option name="_new_target" value="&quot;test_unitaire_GUI.TestLogicMethods.test_get_current_player&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Python tests for test_unitaire_GUI.TestLogicMethods.test_move" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
-      <module name="1PROJ" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_unitaire_GUI.TestLogicMethods.test_move&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
@@ -183,11 +198,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.GUIBoard" />
         <item itemvalue="Python tests.Python tests for test_unitaire_GUI.TestLogicMethods.test_get_current_player" />
         <item itemvalue="Python tests.Python tests in test_unitaire_GUI.py" />
         <item itemvalue="Python tests.Python tests in LogicGame.py" />
         <item itemvalue="Python tests.Python tests for test_unitaire_GUI.TestLogicMethods.test_put" />
-        <item itemvalue="Python tests.Python tests for test_unitaire_GUI.TestLogicMethods.test_move" />
       </list>
     </recent_temporary>
   </component>
@@ -247,7 +262,9 @@
       <workItem from="1715837828898" duration="574000" />
       <workItem from="1715857950605" duration="2369000" />
       <workItem from="1715862731330" duration="6469000" />
-      <workItem from="1715869950293" duration="5781000" />
+      <workItem from="1715869950293" duration="12673000" />
+      <workItem from="1715892111540" duration="1242000" />
+      <workItem from="1715893400252" duration="1760000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <option name="closed" value="true" />
@@ -361,7 +378,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715858125731</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary=":tada: check_valid_jumps">
+      <option name="closed" value="true" />
+      <created>1715881441595</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1715881441595</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -407,14 +432,16 @@
     <MESSAGE value=":sparkles: possible_to_move feature" />
     <MESSAGE value=":triangular_flag_on_post: add counter for winning stuff" />
     <MESSAGE value=":white_check_mark: Change Mark / Not possible Pawn" />
-    <option name="LAST_COMMIT_MESSAGE" value=":white_check_mark: Change Mark / Not possible Pawn" />
+    <MESSAGE value=":tada: check_valid_jumps" />
+    <option name="LAST_COMMIT_MESSAGE" value=":tada: check_valid_jumps" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/1PROJ$.coverage" NAME=" Coverage Results" MODIFIED="1715870796124" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/1PROJ$GUI.coverage" NAME="GUI Coverage Results" MODIFIED="1715881183682" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/1PROJ$GUI.coverage" NAME="GUI Coverage Results" MODIFIED="1715894404657" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/1PROJ$menu.coverage" NAME="menu Coverage Results" MODIFIED="1712230032188" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/1PROJ$GUIBoard.coverage" NAME="GUIBoard Coverage Results" MODIFIED="1715894422658" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/GameBoard" />
     <SUITE FILE_PATH="coverage/1PROJ$GUI_Settings.coverage" NAME="GUI-Settings Coverage Results" MODIFIED="1715858233010" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/modules_xml$GUI.coverage" NAME="GUI Coverage Results" MODIFIED="1711871672848" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/1PROJ$LogicGame.coverage" NAME="LogicGame Coverage Results" MODIFIED="1715881180299" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/1PROJ$LogicGame.coverage" NAME="LogicGame Coverage Results" MODIFIED="1715891735419" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
