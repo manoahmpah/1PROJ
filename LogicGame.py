@@ -164,7 +164,34 @@ class Logic:
 						list_coord_alignment[index_coord_to_delete][1]] = 1
 
 	@staticmethod
-	def possible_to_move(start_position_x: int, start_position_y: int, end_position_x: int, end_position_y: int) -> bool:
+	def get_vectors(start_position_x: int, start_position_y: int, end_position_x: int, end_position_y: int) -> tuple[int, int]:
+		vector_x = 0
+		vector_y = 0
+
+		if start_position_x < end_position_x:
+			vector_x = 1
+		elif start_position_x > end_position_x:
+			vector_x = -1
+
+		if start_position_y < end_position_y:
+			vector_y = 1
+		elif start_position_y > end_position_y:
+			vector_y = -1
+
+		return vector_x, vector_y
+
+	def verify_not_pawn_in_lign(self, start_position_x: int, start_position_y: int, end_position_x: int, end_position_y: int) -> bool:
+
+		vector_x, vector_y = self.get_vectors(start_position_x, start_position_y, end_position_x, end_position_y)
+
+		if start_position_x + vector_x == end_position_x and start_position_y + vector_y == end_position_y:
+			return True
+		if isinstance(self._board[start_position_x + vector_x][start_position_y + vector_y], Pawn):
+			return False
+		else:
+			return self.verify_not_pawn_in_lign(start_position_x + vector_x, start_position_y + vector_y, end_position_x, end_position_y)
+
+	def possible_to_move(self, start_position_x: int, start_position_y: int, end_position_x: int, end_position_y: int) -> tuple[bool, None|str]:
 		"""
 		:param start_position_x: The X coordinate of the start position.
 		:param start_position_y: The Y coordinate of the start position.
@@ -175,15 +202,35 @@ class Logic:
 		if 0 <= start_position_x < 11 and 0 <= start_position_y < 11 and 0 <= end_position_x < 11 and 0 <= end_position_y < 11 :
 			coefficient_diagonal_x = (end_position_x - start_position_x)/1
 			coefficient_diagonal_y = (end_position_y - start_position_y)/-1
-
-			if start_position_x == end_position_x and start_position_y != end_position_y:
-				return True
+			if isinstance(self._board[end_position_x][end_position_y], Pawn) or self._board[end_position_x][end_position_y] in [-1, -2]:
+				return False, 'You can not move on a pawn or a mark !'
+			elif not self.verify_not_pawn_in_lign(start_position_x, start_position_y, end_position_x, end_position_y):
+				return False, 'You can not move on a pawn !'
+			elif start_position_x == end_position_x and start_position_y != end_position_y:
+				return True, None
 			elif start_position_x != end_position_x and start_position_y == end_position_y:
-				return True
+				return True, None
 			elif coefficient_diagonal_x == coefficient_diagonal_y:
-				return True
+				return True, None
 			else:
-				return False
+				return False, 'Impossible to move here !'
+
+	def change_mark_on_move(self, start_position_x: int, start_position_y: int, end_position_x: int, end_position_y: int):
+		vector_x, vector_y = self.get_vectors(start_position_x, start_position_y, end_position_x, end_position_y)
+
+		new_x = start_position_x + vector_x
+		new_y = start_position_y + vector_y
+		current_value = self._board[new_x][new_y]
+
+		if start_position_x == end_position_x and start_position_y == end_position_y:
+			return 0
+
+		elif current_value in (-1, -2):
+			self._board[new_x][new_y] = -2 if current_value == -1 else -1
+			return 1 + self.change_mark_on_move(new_x, new_y, end_position_x, end_position_y)
+
+		else:
+			return self.change_mark_on_move(start_position_x + vector_x, start_position_y + vector_y, end_position_x, end_position_y)
 
 
 if __name__ == '__main__':

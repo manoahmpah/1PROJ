@@ -8,7 +8,7 @@ class GUIPlateau:
 		# Windows game
 		self.__width = 1080
 		self.__height = 720
-		self.__screen = pygame.display.set_mode((self.__width, self.__height))
+		self.__screen = pygame.display.set_mode((self.__width, self.__height), pygame.SRCALPHA)
 		pygame.display.set_caption('yinsh')
 		self.__running = True
 		self.__background = (170, 184, 197)
@@ -43,6 +43,17 @@ class GUIPlateau:
 		self._error_message = ""
 
 		self._winning_move_player_one, self._winning_move_player_two = 0, 0
+		self._react_pawns_win_player_one = pygame.Rect(self._rect_all.left + 200, self._rect_all.top + 20, 130, 70)
+		self._color_pawn_win_player_one = [(50,50,50) for _ in range(3)]
+		self._react_pawns_win_player_two = 5
+
+	def rectangle_pawn_win_player_one(self):
+		# print(self._color_pawn_win_player_one)
+		pygame.draw.circle(self.__screen, self._color_pawn_win_player_one[0], (self._react_pawns_win_player_one.centerx + 20, self._react_pawns_win_player_one.centery), 25, 7)
+		pygame.draw.circle(self.__screen, self.__background, (self._react_pawns_win_player_one.centerx - 10, self._react_pawns_win_player_one.centery), 25)
+		pygame.draw.circle(self.__screen, self._color_pawn_win_player_one[1], (self._react_pawns_win_player_one.centerx - 10, self._react_pawns_win_player_one.centery), 25, 7)
+		pygame.draw.circle(self.__screen, self.__background, (self._react_pawns_win_player_one.centerx - 40, self._react_pawns_win_player_one.centery), 25)
+		pygame.draw.circle(self.__screen, self._color_pawn_win_player_one[2], (self._react_pawns_win_player_one.centerx - 40, self._react_pawns_win_player_one.centery), 25, 7)
 
 	@staticmethod
 	def transform_cord_to_pos(x, y) -> tuple:
@@ -127,8 +138,6 @@ class GUIPlateau:
 		self._error_message = ''
 
 	def handle_second_click_move(self, mouse_coordinate_x, mouse_coordinate_y):
-
-		print(self.__logic_obj.possible_to_move(self._click_x_p1, self._click_y_p1, mouse_coordinate_x, mouse_coordinate_y))
 		winning_move = False
 
 		self.__logic_obj.set_list_alignment([[], [], []])
@@ -138,31 +147,30 @@ class GUIPlateau:
 			self._refresh = True
 			self.refresh()
 			self._move_click = 1
-		elif isinstance(self._get_board[mouse_coordinate_x][mouse_coordinate_y], Pawn) or \
-			self._get_board[mouse_coordinate_x][mouse_coordinate_y] in [-1, -2]:
-			if self._error_message == '':
-				self._error_message = 'You can not move on a pawn or a mark !'
-				self._refresh = True
-				self.refresh()
-		elif self.__logic_obj.possible_to_move(self._click_x_p1, self._click_y_p1, mouse_coordinate_x, mouse_coordinate_y):
+
+		elif self.__logic_obj.possible_to_move(self._click_x_p1, self._click_y_p1, mouse_coordinate_x, mouse_coordinate_y)[0]:
+			self.__logic_obj.change_mark_on_move(self._click_x_p1, self._click_y_p1, mouse_coordinate_x, mouse_coordinate_y)
 			if self.__logic_obj.check_win(self._click_x_p1, self._click_y_p1):
 				self.__logic_obj.delete_on_alignment()
 				winning_move = True
 				if self.__logic_obj.get_player_to_play() == 1:
 					self._winning_move_player_one += 1
+
 				else:
+					self._color_pawn_win_player_one[self._winning_move_player_one-1] = (0, 0, 0)
 					self._winning_move_player_two += 1
-				print(f'Player 1: {self._winning_move_player_one} - Player 2: {self._winning_move_player_two}')
 
 			self._click_x_p2, self._click_y_p2 = mouse_coordinate_x, mouse_coordinate_y
 			self._move_click = 1
 			self.__logic_obj.move(self._click_x_p1, self._click_y_p1, self._click_x_p2, self._click_y_p2, winning_move)
 			self._get_board[mouse_coordinate_x][mouse_coordinate_y].set_selected(False) if not winning_move else None
+
 			self.refresh()
 			self._error_message = ''
 			self.__logic_obj.set_player_to_play(self.__logic_obj.get_player_to_play() % 2 + 1)
-		elif not self.__logic_obj.possible_to_move(self._click_x_p1, self._click_y_p1, mouse_coordinate_x, mouse_coordinate_y):
-			self._error_message = 'Impossible to move here !'
+
+		else:
+			self._error_message = self.__logic_obj.possible_to_move(self._click_x_p1, self._click_y_p1, mouse_coordinate_x, mouse_coordinate_y)[1]
 
 	def move_pawns(self):
 		mouse_coordinate = self.pixel_to_coordinate_transformation(*pygame.mouse.get_pos())
@@ -214,13 +222,13 @@ class GUIPlateau:
 			self.__screen.fill(self.__background)
 			self.display_gui()
 			self.player_name_display()
+			self.rectangle_pawn_win_player_one()
 			pygame.display.flip()
 			self._refresh = False
 
 	def run(self):
 		while self.__running:
 			self.refresh()
-
 			event = pygame.event.poll()
 
 			if event.type == pygame.MOUSEBUTTONDOWN:
