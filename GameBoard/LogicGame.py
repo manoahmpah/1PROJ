@@ -1,6 +1,3 @@
-from typing import List, Any
-
-
 class Pawn:
 	def __init__(self, player: int, name: str):
 		"""
