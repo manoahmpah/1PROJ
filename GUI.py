@@ -2,7 +2,7 @@ import pygame
 from LogicGame import Logic, Pawn
 
 
-class GUIPlateau:
+class GUIBoard:
 	def __init__(self):
 		pygame.init()
 		# Windows game
@@ -246,5 +246,5 @@ class GUIPlateau:
 
 
 if __name__ == "__main__":
-	plateau = GUIPlateau()
+	plateau = GUIBoard()
 	plateau.run()

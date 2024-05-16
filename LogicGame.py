@@ -191,7 +191,37 @@ class Logic:
 		else:
 			return self.verify_not_pawn_in_lign(start_position_x + vector_x, start_position_y + vector_y, end_position_x, end_position_y)
 
+	def check_valid_jumps(self, start_position_x: int, start_position_y: int, end_position_x: int, end_position_y: int) -> tuple[bool, None|str]:
+		vector_x, vector_y = self.get_vectors(start_position_x, start_position_y, end_position_x, end_position_y)
+
+		current_position_x, current_position_y = start_position_x, start_position_y
+
+		while current_position_x + vector_x != end_position_x and current_position_y + vector_y != end_position_y:
+
+			print(f"vector_x : {vector_x} vector_y : {vector_y}")
+
+			if self._board[current_position_x + vector_x][current_position_y + vector_y] in [-1, -2]:
+				if self._board[current_position_x + vector_x*2][current_position_y + vector_x*2] == 1:
+					if current_position_x + vector_x*2 == end_position_x and current_position_y + vector_y*2 == end_position_y:
+						print("here")
+						return True
+					else:
+						return False
+			current_position_x += vector_x
+			current_position_y += vector_y
+
+		return True
+
+		# return True if detect_pawn or number_of_pawn == 0 else False
+
+
+
+
+
+
+
 	def possible_to_move(self, start_position_x: int, start_position_y: int, end_position_x: int, end_position_y: int) -> tuple[bool, None|str]:
+
 		"""
 		:param start_position_x: The X coordinate of the start position.
 		:param start_position_y: The Y coordinate of the start position.
@@ -199,11 +229,17 @@ class Logic:
 		:param end_position_y: The Y coordinate of the end position.
 		:return: True if the move is possible, False otherwise.
 		"""
+
+
 		if 0 <= start_position_x < 11 and 0 <= start_position_y < 11 and 0 <= end_position_x < 11 and 0 <= end_position_y < 11 :
 			coefficient_diagonal_x = (end_position_x - start_position_x)/1
 			coefficient_diagonal_y = (end_position_y - start_position_y)/-1
+			# if not self.check_valid_jumps(start_position_x, start_position_y, end_position_x, end_position_y):
+			# 	return False, 'You need to stop after a mark !'
 			if isinstance(self._board[end_position_x][end_position_y], Pawn) or self._board[end_position_x][end_position_y] in [-1, -2]:
 				return False, 'You can not move on a pawn or a mark !'
+			if not self.check_valid_jumps(start_position_x, start_position_y, end_position_x, end_position_y):
+				return False, 'You need to stop after a mark !'
 			elif not self.verify_not_pawn_in_lign(start_position_x, start_position_y, end_position_x, end_position_y):
 				return False, 'You can not move on a pawn !'
 			elif start_position_x == end_position_x and start_position_y != end_position_y:
