@@ -1,5 +1,5 @@
 import pygame
-import sys
+from Music import MusicPlayer
 
 class Settings:
     def __init__(self, screen, music_player):
@@ -7,24 +7,28 @@ class Settings:
         self.music_player = music_player
         self.running = True
 
-        # Chargez les icônes de sourdine
-        self.mute_button = pygame.image.load("asset-Setting/volume_off_icon.png")
-        self.unmute_button = pygame.image.load("asset-Setting/volume_on_icon.png")
+        # Chargez les icônes de sourdine en ajustant leur taille
+        self.mute_button = pygame.transform.scale(pygame.image.load("Assets-Setting/volume_off_icon.png"), (50, 50))
+        self.unmute_button = pygame.transform.scale(pygame.image.load("Assets-Setting/volume_on_icon.png"), (50, 50))
         self.is_muted = False
 
         # Dimensions du curseur de volume
         self.slider_rect = pygame.Rect(150, 300, 300, 20)
-        self.knob_rect = pygame.Rect(0, 0, 20, 40)
-        self.knob_rect.center = (self.slider_rect.x + int(self.slider_rect.width * self.music_player.background_music.get_volume()), self.slider_rect.centery)
+        if self.music_player.background_music is not None:
+            self.knob_rect = pygame.Rect(0, 0, 20, 40)
+            self.knob_rect.center = (self.slider_rect.x + int(self.slider_rect.width * self.music_player.background_music.get_volume()), self.slider_rect.centery)
+        else:
+            self.knob_rect = None
         self.dragging = False
 
     def run(self):
         while self.running:
             self.screen.fill((200, 200, 200))
 
-            # Affichage du curseur de volume
-            pygame.draw.rect(self.screen, (100, 100, 100), self.slider_rect)
-            pygame.draw.rect(self.screen, (255, 0, 0), self.knob_rect)
+            # Affichage du curseur de volume si le lecteur de musique est initialisé
+            if self.knob_rect is not None:
+                pygame.draw.rect(self.screen, (100, 100, 100), self.slider_rect)
+                pygame.draw.rect(self.screen, (255, 0, 0), self.knob_rect)
 
             # Affichage de l'icône de sourdine
             if self.is_muted:
@@ -38,17 +42,20 @@ class Settings:
                 if event.type == pygame.QUIT:
                     self.running = False
                 elif event.type == pygame.MOUSEBUTTONDOWN:
-                    if self.knob_rect.collidepoint(event.pos):
+                    if self.knob_rect is not None and self.knob_rect.collidepoint(event.pos):
                         self.dragging = True
                     elif self.is_muted_button_clicked(event.pos):
                         self.toggle_mute()
                 elif event.type == pygame.MOUSEBUTTONUP:
                     self.dragging = False
                 elif event.type == pygame.MOUSEMOTION:
-                    if self.dragging:
+                    if self.dragging and self.knob_rect is not None:
                         self.knob_rect.centerx = min(max(event.pos[0], self.slider_rect.x), self.slider_rect.x + self.slider_rect.width)
                         volume = (self.knob_rect.centerx - self.slider_rect.x) / self.slider_rect.width
                         self.music_player.set_volume(volume)
+                elif event.type == pygame.QUIT:
+                    self.running = False
+                    pygame.quit()
 
     def is_muted_button_clicked(self, pos):
         icon_rect = self.mute_button.get_rect(topleft=(self.slider_rect.x + self.slider_rect.width + 20, self.slider_rect.y - 10))
@@ -61,3 +68,26 @@ class Settings:
         else:
             self.music_player.pause_background_music()
             self.is_muted = True
+
+# Initialisation de Pygame
+pygame.init()
+
+# Dimensions de la fenêtre
+WINDOW_WIDTH = 1080
+WINDOW_HEIGHT = 720
+WINDOW_SIZE = (WINDOW_WIDTH, WINDOW_HEIGHT)
+
+# Couleur de l'écran
+WHITE = (255, 255, 255)
+
+# Création de la fenêtre
+screen = pygame.display.set_mode(WINDOW_SIZE)
+pygame.display.set_caption("Settings")
+
+# Initialisation du lecteur de musique en utilisant la classe MusicPlayer
+music_player = MusicPlayer()
+
+# Lancement de la page des paramètres
+if __name__ == "__main__":
+    settings_page = Settings(screen, music_player)
+    settings_page.run()
