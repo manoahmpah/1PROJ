@@ -12,6 +12,8 @@ class GUIBoard:
 		pygame.display.set_caption('yinsh')
 		self.__running = True
 		self.__background = (170, 184, 197)
+		# self.__background_image = pygame.image.load('asset_plateau/bg.png').convert()
+		# self.__background_image = pygame.transform.scale(self.__background_image, (self.__width, self.__height))
 
 		self.__logic_obj = Logic('Maëlys', 'Léa')
 		self._create_board = self.__logic_obj.create_board()
@@ -219,6 +221,7 @@ class GUIBoard:
 
 	def __refresh(self):
 		if self._refresh:
+			# self.__screen.blit(self.__background_image, (0, 0))
 			self.__screen.fill(self.__background)
 			self.__display_board_gui()
 			self.__player_name_display()
