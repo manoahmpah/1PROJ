@@ -34,7 +34,7 @@ def send_messages(client_socket):
             break
 
 def main():
-    client_socket, client_address = create_server(12345)
+    client_socket, _ = create_server(12345)
 
     receive_thread = threading.Thread(target=receive_messages, args=(client_socket,))
     send_thread = threading.Thread(target=send_messages, args=(client_socket,))
