@@ -1,7 +1,7 @@
 from typing import List, Any
 
 
-class Pawn:
+class ring:
 	def __init__(self, player: int, name: str):
 		"""
 		:param player: player number 1 or 2
@@ -31,7 +31,7 @@ class Logic:
 		self._board = []
 		self._player_to_play: int = 2
 		self.__name1, self.__name2 = name1, name2
-		self._pawn_number_on_board: int = 0
+		self._ring_number_on_board: int = 0
 		self._list_alignment = [[], [], []]
 
 	def set_list_alignment(self, new_list_alignment: list):
@@ -55,11 +55,11 @@ class Logic:
 	def set_player_to_play(self, new_payer_to_play: int):
 		self._player_to_play = new_payer_to_play
 
-	def get_pawn_number_on_board(self):
-		return self._pawn_number_on_board
+	def get_ring_number_on_board(self):
+		return self._ring_number_on_board
 
-	def set_pawn_number_on_board(self, new_pawn_number_on_board: int):
-		self._pawn_number_on_board = new_pawn_number_on_board
+	def set_ring_number_on_board(self, new_ring_number_on_board: int):
+		self._ring_number_on_board = new_ring_number_on_board
 
 	def get_name1(self):
 		return self.__name1
@@ -83,9 +83,9 @@ class Logic:
 					print("+", end=" ")
 				elif self._board[row][col] == 1:
 					print("0", end=" ")
-				elif isinstance(self._board[row][col], Pawn) and self._player_to_play == 1:
+				elif isinstance(self._board[row][col], ring) and self._player_to_play == 1:
 					print("*", end=" ")
-				elif isinstance(self._board[row][col], Pawn) and self._player_to_play == 2:
+				elif isinstance(self._board[row][col], ring) and self._player_to_play == 2:
 					print("_", end=" ")
 			print("")
 
@@ -99,9 +99,9 @@ class Logic:
 
 	def put(self, i: int, j: int):
 		if self._player_to_play == 1:
-			self._board[i][j] = Pawn(self._player_to_play, self.__name1)
+			self._board[i][j] = ring(self._player_to_play, self.__name1)
 		elif self._player_to_play == 2:
-			self._board[i][j] = Pawn(self._player_to_play, self.__name2)
+			self._board[i][j] = ring(self._player_to_play, self.__name2)
 
 	def append_alignment_in_list(self, position_y: int, position_x: int, i: int, j: int, index_list_alignment: int):
 		if 0 <= position_x + j < self.__n and 0 <= position_y + i < self.__n:
@@ -145,7 +145,7 @@ class Logic:
 	def move(self, start_position_x: int, start_position_y: int, end_position_x: int, end_position_y: int, wining_move: bool = False):
 		if 0 <= start_position_x < 11 and 0 <= start_position_y < 11 and 0 <= end_position_x < 11 and 0 <= end_position_y < 11 :
 			if self._board[end_position_x][end_position_y] == 1 and not wining_move:
-				if isinstance(self._board[start_position_x][start_position_y], Pawn):
+				if isinstance(self._board[start_position_x][start_position_y], ring):
 					self.put(end_position_x, end_position_y)
 					self._board[start_position_x][start_position_y] = -self._player_to_play
 				else:
@@ -180,16 +180,16 @@ class Logic:
 
 		return vector_x, vector_y
 
-	def verify_not_pawn_in_lign(self, start_position_x: int, start_position_y: int, end_position_x: int, end_position_y: int) -> bool:
+	def verify_not_ring_in_lign(self, start_position_x: int, start_position_y: int, end_position_x: int, end_position_y: int) -> bool:
 
 		vector_x, vector_y = self.get_vectors(start_position_x, start_position_y, end_position_x, end_position_y)
 
 		if start_position_x + vector_x == end_position_x and start_position_y + vector_y == end_position_y:
 			return True
-		if isinstance(self._board[start_position_x + vector_x][start_position_y + vector_y], Pawn):
+		if isinstance(self._board[start_position_x + vector_x][start_position_y + vector_y], ring):
 			return False
 		else:
-			return self.verify_not_pawn_in_lign(start_position_x + vector_x, start_position_y + vector_y, end_position_x, end_position_y)
+			return self.verify_not_ring_in_lign(start_position_x + vector_x, start_position_y + vector_y, end_position_x, end_position_y)
 
 	def check_valid_jumps(self, start_position_x: int, start_position_y: int, end_position_x: int, end_position_y: int) -> bool:
 		vector_x, vector_y = self.get_vectors(start_position_x, start_position_y, end_position_x, end_position_y)
@@ -221,14 +221,14 @@ class Logic:
 		if 0 <= start_position_x < 11 and 0 <= start_position_y < 11 and 0 <= end_position_x < 11 and 0 <= end_position_y < 11 :
 			coefficient_diagonal_x = (end_position_x - start_position_x)/1
 			coefficient_diagonal_y = (end_position_y - start_position_y)/-1
-			if isinstance(self._board[end_position_x][end_position_y], Pawn) or self._board[end_position_x][end_position_y] in [-1, -2]:
-				return False, 'You can not move on a pawn or a mark !'
+			if isinstance(self._board[end_position_x][end_position_y], ring) or self._board[end_position_x][end_position_y] in [-1, -2]:
+				return False, 'You can not move on a ring or a mark !'
 			elif not(start_position_x == end_position_x and start_position_y != end_position_y or start_position_x != end_position_x and start_position_y == end_position_y or coefficient_diagonal_x == coefficient_diagonal_y) :
 				return False, "Move not aligned !"
 			elif not self.check_valid_jumps(start_position_x, start_position_y, end_position_x, end_position_y):
 				return False, 'You need to stop after a mark !'
-			elif not self.verify_not_pawn_in_lign(start_position_x, start_position_y, end_position_x, end_position_y):
-				return False, 'You can not move on a pawn !'
+			elif not self.verify_not_ring_in_lign(start_position_x, start_position_y, end_position_x, end_position_y):
+				return False, 'You can not move on a ring !'
 			elif start_position_x == end_position_x and start_position_y != end_position_y:
 				return True, None
 			elif start_position_x != end_position_x and start_position_y == end_position_y:
