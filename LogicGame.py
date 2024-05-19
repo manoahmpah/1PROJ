@@ -142,8 +142,9 @@ class Logic:
 
 		return True if column + 1 >= 5 or line + 1 >= 5 or slash + 1 >= 5 else False
 
-	def move(self, start_position_x: int, start_position_y: int, end_position_x: int, end_position_y: int, wining_move: bool = False):
-		if 0 <= start_position_x < 11 and 0 <= start_position_y < 11 and 0 <= end_position_x < 11 and 0 <= end_position_y < 11 :
+	def move(self, start_position_x: int, start_position_y: int, end_position_x: int, end_position_y: int,
+	         wining_move: bool = False):
+		if 0 <= start_position_x < 11 and 0 <= start_position_y < 11 and 0 <= end_position_x < 11 and 0 <= end_position_y < 11:
 			if self._board[end_position_x][end_position_y] == 1 and not wining_move:
 				if isinstance(self._board[start_position_x][start_position_y], ring):
 					self.put(end_position_x, end_position_y)
@@ -164,7 +165,8 @@ class Logic:
 						list_coord_alignment[index_coord_to_delete][1]] = 1
 
 	@staticmethod
-	def get_vectors(start_position_x: int, start_position_y: int, end_position_x: int, end_position_y: int) -> tuple[int, int]:
+	def get_vectors(start_position_x: int, start_position_y: int, end_position_x: int, end_position_y: int) -> tuple[
+		int, int]:
 		vector_x = 0
 		vector_y = 0
 
@@ -180,7 +182,8 @@ class Logic:
 
 		return vector_x, vector_y
 
-	def verify_not_ring_in_lign(self, start_position_x: int, start_position_y: int, end_position_x: int, end_position_y: int) -> bool:
+	def verify_not_ring_in_lign(self, start_position_x: int, start_position_y: int, end_position_x: int,
+	                            end_position_y: int) -> bool:
 
 		vector_x, vector_y = self.get_vectors(start_position_x, start_position_y, end_position_x, end_position_y)
 
@@ -189,27 +192,28 @@ class Logic:
 		if isinstance(self._board[start_position_x + vector_x][start_position_y + vector_y], ring):
 			return False
 		else:
-			return self.verify_not_ring_in_lign(start_position_x + vector_x, start_position_y + vector_y, end_position_x, end_position_y)
+			return self.verify_not_ring_in_lign(start_position_x + vector_x, start_position_y + vector_y,
+			                                    end_position_x, end_position_y)
 
-	def check_valid_jumps(self, start_position_x: int, start_position_y: int, end_position_x: int, end_position_y: int) -> bool:
+	def check_valid_jumps(self, start_position_x: int, start_position_y: int, end_position_x: int,
+	                      end_position_y: int) -> bool:
 		vector_x, vector_y = self.get_vectors(start_position_x, start_position_y, end_position_x, end_position_y)
 
 		current_position_x, current_position_y = start_position_x, start_position_y
 
 		while current_position_x != end_position_x or current_position_y != end_position_y:
 			if self._board[current_position_x + vector_x][current_position_y + vector_y] in [-1, -2]:
-				if current_position_x + vector_x*2 == end_position_x and current_position_y + vector_y*2 == end_position_y:
+				if current_position_x + vector_x * 2 == end_position_x and current_position_y + vector_y * 2 == end_position_y:
 					return True
-				elif self._board[current_position_x + vector_x*2][current_position_y + vector_y*2] not in [-1, -2]:
+				elif self._board[current_position_x + vector_x * 2][current_position_y + vector_y * 2] not in [-1, -2]:
 					return False
 			current_position_x += vector_x
 			current_position_y += vector_y
 
 		return True
 
-
-
-	def possible_to_move(self, start_position_x: int, start_position_y: int, end_position_x: int, end_position_y: int) -> tuple[bool, None|str]:
+	def possible_to_move(self, start_position_x: int, start_position_y: int, end_position_x: int,
+	                     end_position_y: int) -> tuple[bool, None | str]:
 
 		"""
 		:param start_position_x: The X coordinate of the start position.
@@ -218,12 +222,14 @@ class Logic:
 		:param end_position_y: The Y coordinate of the end position.
 		:return: True if the move is possible, False otherwise.
 		"""
-		if 0 <= start_position_x < 11 and 0 <= start_position_y < 11 and 0 <= end_position_x < 11 and 0 <= end_position_y < 11 :
-			coefficient_diagonal_x = (end_position_x - start_position_x)/1
-			coefficient_diagonal_y = (end_position_y - start_position_y)/-1
-			if isinstance(self._board[end_position_x][end_position_y], ring) or self._board[end_position_x][end_position_y] in [-1, -2]:
+		if 0 <= start_position_x < 11 and 0 <= start_position_y < 11 and 0 <= end_position_x < 11 and 0 <= end_position_y < 11:
+			coefficient_diagonal_x = (end_position_x - start_position_x) / 1
+			coefficient_diagonal_y = (end_position_y - start_position_y) / -1
+			if isinstance(self._board[end_position_x][end_position_y], ring) or self._board[end_position_x][
+				end_position_y] in [-1, -2]:
 				return False, 'You can not move on a ring or a mark !'
-			elif not(start_position_x == end_position_x and start_position_y != end_position_y or start_position_x != end_position_x and start_position_y == end_position_y or coefficient_diagonal_x == coefficient_diagonal_y) :
+			elif not (
+					start_position_x == end_position_x and start_position_y != end_position_y or start_position_x != end_position_x and start_position_y == end_position_y or coefficient_diagonal_x == coefficient_diagonal_y):
 				return False, "Move not aligned !"
 			elif not self.check_valid_jumps(start_position_x, start_position_y, end_position_x, end_position_y):
 				return False, 'You need to stop after a mark !'
@@ -238,7 +244,8 @@ class Logic:
 			else:
 				return False, 'Impossible to move here !'
 
-	def change_mark_on_move(self, start_position_x: int, start_position_y: int, end_position_x: int, end_position_y: int):
+	def change_mark_on_move(self, start_position_x: int, start_position_y: int, end_position_x: int,
+	                        end_position_y: int):
 		vector_x, vector_y = self.get_vectors(start_position_x, start_position_y, end_position_x, end_position_y)
 
 		new_x = start_position_x + vector_x
@@ -253,7 +260,8 @@ class Logic:
 			return 1 + self.change_mark_on_move(new_x, new_y, end_position_x, end_position_y)
 
 		else:
-			return self.change_mark_on_move(start_position_x + vector_x, start_position_y + vector_y, end_position_x, end_position_y)
+			return self.change_mark_on_move(start_position_x + vector_x, start_position_y + vector_y, end_position_x,
+			                                end_position_y)
 
 
 if __name__ == '__main__':
