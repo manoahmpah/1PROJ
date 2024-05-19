@@ -2,8 +2,9 @@ import pygame
 from LogicGame import Logic, Pawn
 
 
+
 class GUIPlateau:
-	def __init__(self):
+	def __init__(self, player1_name, player2_name):  # Modification du constructeur pour accepter les noms des joueurs
 		pygame.init()
 		# Windows game
 		self.__width = 1080
@@ -13,14 +14,11 @@ class GUIPlateau:
 		self.__running = True
 		self.__background = (170, 184, 197)
 
-		self.__logic_obj = Logic('Maëlys', 'Léa')
+		self.__logic_obj = Logic(player1_name, player2_name)  # Utilisation des noms des joueurs fournis
 		self._create_board = self.__logic_obj.create_board()
 		self._get_board = self.__logic_obj.get_board()
-
 		self._rect_all = pygame.Rect(0, 0, self.__width, self.__height)
-		self._rect_board = pygame.Rect(self._rect_all.centerx - self.__width / 2.4,
-		                               self._rect_all.centery - self.__height / 2.4, self.__width / 1.2,
-		                               self.__height / 1.2)
+		self._rect_board = pygame.Rect(self._rect_all.centerx - self.__width / 2.4, self._rect_all.centery - self.__height / 2.4, self.__width / 1.2,self.__height / 1.2)
 		self._rect_name1 = pygame.Rect(self._rect_all.left + 10, self._rect_all.centery - 120, 100, 50)
 
 		self._rect_name2 = pygame.Rect(self._rect_all.left + 10, self._rect_all.centery - 20, 100, 50)
