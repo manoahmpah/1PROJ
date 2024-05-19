@@ -117,7 +117,7 @@
       <recent name="C:\Users\MPAH\PycharmProjects\1PROJ\asset_plateau" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.GUI">
+  <component name="RunManager">
     <configuration name="GUI" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="1PROJ" />
       <option name="ENV_FILES" value="" />
@@ -142,85 +142,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for test_unitaire_GUI.TestLogicMethods.test_get_current_player" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
-      <module name="1PROJ" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_unitaire_GUI.TestLogicMethods.test_get_current_player&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Python tests for test_unitaire_GUI.TestLogicMethods.test_put" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
-      <module name="1PROJ" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_unitaire_GUI.TestLogicMethods.test_put&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Python tests in LogicGame.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
-      <module name="1PROJ" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/LogicGame.py&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Python tests in test_unitaire_GUI.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
-      <module name="1PROJ" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/test_unitaire_GUI.py&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
-      <method v="2" />
-    </configuration>
-    <list>
-      <item itemvalue="Python.GUI" />
-      <item itemvalue="Python tests.Python tests for test_unitaire_GUI.TestLogicMethods.test_get_current_player" />
-      <item itemvalue="Python tests.Python tests for test_unitaire_GUI.TestLogicMethods.test_put" />
-      <item itemvalue="Python tests.Python tests in LogicGame.py" />
-      <item itemvalue="Python tests.Python tests in test_unitaire_GUI.py" />
-    </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Python tests.Python tests in test_unitaire_GUI.py" />
-        <item itemvalue="Python tests.Python tests in LogicGame.py" />
-        <item itemvalue="Python tests.Python tests for test_unitaire_GUI.TestLogicMethods.test_put" />
-        <item itemvalue="Python tests.Python tests for test_unitaire_GUI.TestLogicMethods.test_get_current_player" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
