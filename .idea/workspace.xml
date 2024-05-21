@@ -4,18 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="147c2b0d-740f-45e2-b365-f294c9ad8c4c" name="Changes" comment="refactor">
-      <change afterPath="$PROJECT_DIR$/asset_rules/feuille.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset_rules/fleur.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/network.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rules.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_31_03_2024_09_59__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_31_03_2024_09_59__Changes_.xml" afterDir="false" />
+    <list default="true" id="147c2b0d-740f-45e2-b365-f294c9ad8c4c" name="Changes" comment="Move">
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/0/9/0932595b370bf296e850553783f3572ede183a16" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/0/9/0932595b370bf296e850553783f3572ede183a16" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/c/b/cb73170c39972d4e09b6f4f8d42499f7858c8e00" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/c/b/cb73170c39972d4e09b6f4f8d42499f7858c8e00" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/serveur.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,20 +26,26 @@
       </map>
     </option>
   </component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/manoahmpah/1PROJ.git",
+    "accountId": "9f4f9132-8295-4812-8cd4-ef7a7553468c"
+  }
+}]]></component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.client.executor": "Run",
-    "Python.network.executor": "Run",
-    "Python.rules.executor": "Run",
-    "Python.serveur.executor": "Run",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/MPAH/PycharmProjects/1PROJ/assets_rules",
-    "node.js.selected.package.tslint": "(autodetect)"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.client.executor&quot;: &quot;Run&quot;,
+    &quot;Python.network.executor&quot;: &quot;Run&quot;,
+    &quot;Python.rules.executor&quot;: &quot;Run&quot;,
+    &quot;Python.serveur.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/MPAH/PycharmProjects/1PROJ/assets_rules&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\MPAH\PycharmProjects\1PROJ\assets_rules" />
@@ -60,7 +56,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="refactor" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor" />
+    <MESSAGE value="Move" />
+    <option name="LAST_COMMIT_MESSAGE" value="Move" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/1PROJ$GUI.coverage" NAME="GUI Coverage Results" MODIFIED="1716275859515" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -73,11 +70,12 @@
     <SUITE FILE_PATH="coverage/1PROJ$receive.coverage" NAME="receive Coverage Results" MODIFIED="1716113992469" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/1PROJ$rules.coverage" NAME="rules Coverage Results" MODIFIED="1716276879289" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/modules_xml$GUI.coverage" NAME="GUI Coverage Results" MODIFIED="1711871672848" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/1PROJ$LogicGame.coverage" NAME="LogicGame Coverage Results" MODIFIED="1715343118693" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/1PROJ$LogicGame.coverage" NAME="LogicGame Coverage Results" MODIFIED="1716277760668" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/1PROJ$.coverage" NAME=" Coverage Results" MODIFIED="1715870256001" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/1PROJ$Music.coverage" NAME="Music Coverage Results" MODIFIED="1716274257180" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/1PROJ$network.coverage" NAME="network Coverage Results" MODIFIED="1716277275743" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/1PROJ$reseau.coverage" NAME="reseau Coverage Results" MODIFIED="1716113992364" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/1PROJ$Move.coverage" NAME="Move Coverage Results" MODIFIED="1716277766325" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/1PROJ$client.coverage" NAME="client Coverage Results" MODIFIED="1716277280127" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
