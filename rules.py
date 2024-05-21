@@ -108,7 +108,7 @@ class Rules:
                             self.current_phrase_index += 1
                             if self.current_phrase_index >= len(self.canvases):
                                 self.__running = False  # Arrêter la boucle principale
-                                os.system("python menu.py")
+                                os.system("python main.py")
                             self.current_image_index = (self.current_image_index + 1) % len(self.images)
                             self.canvases = [self.create_canvas(phrase) for phrase in self.phrases]
 

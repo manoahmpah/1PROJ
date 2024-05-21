@@ -3,7 +3,7 @@ from LogicGame import Logic, ring
 
 
 class GUIBoard:
-	def __init__(self):
+	def __init__(self, player1_name, player2_name):
 		pygame.init()
 		# Windows game
 		self.__width = 1080
@@ -15,7 +15,7 @@ class GUIBoard:
 		self.__background_image = pygame.image.load('asset_plateau/bg1.png').convert()
 		self.__background_image = pygame.transform.scale(self.__background_image, (self.__width, self.__height))
 
-		self.__logic_obj = Logic('Maëlys', 'Léa')
+		self.__logic_obj = Logic(player1_name, player2_name)
 		self._create_board = self.__logic_obj.create_board()
 		self._get_board = self.__logic_obj.get_board()
 
@@ -38,6 +38,8 @@ class GUIBoard:
 		self._position_click_x, self._position_click_y = -1, -1
 		self._click_x_p1, self._click_y_p1 = None, None
 		self._click_x_p2, self._click_y_p2 = None, None
+
+		self._board_color = (255, 255, 255)
 
 		self._refresh = True
 
@@ -122,16 +124,16 @@ class GUIBoard:
 		board = self._get_board
 		if col + 1 < len(board[row]) and board[row][col + 1] != 9:
 			col_pos = self.__collision_area(row, col + 1)
-			pygame.draw.line(self.__screen, (0, 0, 0), (pos_x, pos_y), col_pos, 2)
+			pygame.draw.line(self.__screen, self._board_color, (pos_x, pos_y), col_pos, 4)
 
 		if row + 1 < len(board):
 			if col - 1 < len(board) and board[row + 1][col - 1] != 9:
 				diag_col_pos = self.__collision_area(row + 1, col - 1)
-				pygame.draw.line(self.__screen, (0, 0, 0), (pos_x, pos_y), diag_col_pos, 2)
+				pygame.draw.line(self.__screen, self._board_color, (pos_x, pos_y), diag_col_pos, 4)
 
 			if board[row + 1][col] != 9:
 				next_row_pos = self.__collision_area(row + 1, col)
-				pygame.draw.line(self.__screen, (0, 0, 0), (pos_x, pos_y), next_row_pos, 2)
+				pygame.draw.line(self.__screen, self._board_color, (pos_x, pos_y), next_row_pos, 4)
 
 	def __handle_first_click_move(self, mouse_coordinate_x, mouse_coordinate_y, board_piece):
 		board_piece.set_selected(True)
@@ -278,5 +280,5 @@ class GUIBoard:
 
 
 if __name__ == "__main__":
-	plateau = GUIBoard()
+	plateau = GUIBoard('player1', 'player2')
 	plateau.run()
