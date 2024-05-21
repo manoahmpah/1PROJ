@@ -3,6 +3,7 @@ import sys
 from Music import MusicPlayer
 from Settings import Settings
 from GUI import GUIBoard
+from rules import Rules
 
 # Initialisation de Pygame
 pygame.init()
@@ -19,6 +20,7 @@ BLACK = (0, 0, 0)
 # Initialiser le lecteur de musique
 music_player = MusicPlayer()
 music_player.play_background_music()
+
 
 class MainController:
     def __init__(self):
@@ -85,9 +87,12 @@ class MainController:
         self.handle_events(
             buttons=[
                 {"rect": self.images["help"].get_rect(topleft=(20, 20)), "action": self.show_help},
-                {"rect": self.images["quit"].get_rect(topleft=(WINDOW_WIDTH - self.images["quit"].get_width() - 20, 20)), "action": self.quit_game},
-                {"rect": pygame.Rect(play_button_pos, self.images["play"].get_size()), "action": lambda: self.set_screen("choose_mode")},
-                {"rect": pygame.Rect(setting_button_pos, self.images["settings"].get_size()), "action": lambda: self.set_screen("settings")}
+                {"rect": self.images["quit"].get_rect(
+                    topleft=(WINDOW_WIDTH - self.images["quit"].get_width() - 20, 20)), "action": self.quit_game},
+                {"rect": pygame.Rect(play_button_pos, self.images["play"].get_size()),
+                 "action": lambda: self.set_screen("choose_mode")},
+                {"rect": pygame.Rect(setting_button_pos, self.images["settings"].get_size()),
+                 "action": lambda: self.set_screen("settings")}
             ]
         )
 
@@ -105,8 +110,10 @@ class MainController:
         pygame.display.update()
         self.handle_events(
             buttons=[
-                {"rect": pygame.Rect(local_button_pos, self.images["local"].get_size()), "action": lambda: self.set_screen("enter_names")},
-                {"rect": pygame.Rect(online_button_pos, self.images["online"].get_size()), "action": lambda: self.set_screen("create_or_join")}
+                {"rect": pygame.Rect(local_button_pos, self.images["local"].get_size()),
+                 "action": lambda: self.set_screen("enter_names")},
+                {"rect": pygame.Rect(online_button_pos, self.images["online"].get_size()),
+                 "action": lambda: self.set_screen("create_or_join")}
             ]
         )
 
@@ -177,7 +184,8 @@ class MainController:
         total_width = self.images["create_game"].get_width() + button_spacing + self.images["join_game"].get_width()
         start_x = (WINDOW_WIDTH - total_width) // 2
         create_game_button_pos = (start_x, WINDOW_HEIGHT // 2 - 60)
-        join_game_button_pos = (start_x + self.images["create_game"].get_width() + button_spacing, WINDOW_HEIGHT // 2 - 60)
+        join_game_button_pos = (
+        start_x + self.images["create_game"].get_width() + button_spacing, WINDOW_HEIGHT // 2 - 60)
 
         self.screen.blit(self.images["create_game"], create_game_button_pos)
         self.screen.blit(self.images["join_game"], join_game_button_pos)
@@ -185,8 +193,10 @@ class MainController:
         pygame.display.update()
         self.handle_events(
             buttons=[
-                {"rect": pygame.Rect(create_game_button_pos, self.images["create_game"].get_size()), "action": lambda: self.set_screen("create_game")},
-                {"rect": pygame.Rect(join_game_button_pos, self.images["join_game"].get_size()), "action": lambda: self.set_screen("join_game")}
+                {"rect": pygame.Rect(create_game_button_pos, self.images["create_game"].get_size()),
+                 "action": lambda: self.set_screen("create_game")},
+                {"rect": pygame.Rect(join_game_button_pos, self.images["join_game"].get_size()),
+                 "action": lambda: self.set_screen("join_game")}
             ]
         )
 
@@ -268,12 +278,13 @@ class MainController:
         return True  # Exemple de réponse, remplacez par votre propre logique de validation
 
     def settings(self):
-        settings = Settings(self.screen)
-        settings.show_settings()
+        settings = Settings(self.screen, music_player)
+        settings.run()
         self.set_screen("menu")
 
-    def show_help(self): # à modifier pour les regles du jeu
-        self.display_message("Help Instructions")
+    def show_help(self):
+        self.display_message("Showing Help Instructions")
+        # Rules().Button()
 
     def quit_game(self):
         self.running = False
@@ -305,7 +316,7 @@ class MainController:
         game_board.run()
 
     def start_network_game(self, game_code):
-        #Implementez le jeu en reseau
+        # Implementez le jeu en reseau
         pass
 
 
