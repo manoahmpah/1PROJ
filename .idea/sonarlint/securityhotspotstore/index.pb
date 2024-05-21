@@ -37,3 +37,10 @@ Q.idea/sonarlint/securityhotspotstore/a/5/a5cc2925ca8258af241be7e5b0381edf302663
 :
 
 serveur.py,3\d\3d4a6f247bd4cb38f96cd293cb641346d06695d2
+9
+	client.py,8\3\83c82b69e709f001cbef03ab0a6551df344cfad7
+8
+rules.py,d\b\dbf0b417532fb900152a9ef9f8897d224a76093a
+:
+
+network.py,f\c\fc6a502f3d4fc0220be584af02349064ded231b6
