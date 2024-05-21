@@ -103,7 +103,7 @@
       <recent name="C:\Users\MPAH\PycharmProjects\1PROJ\asset_plateau" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.Python tests for test_unitaire_GUI.TestLogicMethods.test_get_current_player">
+  <component name="RunManager">
     <configuration name="Python tests for test_unitaire_GUI.TestLogicMethods.test_get_current_player" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="1PROJ" />
       <option name="ENV_FILES" value="" />
@@ -186,11 +186,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Python tests for test_unitaire_GUI.TestLogicMethods.test_get_current_player" />
         <item itemvalue="Python tests.Python tests in test_unitaire_GUI.py" />
         <item itemvalue="Python tests.Python tests in LogicGame.py" />
         <item itemvalue="Python tests.Python tests for test_unitaire_GUI.TestLogicMethods.test_put" />
         <item itemvalue="Python tests.Python tests for test_unitaire_GUI.TestLogicMethods.test_move" />
+        <item itemvalue="Python tests.Python tests for test_unitaire_GUI.TestLogicMethods.test_get_current_player" />
       </list>
     </recent_temporary>
   </component>
