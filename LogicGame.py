@@ -1,5 +1,4 @@
-from typing import List, Any
-
+import IA
 
 class ring:
 	def __init__(self, player: int, name: str):
@@ -22,7 +21,7 @@ class ring:
 
 
 class Logic:
-	def __init__(self, name1: str, name2: str):
+	def __init__(self, name1: str, name2: str, IA: bool = True):
 		"""
 		:param name1: Name of the players 1
 		:param name2: Name of the players 2
@@ -33,6 +32,14 @@ class Logic:
 		self.__name1, self.__name2 = name1, name2
 		self._ring_number_on_board: int = 0
 		self._list_alignment = [[], [], []]
+		self.list_possibilities = []
+		self._IA = IA
+
+	def get_IA(self):
+		return self._IA
+
+	def set_IA(self, new_IA: bool):
+		self._IA = new_IA
 
 	def set_list_alignment(self, new_list_alignment: list):
 		self._list_alignment = new_list_alignment
@@ -142,10 +149,40 @@ class Logic:
 
 		return True if column + 1 >= 5 or line + 1 >= 5 or slash + 1 >= 5 else False
 
+	def create_list_of_possibilities_in_one_line(self, position_y: int, position_x: int, i: int, j: int):
+		if 0 <= position_x < self.__n and 0 <= position_y < self.__n:
+			if self._board[position_y][position_x] == 1:
+				self.list_possibilities.append((position_y, position_x))
+				return self.create_list_of_possibilities_in_one_line(position_y + i, position_x + j, i, j)
+			elif self._board[position_y][position_x] in [-1, -2] and self._board[position_y + i][position_x + j] == 1:
+				self.list_possibilities.append((position_y + i, position_x + j))
+			elif self._board[position_y][position_x] in [-1, -2] and self._board[position_y + i][position_x + j] in [-1, -2]:
+				return self.create_list_of_possibilities_in_one_line(position_y + i, position_x + j, i, j)
+
+	def create_all_list_of_possibilities(self, position_y: int, position_x: int):
+		for index, (i, j) in enumerate([(0, -1), (0, 1), (-1, 0), (1, 0), (-1, 1), (1, -1)]):
+
+			if index < 2:
+				self.create_list_of_possibilities_in_one_line(position_y + i, position_x + j, i, j)
+			elif 2 <= index < 4:
+				self.create_list_of_possibilities_in_one_line(position_y + i, position_x + j, i, j)
+			else:
+				self.create_list_of_possibilities_in_one_line(position_y + i, position_x + j, i, j)
+
+	def delete_preview(self):
+		for possibility in self.list_possibilities:
+			if self._board[possibility[0]][possibility[1]] == -3:
+				self._board[possibility[0]][possibility[1]] = 1
+		self.list_possibilities = []
+
+	def preview(self):
+		for possibility in self.list_possibilities:
+			self._board[possibility[0]][possibility[1]] = -3
+
 	def move(self, start_position_x: int, start_position_y: int, end_position_x: int, end_position_y: int,
 	         wining_move: bool = False):
 		if 0 <= start_position_x < 11 and 0 <= start_position_y < 11 and 0 <= end_position_x < 11 and 0 <= end_position_y < 11:
-			if self._board[end_position_x][end_position_y] == 1 and not wining_move:
+			if self._board[end_position_x][end_position_y] in [-3] and not wining_move:
 				if isinstance(self._board[start_position_x][start_position_y], ring):
 					self.put(end_position_x, end_position_y)
 					self._board[start_position_x][start_position_y] = -self._player_to_play
@@ -228,8 +265,7 @@ class Logic:
 			if isinstance(self._board[end_position_x][end_position_y], ring) or self._board[end_position_x][
 				end_position_y] in [-1, -2]:
 				return False, 'You can not move on a ring or a mark !'
-			elif not (
-					start_position_x == end_position_x and start_position_y != end_position_y or start_position_x != end_position_x and start_position_y == end_position_y or coefficient_diagonal_x == coefficient_diagonal_y):
+			elif not (start_position_x == end_position_x and start_position_y != end_position_y or start_position_x != end_position_x and start_position_y == end_position_y or coefficient_diagonal_x == coefficient_diagonal_y):
 				return False, "Move not aligned !"
 			elif not self.check_valid_jumps(start_position_x, start_position_y, end_position_x, end_position_y):
 				return False, 'You need to stop after a mark !'

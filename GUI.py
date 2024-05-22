@@ -1,6 +1,8 @@
+import time
+
 import pygame
 from LogicGame import Logic, ring
-
+from IA import IA
 
 class GUIBoard:
 	def __init__(self, player1_name, player2_name):
@@ -12,7 +14,7 @@ class GUIBoard:
 		pygame.display.set_caption('yinsh')
 		self.__running = True
 		self.__background = (170, 184, 197)
-		self.__background_image = pygame.image.load('asset_plateau/bg1.png').convert()
+		self.__background_image = pygame.image.load('asset_plateau/img_1.png').convert()
 		self.__background_image = pygame.transform.scale(self.__background_image, (self.__width, self.__height))
 
 		self.__logic_obj = Logic(player1_name, player2_name)
@@ -42,6 +44,8 @@ class GUIBoard:
 		self._board_color = (255, 255, 255)
 
 		self._refresh = True
+		self._objet_ia = IA(self.__logic_obj)
+
 
 		self._rect_error = pygame.Rect(self._rect_all.centerx - 100, self._rect_all.bottom - 100, 200, 50)
 		self._error_message = ""
@@ -119,6 +123,8 @@ class GUIBoard:
 				pygame.draw.circle(self.__screen, (255, 255, 255), (pos_x, pos_y), 15)
 			elif self._get_board[row][col] == -2:
 				pygame.draw.circle(self.__screen, (0, 0, 0), (pos_x, pos_y), 15)
+			elif self._get_board[row][col] == -3:
+				pygame.draw.circle(self.__screen, (230, 230, 230), (pos_x, pos_y), 10)
 
 	def __draw_line_to_create_board(self, row, col, pos_x, pos_y):
 		board = self._get_board
@@ -138,6 +144,11 @@ class GUIBoard:
 	def __handle_first_click_move(self, mouse_coordinate_x, mouse_coordinate_y, board_piece):
 		board_piece.set_selected(True)
 		self._click_x_p1, self._click_y_p1 = mouse_coordinate_x, mouse_coordinate_y
+		self.__logic_obj.create_all_list_of_possibilities(self._click_x_p1, self._click_y_p1)
+		for possibility in self.__logic_obj.list_possibilities:
+			self._get_board[possibility[0]][possibility[1]] = -3
+			self._refresh = True
+			self.__refresh()
 		self._move_click = 2
 		self._error_message = ''
 
@@ -147,6 +158,7 @@ class GUIBoard:
 		self.__logic_obj.set_list_alignment([[], [], []])
 
 		if mouse_coordinate_x == self._click_x_p1 and mouse_coordinate_y == self._click_y_p1:
+			self.__logic_obj.delete_preview()
 			self._get_board[mouse_coordinate_x][mouse_coordinate_y].set_selected(False)
 			self._refresh = True
 			self.__refresh()
@@ -167,7 +179,10 @@ class GUIBoard:
 			self._click_x_p2, self._click_y_p2 = mouse_coordinate_x, mouse_coordinate_y
 			self._move_click = 1
 			self.__logic_obj.move(self._click_x_p1, self._click_y_p1, self._click_x_p2, self._click_y_p2, winning_move)
+
 			self._get_board[mouse_coordinate_x][mouse_coordinate_y].set_selected(False) if not winning_move else None
+			self.__logic_obj.delete_preview()
+
 			self._refresh = True
 			self.__refresh()
 			if winning_move:
@@ -268,6 +283,11 @@ class GUIBoard:
 			if event.type == pygame.MOUSEBUTTONDOWN:
 				if self.__logic_obj.get_ring_number_on_board() < 10:
 					self.__put_on_click()
+					self._refresh = True
+					self.__refresh()
+					if self.__logic_obj.get_IA() and self.__logic_obj.get_player_to_play() == 1:
+						self._objet_ia.put_random()
+						self.__logic_obj.set_player_to_play(self.__logic_obj.get_player_to_play() % 2 + 1)
 					self.__reinitialise_click()
 				else:
 					self.__move_rings()

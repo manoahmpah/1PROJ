@@ -3,8 +3,6 @@
 GUI.py,c\b\cb73170c39972d4e09b6f4f8d42499f7858c8e00
 <
 LogicGame.py,0\9\0932595b370bf296e850553783f3572ede183a16
-7
-menu.py,9\e\9e845017dd65192f73f5bbb58034941ce6a71ff6
 
 Q.idea/sonarlint/securityhotspotstore/a/b/abd87d10d8de16de2a2d4e60031b1c9895fdac26,f\9\f91161cd90eaa22a09718239fc5a175209f876a8
 
@@ -40,3 +38,7 @@ network.py,f\c\fc6a502f3d4fc0220be584af02349064ded231b6
 rules.py,d\b\dbf0b417532fb900152a9ef9f8897d224a76093a
 ?
 GUI-Settings.py,7\1\717d9ea7852c36ae56702d24014dc34519f4733f
+5
+IA.py,f\7\f7092fdf3b60f161cecb95b9d1987b60cfc3bd08
+9
+	client.py,8\3\83c82b69e709f001cbef03ab0a6551df344cfad7
