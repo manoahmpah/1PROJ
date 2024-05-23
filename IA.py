@@ -6,7 +6,7 @@ class IA:
 	def __init__(self, logic):
 		self._object_logic = logic
 		self._put = []
-		self._number_of_ring = 5
+		self._number_of_rings = 5
 
 	def put_random(self):
 		"""Put a random piece on the board."""
@@ -21,7 +21,7 @@ class IA:
 
 	def move_random(self):
 		"""Move randomly a piece on the board"""
-		random_index_ring = random.randint(0, self._number_of_ring - 1)
+		random_index_ring = random.randint(0, self._number_of_rings - 1)
 		position_to_move_x, position_to_move_y = self._put[random_index_ring]
 		self._object_logic.create_all_list_of_possibilities(position_to_move_x, position_to_move_y)
 
@@ -30,6 +30,8 @@ class IA:
 			ring_index_to_delete_x, ring_index_to_delete_y = self._put[ring_index_to_delete]
 			self._object_logic.get_board()[ring_index_to_delete_x][ring_index_to_delete_y] = 1
 			self._object_logic.delete_on_alignment()
+			self._put.pop(random_index_ring)
+			self._number_of_rings -= 1
 
 			self._number_of_ring -= 1
 			self._put.pop(random_index_ring)
