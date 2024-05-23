@@ -1,2 +1,7 @@
 
-tpython:S3776×"TRefactor this function to reduce its Cognitive Complexity from 18 to the 15 allowed.(ãÄœŒ8´÷ğ¬ú1
+—python:S117"NRename this parameter "IA" to match the regular expression ^[_a-z][a-z0-9_]*$.(£°ÙŸûÿÿÿÿ8õãÙ©ú1J$ef39768f-1721-44ce-880e-90ad1efee805
+python:S100,"JRename method "get_IA" to match the regular expression ^[a-z_][a-z0-9_]*$.(£ËÈ¨8ùãÙ©ú1J$11dd94aa-8ed5-469b-b6fa-6f372524cc64
+–python:S117/"RRename this parameter "new_IA" to match the regular expression ^[_a-z][a-z0-9_]*$.(šŞ‰ï8ùãÙ©ú1J$aa745656-37db-4bf7-a860-7207099d7329
+python:S100/"JRename method "set_IA" to match the regular expression ^[a-z_][a-z0-9_]*$.(šŞ‰ï8ùãÙ©ú1J$51d7372a-10ea-40cc-8bb4-bd4dc6948569
+python:S3923«"RRemove this if statement or edit its code blocks so that they're not all the same.(­®Œüÿÿÿÿ8ûãÙ©ú1J$b66b94a8-f604-4a24-93d5-fbf2484399f9
+špython:S3776‚"TRefactor this function to reduce its Cognitive Complexity from 18 to the 15 allowed.(ãÄœŒ8ıãÙ©ú1J$fdc6c281-2bd3-41c8-b659-0adacb3bef50
