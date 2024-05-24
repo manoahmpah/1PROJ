@@ -21,7 +21,7 @@ class ring:
 
 
 class Logic:
-	def __init__(self, name1: str, name2: str, IA: bool = True):
+	def __init__(self, name1: str, name2: str, IA: bool = False):
 		"""
 		:param name1: Name of the players 1
 		:param name2: Name of the players 2
@@ -33,6 +33,7 @@ class Logic:
 		self._ring_number_on_board: int = 0
 		self._list_alignment = [[], [], []]
 		self._list_possibilities_to_move = []
+		self.list_mark_in_the_way = []
 		self._IA = IA
 
 	def get_list_possibilities(self):
@@ -155,25 +156,27 @@ class Logic:
 
 		return True if column + 1 >= 5 or line + 1 >= 5 or slash + 1 >= 5 else False
 
-	def create_list_of_possibilities_in_one_line(self, position_y: int, position_x: int, i: int, j: int):
+	def separate_the_rings_from_the_marks(self, position_y: int, position_x: int, vector_y: int, vector_x: int):
 		if 0 <= position_x < self.__n and 0 <= position_y < self.__n:
 			if self._board[position_y][position_x] == 1:
 				self._list_possibilities_to_move.append((position_y, position_x))
-				return self.create_list_of_possibilities_in_one_line(position_y + i, position_x + j, i, j)
-			elif position_y + i < self.__n and position_x + j < self.__n and self._board[position_y][position_x] in [-1, -2] and self._board[position_y + i][position_x + j] == 1:
-				self._list_possibilities_to_move.append((position_y + i, position_x + j))
-			elif position_y + i < self.__n and position_x + j < self.__n and self._board[position_y][position_x] in [-1, -2] and self._board[position_y + i][position_x + j] in [-1, -2]:
-				return self.create_list_of_possibilities_in_one_line(position_y + i, position_x + j, i, j)
+				return self.separate_the_rings_from_the_marks(position_y + vector_y, position_x + vector_x, vector_y, vector_x)
+			elif position_y + vector_y < self.__n and position_x + vector_x < self.__n and self._board[position_y][position_x] in [-1, -2]:
+				self.list_mark_in_the_way.append((position_y, position_x))
+				if self._board[position_y + vector_y][position_x + vector_x] == 1:
+					self._list_possibilities_to_move.append((position_y + vector_y, position_x + vector_x))
+				elif self._board[position_y + vector_y][position_x + vector_x] in [-1, -2]:
+					return self.separate_the_rings_from_the_marks(position_y + vector_y, position_x + vector_x, vector_y, vector_x)
 
 	def create_all_list_of_possibilities(self, position_y: int, position_x: int):
 		for index, (i, j) in enumerate([(0, -1), (0, 1), (-1, 0), (1, 0), (-1, 1), (1, -1)]):
 
 			if index < 2:
-				self.create_list_of_possibilities_in_one_line(position_y + i, position_x + j, i, j)
+				self.separate_the_rings_from_the_marks(position_y + i, position_x + j, i, j)
 			elif 2 <= index < 4:
-				self.create_list_of_possibilities_in_one_line(position_y + i, position_x + j, i, j)
+				self.separate_the_rings_from_the_marks(position_y + i, position_x + j, i, j)
 			else:
-				self.create_list_of_possibilities_in_one_line(position_y + i, position_x + j, i, j)
+				self.separate_the_rings_from_the_marks(position_y + i, position_x + j, i, j)
 
 	def delete_preview(self):
 		for possibility in self._list_possibilities_to_move:
