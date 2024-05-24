@@ -36,7 +36,6 @@ class IA:
 			self._number_of_ring -= 1
 			self._put.pop(random_index_ring)
 
-
 		arrival_position = self._object_logic.get_list_possibilities()[random.randint(0, len(self._object_logic.get_list_possibilities()) - 1)]
 
 		self._object_logic.change_mark_on_move(position_to_move_x, position_to_move_y, arrival_position[0], arrival_position[1])
