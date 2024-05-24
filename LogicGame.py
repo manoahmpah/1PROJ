@@ -1,4 +1,4 @@
-import IA
+
 
 class ring:
 	def __init__(self, player: int, name: str):
@@ -309,8 +309,58 @@ class Logic:
 			                                end_position_y)
 
 
-if __name__ == '__main__':
-	logic_obj = Logic('Luc', 'Jean-Marc')
+from IA import IA
+from LogicGame import Logic
+import time
+
+
+def main():
+	import time
+
+	name1 = 'Luc'
+	name2 = 'Jean-Marc'
+
+
+	logic_obj = Logic(name1, name2, IA=True)
 	logic_obj.create_board()
-	logic_obj.put(0, 7)
-	logic_obj.display()
+
+
+	from IA import IA
+
+	ia = IA(logic_obj)
+
+
+	turn_count = 0
+
+	while True:
+		logic_obj.display()
+		if logic_obj.get_player_to_play() == 1:
+			print(f"{name1}'s turn (Player 1).")
+			x, y = map(int, input("Enter the coordinates to put your ring (x y): ").split())
+			if logic_obj.possible_to_put(x, y):
+				logic_obj.put(x, y)
+				logic_obj.set_player_to_play(2)
+			else:
+				print("Invalid move. Try again.")
+		else:
+			print(f"{name2}'s turn (Player 2 - AI).")
+			ia.put_random()
+			logic_obj.set_player_to_play(1)
+
+
+		turn_count += 1
+
+
+		if turn_count >= 10:
+			winner = logic_obj.check_for_winner()
+			if winner:
+				winner_name = logic_obj.get_name1() if winner == 1 else logic_obj.get_name2()
+				print(f"{winner_name} wins!")
+				break
+
+
+		time.sleep(1)
+
+
+if __name__ == '__main__':
+	main()
