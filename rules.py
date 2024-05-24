@@ -5,7 +5,7 @@ import re
 class Rules:
     def __init__(self, rect):
         pygame.init()
-        self.__screen = pygame.display.set_mode((1080, 720))
+        self.__screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
         pygame.display.set_caption("rules")
         self.__running = True
         self.__rect = rect
@@ -53,7 +53,7 @@ class Rules:
         self.canvases = [self.create_canvas(phrase) for phrase in self.phrases]
 
     def create_canvas(self, text):
-        screen_width, screen_height = 1080, 720
+        screen_width, screen_height = self.__screen.get_width(), self.__screen.get_height()
         canvas_surface = pygame.Surface((screen_width, screen_height))
         canvas_surface.fill((255, 255, 255))
 
@@ -107,7 +107,7 @@ class Rules:
                         if self.__rect.collidepoint(x, y):
                             self.current_phrase_index += 1
                             if self.current_phrase_index >= len(self.canvases):
-                                self.__running = False  # Arrêter la boucle principale
+                                self.__running = False
                                 os.system("python main.py")
                             self.current_image_index = (self.current_image_index + 1) % len(self.images)
                             self.canvases = [self.create_canvas(phrase) for phrase in self.phrases]

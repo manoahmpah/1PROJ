@@ -9,7 +9,7 @@ class GUIBoard:
 		pygame.init()
 		# Windows game
 
-		self.__screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+		self.__screen = pygame.display.set_mode((1036,  730))
 		pygame.display.set_caption('yinsh')
 		self.__running = True
 		self.__background = (170, 184, 197)
@@ -21,8 +21,8 @@ class GUIBoard:
 		self._get_board = self.__logic_obj.get_board()
 
 		self._rect_all = pygame.Rect(0, 0, self.__screen.get_width(), self.__screen.get_height()-100)
-		self._rect_board = pygame.Rect(self._rect_all.centerx - self.__screen.get_width() / 3.4,
-		                               self._rect_all.centery - self.__screen.get_height() / 3, self.__screen.get_width() / 3.4,
+		self._rect_board = pygame.Rect(self._rect_all.centerx - self.__screen.get_width() / 2.4,
+		                               self._rect_all.centery - self.__screen.get_height() / 3, self.__screen.get_width() / 2.4,
 		                               self.__screen.get_height() / 1.2)
 		self._rect_name1 = pygame.Rect(self._rect_all.left + 10, self._rect_all.centery - 120, 100, 50)
 
@@ -46,7 +46,7 @@ class GUIBoard:
 		self._objet_ia = IA(self.__logic_obj)
 
 
-		self._rect_error = pygame.Rect(self._rect_all.centerx - 100, self._rect_all.bottom - 100, 200, 50)
+		self._rect_error = pygame.Rect(self._rect_all.centerx - 80, self._rect_all.bottom, 200, 50)
 		self._error_message = ""
 
 		self._winning_move_player_one, self._winning_move_player_two = 0, 0
@@ -64,7 +64,7 @@ class GUIBoard:
 
 	@staticmethod
 	def __transform_cord_to_pos(x, y) -> tuple:
-		return int(y // 51) - 3, int(((x - (30 * ((y // 51) - 2))) // 60) - 4)
+		return int(y // 51) - 2, int(((x - (30 * ((y // 51) - 2))) // 60) - 1)
 
 	def __pixel_to_coordinate_transformation(self, x: int, y: int) -> tuple:
 		for point in self._position_points:
