@@ -308,6 +308,24 @@ class Logic:
 			return self.change_mark_on_move(start_position_x + vector_x, start_position_y + vector_y, end_position_x,
 			                                end_position_y)
 
+	def check_all_win(self, start_position_x: int, start_position_y: int, end_position_x: int,
+	                        end_position_y: int):
+		vector_x, vector_y = self.get_vectors(start_position_x, start_position_y, end_position_x, end_position_y)
+
+		new_x = start_position_x + vector_x
+		new_y = start_position_y + vector_y
+		current_value = self._board[new_x][new_y]
+
+		if start_position_x == end_position_x and start_position_y == end_position_y:
+			return 0
+
+		elif current_value in (-1, -2):
+			if self.check_win(new_x, new_y):
+				self._board[new_x][new_y] = 1
+				return True
+			else:
+				return self.check_all_win(new_x, new_y, end_position_x, end_position_y)
+
 
 if __name__ == '__main__':
 	logic_obj = Logic('Luc', 'Jean-Marc')

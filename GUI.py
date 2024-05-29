@@ -9,12 +9,12 @@ class GUIBoard:
 		pygame.init()
 		# Windows game
 
-		self.__screen = pygame.display.set_mode((1036,  730))
+		self.__screen = pygame.display.set_mode((1080,  730))
 		pygame.display.set_caption('yinsh')
 		self.__running = True
 		self.__background = (170, 184, 197)
-		self.__background_image = pygame.image.load('asset_plateau/img_2.png').convert()
-		self.__background_image = pygame.transform.scale(self.__background_image, (self.__screen.get_width(), self.__screen.get_height()))
+		self.__background_image = pygame.image.load('asset_plateau/img_3.png').convert()
+		self.__background_image = pygame.transform.smoothscale(self.__background_image, (self.__screen.get_width(), self.__screen.get_height()))
 
 		self.__logic_obj = Logic(player1_name, player2_name)
 		self._create_board = self.__logic_obj.create_board()
@@ -40,11 +40,10 @@ class GUIBoard:
 		self._click_x_p1, self._click_y_p1 = None, None
 		self._click_x_p2, self._click_y_p2 = None, None
 
-		self._board_color = (0, 0, 0)
+		self._board_color = (255, 255, 255)
 
 		self._refresh = True
 		self._objet_ia = IA(self.__logic_obj)
-
 
 		self._rect_error = pygame.Rect(self._rect_all.centerx - 80, self._rect_all.bottom, 200, 50)
 		self._error_message = ""
@@ -113,7 +112,7 @@ class GUIBoard:
 
 			if isinstance(self._get_board[row][col], ring):
 				player = self._get_board[row][col].get_player()
-				color = (255, 255, 255) if player == 1 else (0, 0, 0)
+				color = (252,140,45) if player == 1 else (152,221,237)
 				pygame.draw.circle(self.__screen, color, (pos_x, pos_y), 25, 7)
 				if self._get_board[row][col].get_selected():
 					pygame.draw.circle(self.__screen, color, (pos_x, pos_y), 15)
@@ -134,11 +133,11 @@ class GUIBoard:
 		if row + 1 < len(board):
 			if col - 1 < len(board) and board[row + 1][col - 1] != 9:
 				diag_col_pos = self.__collision_area(row + 1, col - 1)
-				pygame.draw.line(self.__screen, self._board_color, (pos_x, pos_y), diag_col_pos, 3)
+				pygame.draw.line(self.__screen, self._board_color, (pos_x, pos_y), diag_col_pos, 5)
 
 			if board[row + 1][col] != 9:
 				next_row_pos = self.__collision_area(row + 1, col)
-				pygame.draw.line(self.__screen, self._board_color, (pos_x, pos_y), next_row_pos, 3)
+				pygame.draw.line(self.__screen, self._board_color, (pos_x, pos_y), next_row_pos, 5)
 
 	def __handle_first_click_move(self, mouse_coordinate_x, mouse_coordinate_y, board_piece):
 		board_piece.set_selected(True)
@@ -165,7 +164,7 @@ class GUIBoard:
 
 		elif self.__logic_obj.possible_to_move(self._click_x_p1, self._click_y_p1, mouse_coordinate_x, mouse_coordinate_y)[0]:
 			self.__logic_obj.change_mark_on_move(self._click_x_p1, self._click_y_p1, mouse_coordinate_x, mouse_coordinate_y)
-			if self.__logic_obj.check_win(self._click_x_p1, self._click_y_p1):
+			if self.__logic_obj.check_win(self._click_x_p1, self._click_y_p1) or self.__logic_obj.check_all_win(self._click_x_p1, self._click_y_p1, mouse_coordinate_x,mouse_coordinate_y):
 				self.__logic_obj.delete_on_alignment()
 				winning_move = True
 				if self.__logic_obj.get_player_to_play() == 1:
@@ -174,7 +173,6 @@ class GUIBoard:
 				else:
 					self._color_ring_win_player_one[self._winning_move_player_one-1] = (0, 0, 0)
 					self._winning_move_player_two += 1
-
 			self._click_x_p2, self._click_y_p2 = mouse_coordinate_x, mouse_coordinate_y
 			self._move_click = 1
 			self.__logic_obj.move(self._click_x_p1, self._click_y_p1, self._click_x_p2, self._click_y_p2, winning_move)
@@ -272,6 +270,7 @@ class GUIBoard:
 			self.__player_name_display()
 			self.rectangle_ring_win_player_one()
 			pygame.display.flip()
+			self.__screen.blit(self.__background_image, (0, 0))
 			self._refresh = False
 
 	def run(self):
