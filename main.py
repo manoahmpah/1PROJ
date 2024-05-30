@@ -17,7 +17,7 @@ music_player.play_background_music()
 
 class MainController:
     def __init__(self):
-        self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+        self.screen = pygame.display.set_mode((1080,  730))
         pygame.display.set_caption("Menu")
         self.current_screen = "menu"
         self.running = True
@@ -25,12 +25,16 @@ class MainController:
         self.player2_name = ""
         self.active_input = None  # To track which input box is active
 
+        self.__background_image = pygame.image.load('asset_plateau/img_4.png').convert()
+        self.__background_image = pygame.transform.smoothscale(self.__background_image,
+                                                               (self.screen.get_width(), self.screen.get_height()))
+
         # Charger les images du menu
         self.load_images()
 
     def load_images(self):
         self.images = {
-            "title": pygame.transform.scale(pygame.image.load("asset_menu/title.png"), (600, 200)),
+            "title": pygame.transform.scale(pygame.image.load("asset_menu/img.png"), (450, 600)),
             "help": pygame.transform.scale(pygame.image.load("asset_menu/help_button.png"), (100, 100)),
             "quit": pygame.transform.scale(pygame.image.load("asset_menu/quit_button.png"), (100, 100)),
             "play": pygame.transform.scale(pygame.image.load("asset_menu/play_button.png"), (200, 100)),
@@ -61,18 +65,20 @@ class MainController:
                 self.game()
 
     def menu(self):
-        self.screen.fill(WHITE)
-        self.screen.blit(self.images["title"], (self.screen.get_height() // 2 - self.images["title"].get_width() // 2,
+        # self.screen.fill(WHITE)
+        self.screen.blit(self.__background_image, (0, 0))
+
+        self.screen.blit(self.images["title"], ((self.screen.get_width() // 2 - self.images["title"].get_width() // 2),
                                                 self.screen.get_height() // 2 - self.images["title"].get_height() // 2))
 
         button_spacing = 20
         total_width = self.images["play"].get_width() + button_spacing + self.images["settings"].get_width()
-        start_x = (self.screen.get_height() - total_width) // 2
+        start_x = (self.screen.get_width()) // 2 - total_width // 2
         play_button_pos = (start_x, self.screen.get_height() - 120)
         setting_button_pos = (start_x + self.images["play"].get_width() + button_spacing, self.screen.get_height() - 120)
 
         self.screen.blit(self.images["help"], (20, 20))
-        self.screen.blit(self.images["quit"], (self.screen.get_height() - self.images["quit"].get_width() - 20, 20))
+        self.screen.blit(self.images["quit"], (self.screen.get_width() - self.images["quit"].get_width() - 20, 20))
         self.screen.blit(self.images["play"], play_button_pos)
         self.screen.blit(self.images["settings"], setting_button_pos)
 
@@ -87,7 +93,8 @@ class MainController:
         )
 
     def choose_mode(self):
-        self.screen.fill(WHITE)
+        self.screen.blit(self.__background_image, (0, 0))
+        # self.screen.fill(WHITE)
         button_spacing = 20
         total_width = self.images["local"].get_width() + button_spacing + self.images["online"].get_width()
         start_x = (self.screen.get_height() - total_width) // 2
@@ -106,7 +113,9 @@ class MainController:
         )
 
     def enter_names(self):
-        self.screen.fill(WHITE)
+        # self.screen.fill(WHITE)
+        self.screen.blit(self.__background_image, (0, 0))
+
         font = pygame.font.Font(None, 36)
 
         # Define input boxes and labels
@@ -118,7 +127,9 @@ class MainController:
 
         running = True
         while running:
-            self.screen.fill(WHITE)
+            # self.screen.fill(WHITE)
+            self.screen.blit(self.__background_image, (0, 0))
+
             pygame.draw.rect(self.screen, BLACK, player1_label_box, 2)
             pygame.draw.rect(self.screen, BLACK, player1_box, 2)
             pygame.draw.rect(self.screen, BLACK, player2_label_box, 2)
@@ -167,7 +178,9 @@ class MainController:
                             self.player2_name += event.unicode
 
     def create_or_join(self):
-        self.screen.fill(WHITE)
+        # self.screen.fill(WHITE)
+        self.screen.blit(self.__background_image, (0, 0))
+
         button_spacing = 20
         total_width = self.images["create_game"].get_width() + button_spacing + self.images["join_game"].get_width()
         start_x = (self.screen.get_width() - total_width) // 2
@@ -196,8 +209,8 @@ class MainController:
         self.set_screen("menu")
 
     def join_game(self, game_code_is_valid):
-        self.screen.fill(WHITE)
-
+        # self.screen.fill(WHITE)
+        self.screen.blit(self.__background_image, (0, 0))
         # Affichage du texte pour demander le code du jeu
         font = pygame.font.Font(None, 36)
         text = font.render("Enter Game Code:", True, BLACK)
@@ -221,6 +234,7 @@ class MainController:
         game_code = ""
 
         while True:
+            self.screen.blit(self.__background_image, (0, 0))
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.quit_game()
