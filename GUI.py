@@ -4,25 +4,28 @@ import pygame
 from LogicGame import Logic, ring
 from IA import IA
 
+
 class GUIBoard:
 	def __init__(self, player1_name, player2_name):
 		pygame.init()
 		# Windows game
 
-		self.__screen = pygame.display.set_mode((1080,  730))
+		self.__screen = pygame.display.set_mode((1080, 730))
 		pygame.display.set_caption('yinsh')
 		self.__running = True
 		self.__background = (170, 184, 197)
-		self.__background_image = pygame.image.load('asset_plateau/img_3.png').convert()
-		self.__background_image = pygame.transform.smoothscale(self.__background_image, (self.__screen.get_width(), self.__screen.get_height()))
+		self.__background_image = pygame.image.load('asset_plateau/img_4.png').convert()
+		self.__background_image = pygame.transform.smoothscale(self.__background_image,
+		                                                       (self.__screen.get_width(), self.__screen.get_height()))
 
 		self.__logic_obj = Logic(player1_name, player2_name)
 		self._create_board = self.__logic_obj.create_board()
 		self._get_board = self.__logic_obj.get_board()
 
-		self._rect_all = pygame.Rect(0, 0, self.__screen.get_width(), self.__screen.get_height()-100)
+		self._rect_all = pygame.Rect(0, 0, self.__screen.get_width(), self.__screen.get_height() - 100)
 		self._rect_board = pygame.Rect(self._rect_all.centerx - self.__screen.get_width() / 2.4,
-		                               self._rect_all.centery - self.__screen.get_height() / 3, self.__screen.get_width() / 2.4,
+		                               self._rect_all.centery - self.__screen.get_height() / 3,
+		                               self.__screen.get_width() / 2.4,
 		                               self.__screen.get_height() / 1.2)
 		self._rect_name1 = pygame.Rect(self._rect_all.left + 10, self._rect_all.centery - 120, 100, 50)
 
@@ -50,16 +53,26 @@ class GUIBoard:
 
 		self._winning_move_player_one, self._winning_move_player_two = 0, 0
 		self._react_rings_win_player_one = pygame.Rect(self._rect_all.left + 200, self._rect_all.top + 20, 130, 70)
-		self._color_ring_win_player_one = [(50,50,50) for _ in range(3)]
+		self._color_ring_win_player_one = [(50, 50, 50) for _ in range(3)]
 		self._react_rings_win_player_two = 5
 
 	def rectangle_ring_win_player_one(self):
 		# print(self._color_ring_win_player_one)
-		pygame.draw.circle(self.__screen, self._color_ring_win_player_one[0], (self._react_rings_win_player_one.centerx + 20, self._react_rings_win_player_one.centery), 25, 7)
-		pygame.draw.circle(self.__screen, self.__background, (self._react_rings_win_player_one.centerx - 10, self._react_rings_win_player_one.centery), 25)
-		pygame.draw.circle(self.__screen, self._color_ring_win_player_one[1], (self._react_rings_win_player_one.centerx - 10, self._react_rings_win_player_one.centery), 25, 7)
-		pygame.draw.circle(self.__screen, self.__background, (self._react_rings_win_player_one.centerx - 40, self._react_rings_win_player_one.centery), 25)
-		pygame.draw.circle(self.__screen, self._color_ring_win_player_one[2], (self._react_rings_win_player_one.centerx - 40, self._react_rings_win_player_one.centery), 25, 7)
+		pygame.draw.circle(self.__screen, self._color_ring_win_player_one[0],
+		                   (self._react_rings_win_player_one.centerx + 20, self._react_rings_win_player_one.centery),
+		                   25, 7)
+		pygame.draw.circle(self.__screen, self.__background,
+		                   (self._react_rings_win_player_one.centerx - 10, self._react_rings_win_player_one.centery),
+		                   25)
+		pygame.draw.circle(self.__screen, self._color_ring_win_player_one[1],
+		                   (self._react_rings_win_player_one.centerx - 10, self._react_rings_win_player_one.centery),
+		                   25, 7)
+		pygame.draw.circle(self.__screen, self.__background,
+		                   (self._react_rings_win_player_one.centerx - 40, self._react_rings_win_player_one.centery),
+		                   25)
+		pygame.draw.circle(self.__screen, self._color_ring_win_player_one[2],
+		                   (self._react_rings_win_player_one.centerx - 40, self._react_rings_win_player_one.centery),
+		                   25, 7)
 
 	@staticmethod
 	def __transform_cord_to_pos(x, y) -> tuple:
@@ -74,7 +87,9 @@ class GUIBoard:
 		pixel_x, pixel_y = pygame.mouse.get_pos()
 
 		if self._position_click_y == -1 and self._position_click_x == -1:
-			self._position_click_x, self._position_click_y = self.__pixel_to_coordinate_transformation(pixel_x, pixel_y) if self.__pixel_to_coordinate_transformation(pixel_x, pixel_y) else (-1, -1)
+			self._position_click_x, self._position_click_y = self.__pixel_to_coordinate_transformation(pixel_x,
+			                                                                                           pixel_y) if self.__pixel_to_coordinate_transformation(
+				pixel_x, pixel_y) else (-1, -1)
 
 			if self.__logic_obj.possible_to_put(self._position_click_x, self._position_click_y):
 				self.__logic_obj.put(self._position_click_x, self._position_click_y)
@@ -112,15 +127,15 @@ class GUIBoard:
 
 			if isinstance(self._get_board[row][col], ring):
 				player = self._get_board[row][col].get_player()
-				color = (252,140,45) if player == 1 else (152,221,237)
+				color = (128, 0, 128) if player == 1 else (255, 165, 0)
 				pygame.draw.circle(self.__screen, color, (pos_x, pos_y), 25, 7)
 				if self._get_board[row][col].get_selected():
 					pygame.draw.circle(self.__screen, color, (pos_x, pos_y), 15)
 
 			if self._get_board[row][col] == -1:
-				pygame.draw.circle(self.__screen, (255, 255, 255), (pos_x, pos_y), 15)
+				pygame.draw.circle(self.__screen, (128, 0, 128), (pos_x, pos_y), 15)
 			elif self._get_board[row][col] == -2:
-				pygame.draw.circle(self.__screen, (0, 0, 0), (pos_x, pos_y), 15)
+				pygame.draw.circle(self.__screen, (255, 165, 0), (pos_x, pos_y), 15)
 			elif self._get_board[row][col] == -3:
 				pygame.draw.circle(self.__screen, (230, 230, 230), (pos_x, pos_y), 10)
 
@@ -162,16 +177,23 @@ class GUIBoard:
 			self.__refresh()
 			self._move_click = 1
 
-		elif self.__logic_obj.possible_to_move(self._click_x_p1, self._click_y_p1, mouse_coordinate_x, mouse_coordinate_y)[0]:
-			self.__logic_obj.change_mark_on_move(self._click_x_p1, self._click_y_p1, mouse_coordinate_x, mouse_coordinate_y)
-			if self.__logic_obj.check_win(self._click_x_p1, self._click_y_p1) or self.__logic_obj.check_all_win(self._click_x_p1, self._click_y_p1, mouse_coordinate_x,mouse_coordinate_y):
+		elif \
+		self.__logic_obj.possible_to_move(self._click_x_p1, self._click_y_p1, mouse_coordinate_x, mouse_coordinate_y)[
+			0]:
+			self.__logic_obj.change_mark_on_move(self._click_x_p1, self._click_y_p1, mouse_coordinate_x,
+			                                     mouse_coordinate_y)
+			if self.__logic_obj.check_win(self._click_x_p1, self._click_y_p1) or self.__logic_obj.check_all_win(
+					self._click_x_p1, self._click_y_p1, mouse_coordinate_x, mouse_coordinate_y):
 				self.__logic_obj.delete_on_alignment()
 				winning_move = True
 				if self.__logic_obj.get_player_to_play() == 1:
 					self._winning_move_player_one += 1
 
+				elif self.__logic_obj.get_player_to_play() == 2:
+					self._winning_move_player_two += 1
+
 				else:
-					self._color_ring_win_player_one[self._winning_move_player_one-1] = (0, 0, 0)
+					self._color_ring_win_player_one[self._winning_move_player_one - 1] = (0, 0, 0)
 					self._winning_move_player_two += 1
 			self._click_x_p2, self._click_y_p2 = mouse_coordinate_x, mouse_coordinate_y
 			self._move_click = 1
@@ -189,7 +211,9 @@ class GUIBoard:
 			self.__logic_obj.set_player_to_play(self.__logic_obj.get_player_to_play() % 2 + 1)
 
 		else:
-			self._error_message = self.__logic_obj.possible_to_move(self._click_x_p1, self._click_y_p1, mouse_coordinate_x, mouse_coordinate_y)[1]
+			self._error_message = \
+			self.__logic_obj.possible_to_move(self._click_x_p1, self._click_y_p1, mouse_coordinate_x,
+			                                  mouse_coordinate_y)[1]
 
 	def choose_a_ring_to_delete_if_win(self):
 		valid_selection = False
@@ -278,15 +302,17 @@ class GUIBoard:
 			self.__refresh()
 			event = pygame.event.poll()
 
-			if self.__logic_obj.get_IA() and self.__logic_obj.get_player_to_play() == 1 and self.__logic_obj.get_ring_number_on_board() < 10:
-				self._objet_ia.put_random()
-				self.__logic_obj.set_player_to_play(self.__logic_obj.get_player_to_play() % 2 + 1)
-				self.__logic_obj.set_ring_number_on_board(self.__logic_obj.get_ring_number_on_board() + 1)
+			if self.__logic_obj.win_game(self._winning_move_player_one, self._winning_move_player_two):
+				time.sleep(2)
+				self.__running = False
 
-				self._refresh = True
-				self.__refresh()
-			elif self.__logic_obj.get_IA() and self.__logic_obj.get_player_to_play() == 1 and not(self.__logic_obj.get_ring_number_on_board() < 10):
-				self._objet_ia.move_random()
+			if self.__logic_obj.get_IA() and self.__logic_obj.get_player_to_play() == 1:
+				if self.__logic_obj.get_ring_number_on_board() < 10:
+					self._objet_ia.put_random()
+					self.__logic_obj.set_ring_number_on_board(self.__logic_obj.get_ring_number_on_board() + 1)
+				else:
+					self._objet_ia.move_random()
+
 				self.__logic_obj.set_player_to_play(self.__logic_obj.get_player_to_play() % 2 + 1)
 				self._refresh = True
 				self.__refresh()
@@ -305,7 +331,6 @@ class GUIBoard:
 			elif event.type == pygame.QUIT:
 				self.__running = False
 				pygame.quit()
-
 
 
 if __name__ == "__main__":

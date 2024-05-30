@@ -21,11 +21,13 @@ class ring:
 
 
 class Logic:
-	def __init__(self, name1: str, name2: str, IA: bool = False):
+	def __init__(self, name1: str, name2: str, IA: bool = False, gameMode = 1):
 		"""
 		:param name1: Name of the players 1
 		:param name2: Name of the players 2
 		"""
+
+		self.__gameMode = gameMode
 		self.__n: int = 11
 		self._board = []
 		self._player_to_play: int = 2
@@ -38,6 +40,9 @@ class Logic:
 
 	def get_list_possibilities(self):
 		return self._list_possibilities_to_move
+
+	def get_gameMode(self):
+		return self.__gameMode
 
 	def set_list_possibilities(self, new_list_possibilities: list):
 		self._list_possibilities_to_move = new_list_possibilities
@@ -326,6 +331,13 @@ class Logic:
 			else:
 				return self.check_all_win(new_x, new_y, end_position_x, end_position_y)
 
+	def win_game(self, number_of_ring_win_player_one: int, number_of_ring_win_player_two: int):
+		if self.__gameMode == 1 and( number_of_ring_win_player_one == 3 or number_of_ring_win_player_two == 3):
+			return True
+		elif self.__gameMode == 2 and (number_of_ring_win_player_one == 1 or number_of_ring_win_player_two == 1):
+			return True
+		else:
+			return False
 
 if __name__ == '__main__':
 	logic_obj = Logic('Luc', 'Jean-Marc')

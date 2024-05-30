@@ -6,6 +6,7 @@ class Network:
         self.server_port = server_port
         self.server_socket = self.create_server()
         self.running = True
+        self.__send_message = "welcome to the server!"
 
     def create_server(self):
         server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -17,7 +18,7 @@ class Network:
     def handle_client(self, client_socket, client_address):
         print("Accepted connection from", client_address)
         receive_thread = threading.Thread(target=self.receive_messages, args=(client_socket,))
-        send_thread = threading.Thread(target=self.send_messages, args=(client_socket,))
+        send_thread = threading.Thread(target=self.send_messages, args=(client_socket, self.__send_message))
 
         receive_thread.start()
         send_thread.start()
@@ -41,13 +42,13 @@ class Network:
                 print("Receive error:", e)
                 break
 
-    def send_messages(self, client_socket):
+    def send_messages(self, client_socket, response = ""):
         while True:
             try:
-                response = input("\nEnter a response to send to the client: ")
                 client_socket.sendall(response.encode())
                 if response == "exit":
                     break
+                break
             except Exception as e:
                 print("Send error:", e)
                 break
