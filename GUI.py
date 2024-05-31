@@ -3,6 +3,8 @@ import time
 import pygame
 from LogicGame import Logic, ring
 from IA import IA
+from client import Client
+from network import Network
 
 
 class GUIBoard:
@@ -298,6 +300,14 @@ class GUIBoard:
 			self._refresh = False
 
 	def run(self):
+		if self.__logic_obj.get_network():
+			if self.__logic_obj.get_server():
+				net = Network(12345)
+				net.create_server()
+			elif not(self.__logic_obj.get_server()):
+				cli = Client("192.168.1.28", 12345)
+				cli.connect_to_server()
+
 		while self.__running:
 			self.__refresh()
 			event = pygame.event.poll()
@@ -316,7 +326,6 @@ class GUIBoard:
 				self.__logic_obj.set_player_to_play(self.__logic_obj.get_player_to_play() % 2 + 1)
 				self._refresh = True
 				self.__refresh()
-
 			if event.type == pygame.MOUSEBUTTONDOWN:
 				if self.__logic_obj.get_ring_number_on_board() < 10:
 					self.__put_on_click()

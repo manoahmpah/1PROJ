@@ -21,7 +21,7 @@ class ring:
 
 
 class Logic:
-	def __init__(self, name1: str, name2: str, IA: bool = False, gameMode = 1):
+	def __init__(self, name1: str, name2: str, IA: bool = False, gameMode = 2, Network = True, Server = False):
 		"""
 		:param name1: Name of the players 1
 		:param name2: Name of the players 2
@@ -37,9 +37,18 @@ class Logic:
 		self._list_possibilities_to_move = []
 		self.list_mark_in_the_way = []
 		self._IA = IA
+		self._network = Network
+		self.__server = Server
+
 
 	def get_list_possibilities(self):
 		return self._list_possibilities_to_move
+
+	def get_network(self):
+		return self._network
+
+	def get_server(self):
+		return self.__server
 
 	def get_gameMode(self):
 		return self.__gameMode
