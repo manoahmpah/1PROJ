@@ -21,7 +21,7 @@ class ring:
 
 
 class Logic:
-	def __init__(self, name1: str, name2: str, IA: bool = False, gameMode = 2, Network = True, Server = False):
+	def __init__(self, name1: str, name2: str, IA: bool = False, gameMode = 2, Network = True, Server = True):
 		"""
 		:param name1: Name of the players 1
 		:param name2: Name of the players 2

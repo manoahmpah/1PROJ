@@ -1,4 +1,6 @@
 import time
+import threading
+
 
 import pygame
 from LogicGame import Logic, ring
@@ -303,10 +305,11 @@ class GUIBoard:
 		if self.__logic_obj.get_network():
 			if self.__logic_obj.get_server():
 				net = Network(12345)
-				net.create_server()
-			elif not(self.__logic_obj.get_server()):
+				threading.Thread(target=net.run).start()
+
+			elif not (self.__logic_obj.get_server()):
 				cli = Client("192.168.1.28", 12345)
-				cli.connect_to_server()
+				threading.Thread(target=cli.connect_to_server).start()
 
 		while self.__running:
 			self.__refresh()
