@@ -33,13 +33,13 @@ class MainController:
 
     def load_images(self):
         self.images = {
-            "title": pygame.transform.scale(pygame.image.load("asset_menu/logo.png"), (600, 600)),
-            "help": pygame.transform.scale(pygame.image.load("asset_menu/help.png"), (100, 100)),
-            "quit": pygame.transform.scale(pygame.image.load("asset_menu/quit_button.png"), (100, 100)),
-            "play": pygame.transform.scale(pygame.image.load("asset_menu/play_button.png"), (200, 100)),
-            "settings": pygame.transform.scale(pygame.image.load("asset_menu/settings_button.png"), (100, 100)),
-            "local": pygame.transform.scale(pygame.image.load("asset_menu/local_game_button.png"), (200, 100)),
-            "online": pygame.transform.scale(pygame.image.load("asset_menu/online_game_button.png"), (200, 100)),
+            "title": pygame.transform.scale(pygame.image.load("asset_menu/logo.png"), (500, 500)),
+            "help": pygame.transform.scale(pygame.image.load("asset_menu/help.png"), (300, 300)),
+            "quit": pygame.transform.scale(pygame.image.load("asset_menu/quit.png"), (300, 300)),
+            "play": pygame.transform.scale(pygame.image.load("asset_menu/play.png"), (300, 100)),
+            "settings": pygame.transform.scale(pygame.image.load("asset_menu/settings.png"), (100, 100)),
+            "local": pygame.transform.scale(pygame.image.load("asset_menu/local.png"), (200, 100)),
+            "online": pygame.transform.scale(pygame.image.load("asset_menu/online.png"), (200, 100)),
             "create_game": pygame.transform.scale(pygame.image.load("asset_menu/create.png"), (200, 100)),
             "join_game": pygame.transform.scale(pygame.image.load("asset_menu/join.png"), (200, 100)),
         }
