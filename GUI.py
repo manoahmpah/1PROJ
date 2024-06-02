@@ -145,7 +145,7 @@ class GUIBoard:
 					pygame.draw.circle(self.__screen, color, (pos_x, pos_y), 15)
 
 			if self._get_board[row][col] == -1:
-				pygame.draw.circle(self.__screen, (128, 0, 128), (pos_x, pos_y), 15)
+				pygame.draw.circle(self.__screen, (183,107,252), (pos_x, pos_y), 15)
 			elif self._get_board[row][col] == -2:
 				pygame.draw.circle(self.__screen, (255, 165, 0), (pos_x, pos_y), 15)
 			elif self._get_board[row][col] == -3:
@@ -155,12 +155,12 @@ class GUIBoard:
 		board = self._get_board
 		if col + 1 < len(board[row]) and board[row][col + 1] != 9:
 			col_pos = self.__collision_area(row, col + 1)
-			pygame.draw.line(self.__screen, self._board_color, (pos_x, pos_y), col_pos, 3)
+			pygame.draw.line(self.__screen, self._board_color, (pos_x, pos_y), col_pos, 5)
 
 		if row + 1 < len(board):
 			if col - 1 < len(board) and board[row + 1][col - 1] != 9:
 				diag_col_pos = self.__collision_area(row + 1, col - 1)
-				pygame.draw.line(self.__screen, self._board_color, (pos_x, pos_y), diag_col_pos, 5)
+				pygame.draw.line(self.__screen, self._board_color, (pos_x, pos_y), diag_col_pos,5)
 
 			if board[row + 1][col] != 9:
 				next_row_pos = self.__collision_area(row + 1, col)
