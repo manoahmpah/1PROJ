@@ -51,8 +51,12 @@ class GUIBoard:
 
 		self._refresh = True
 		self._objet_ia = IA(self.__logic_obj)
-		self._net = Network(12345)
-		self._client = Client("192.168.1.28", 12345)
+
+		# Network
+		if self.__logic_obj.get_server():
+			self._net = Network(12345)
+		else:
+			self._client = Client("192.168.1.11", 12345)
 
 		self._rect_error = pygame.Rect(self._rect_all.centerx - 80, self._rect_all.bottom, 200, 50)
 		self._error_message = ""
@@ -306,6 +310,7 @@ class GUIBoard:
 			self._refresh = False
 
 	def run(self):
+
 		if self.__logic_obj.get_network():
 			if self.__logic_obj.get_server():
 				threading.Thread(target=self._net.run).start()

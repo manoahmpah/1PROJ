@@ -32,7 +32,7 @@ class Network:
     def receive_messages(self, client_socket):
         while True:
             try:
-                message = client_socket.recv(1024)
+                message = client_socket.recv(12345)
                 if not message or message.decode() == "exit":
                     print("Client closed the connection.")
                     break
