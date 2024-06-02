@@ -4,10 +4,9 @@ from Music import MusicPlayer
 from Settings import Settings
 from GUI import GUIBoard
 
-# Initialisation de Pygame
+
 pygame.init()
 
-# Couleurs
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 
@@ -34,15 +33,15 @@ class MainController:
 
     def load_images(self):
         self.images = {
-            "title": pygame.transform.scale(pygame.image.load("asset_menu/img.png"), (450, 600)),
-            "help": pygame.transform.scale(pygame.image.load("asset_menu/help_button.png"), (100, 100)),
+            "title": pygame.transform.scale(pygame.image.load("asset_menu/logo.png"), (600, 600)),
+            "help": pygame.transform.scale(pygame.image.load("asset_menu/help.png"), (100, 100)),
             "quit": pygame.transform.scale(pygame.image.load("asset_menu/quit_button.png"), (100, 100)),
             "play": pygame.transform.scale(pygame.image.load("asset_menu/play_button.png"), (200, 100)),
             "settings": pygame.transform.scale(pygame.image.load("asset_menu/settings_button.png"), (100, 100)),
             "local": pygame.transform.scale(pygame.image.load("asset_menu/local_game_button.png"), (200, 100)),
             "online": pygame.transform.scale(pygame.image.load("asset_menu/online_game_button.png"), (200, 100)),
-            "create_game": pygame.transform.scale(pygame.image.load("asset_menu/create_game_button.png"), (200, 100)),
-            "join_game": pygame.transform.scale(pygame.image.load("asset_menu/join_game_button.png"), (200, 100)),
+            "create_game": pygame.transform.scale(pygame.image.load("asset_menu/create.png"), (200, 100)),
+            "join_game": pygame.transform.scale(pygame.image.load("asset_menu/join.png"), (200, 100)),
         }
 
     def run(self):
