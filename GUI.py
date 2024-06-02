@@ -51,6 +51,8 @@ class GUIBoard:
 
 		self._refresh = True
 		self._objet_ia = IA(self.__logic_obj)
+		self._net = Network(12345)
+		self._client = Client("192.168.1.28", 12345)
 
 		self._rect_error = pygame.Rect(self._rect_all.centerx - 80, self._rect_all.bottom, 200, 50)
 		self._error_message = ""
@@ -99,6 +101,8 @@ class GUIBoard:
 				self.__logic_obj.put(self._position_click_x, self._position_click_y)
 				self.__logic_obj.set_player_to_play((self.__logic_obj.get_player_to_play() % 2) + 1)
 				self.__logic_obj.set_ring_number_on_board(self.__logic_obj.get_ring_number_on_board() + 1)
+				self._net.send_messages(str(self._position_click_x) + ' ' + str(self._position_click_y))
+
 
 				self._error_message = ''
 			else:
@@ -304,12 +308,9 @@ class GUIBoard:
 	def run(self):
 		if self.__logic_obj.get_network():
 			if self.__logic_obj.get_server():
-				net = Network(12345)
-				threading.Thread(target=net.run).start()
-
+				threading.Thread(target=self._net.run).start()
 			elif not (self.__logic_obj.get_server()):
-				cli = Client("192.168.1.28", 12345)
-				threading.Thread(target=cli.connect_to_server).start()
+				threading.Thread(target=self._client.connect_to_server).start()
 
 		while self.__running:
 			self.__refresh()
