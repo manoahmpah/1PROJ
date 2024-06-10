@@ -28,9 +28,6 @@ Q.idea/shelf/Uncommitted_changes_before_Checkout_at_31_03_2024_09_59__Changes_.x
 Settings.py,b\9\b955d853b0ac9e667b46a7a5cd475ea8b7725169
 :
 
-GUIMenu.py,d\4\d4ef6470a969a29a51282970d08d551b1b5f8ecf
-:
-
 network.py,f\c\fc6a502f3d4fc0220be584af02349064ded231b6
 8
 rules.py,d\b\dbf0b417532fb900152a9ef9f8897d224a76093a

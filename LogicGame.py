@@ -21,11 +21,13 @@ class ring:
 
 
 class Logic:
-	def __init__(self, name1: str, name2: str, IA: bool = False):
+	def __init__(self, name1: str, name2: str, IA: bool = False, gameMode = 2, Network = True, Server = True):
 		"""
 		:param name1: Name of the players 1
 		:param name2: Name of the players 2
 		"""
+
+		self.__gameMode = gameMode
 		self.__n: int = 11
 		self._board = []
 		self._player_to_play: int = 2
@@ -35,9 +37,21 @@ class Logic:
 		self._list_possibilities_to_move = []
 		self.list_mark_in_the_way = []
 		self._IA = IA
+		self._network = Network
+		self.__server = Server
+
 
 	def get_list_possibilities(self):
 		return self._list_possibilities_to_move
+
+	def get_network(self):
+		return self._network
+
+	def get_server(self):
+		return self.__server
+
+	def get_gameMode(self):
+		return self.__gameMode
 
 	def set_list_possibilities(self, new_list_possibilities: list):
 		self._list_possibilities_to_move = new_list_possibilities
@@ -308,6 +322,31 @@ class Logic:
 			return self.change_mark_on_move(start_position_x + vector_x, start_position_y + vector_y, end_position_x,
 			                                end_position_y)
 
+	def check_all_win(self, start_position_x: int, start_position_y: int, end_position_x: int,
+	                        end_position_y: int):
+		vector_x, vector_y = self.get_vectors(start_position_x, start_position_y, end_position_x, end_position_y)
+
+		new_x = start_position_x + vector_x
+		new_y = start_position_y + vector_y
+		current_value = self._board[new_x][new_y]
+
+		if start_position_x == end_position_x and start_position_y == end_position_y:
+			return 0
+
+		elif current_value in (-1, -2):
+			if self.check_win(new_x, new_y):
+				self._board[new_x][new_y] = 1
+				return True
+			else:
+				return self.check_all_win(new_x, new_y, end_position_x, end_position_y)
+
+	def win_game(self, number_of_ring_win_player_one: int, number_of_ring_win_player_two: int):
+		if self.__gameMode == 1 and( number_of_ring_win_player_one == 3 or number_of_ring_win_player_two == 3):
+			return True
+		elif self.__gameMode == 2 and (number_of_ring_win_player_one == 1 or number_of_ring_win_player_two == 1):
+			return True
+		else:
+			return False
 
 from IA import IA
 from LogicGame import Logic
