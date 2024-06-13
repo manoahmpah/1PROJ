@@ -4,74 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="396452c8-bdb9-48a5-a091-69475d56c400" name="Changes" comment=":sparkles: Network 2.1">
-      <change afterPath="$PROJECT_DIR$/asset_menu/asset_first_btn/help.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset_menu/asset_first_btn/play.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset_menu/asset_first_btn/settings.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset_menu/asset_options/1vs1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset_menu/asset_options/1vsAI.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset_menu/asset_options/blitz.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset_menu/asset_options/local.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset_menu/asset_options/normal.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset_menu/asset_options/online.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset_menu/asset_questions/1vs1_or_1vsIA.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset_menu/asset_questions/choose_game_type.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset_menu/asset_questions/network_game.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset_menu/logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset_plateau/img.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset_rules/1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset_rules/10.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset_rules/11.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset_rules/12.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset_rules/13.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset_rules/14.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset_rules/15.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset_rules/16.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset_rules/17.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset_rules/18.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset_rules/19.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset_rules/2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset_rules/20.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset_rules/21.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset_rules/22.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset_rules/3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset_rules/4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset_rules/5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset_rules/6.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset_rules/7.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset_rules/8.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset_rules/9.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/menuMain.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/0/9/0932595b370bf296e850553783f3572ede183a16" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/0/9/0932595b370bf296e850553783f3572ede183a16" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/c/b/cb73170c39972d4e09b6f4f8d42499f7858c8e00" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/c/b/cb73170c39972d4e09b6f4f8d42499f7858c8e00" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets-Setting/BackGround.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI-Settings.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/GUI.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IA.py" beforeDir="false" afterPath="$PROJECT_DIR$/IA.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicGame.py" beforeDir="false" afterPath="$PROJECT_DIR$/LogicGame.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Settings.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/asset_menu/create_game_button.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/asset_menu/help_button.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/asset_menu/img.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/asset_menu/join_game_button.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/asset_menu/local_game_button.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/asset_menu/online_game_button.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/asset_menu/play_button.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/asset_menu/quit_button.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/asset_menu/setting_button.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/asset_menu/settings_button.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/asset_menu/title.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/asset_rules/feuille.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/asset_rules/fleur.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client.py" beforeDir="false" afterPath="$PROJECT_DIR$/client.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/network.py" beforeDir="false" afterPath="$PROJECT_DIR$/network.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rules.py" beforeDir="false" afterPath="$PROJECT_DIR$/rules.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_unitaire_GUI.py" beforeDir="false" />
-    </list>
+    <list default="true" id="396452c8-bdb9-48a5-a091-69475d56c400" name="Changes" comment=":white_check_mark: update" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -91,6 +24,7 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -202,7 +136,7 @@
       <workItem from="1717400662669" duration="7163000" />
       <workItem from="1717415583503" duration="13399000" />
       <workItem from="1718264850118" duration="43000" />
-      <workItem from="1718264905828" duration="11898000" />
+      <workItem from="1718264905828" duration="12695000" />
     </task>
     <task id="LOCAL-00002" summary=":seedling: add preview and a part of IA">
       <option name="closed" value="true" />
@@ -300,7 +234,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717329144757</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary=":white_check_mark: update">
+      <option name="closed" value="true" />
+      <created>1718281535243</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1718281535243</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -337,11 +279,12 @@
     <MESSAGE value=":sparkles: Network" />
     <MESSAGE value=":sparkles: Network 2.0" />
     <MESSAGE value=":sparkles: Network 2.1" />
-    <option name="LAST_COMMIT_MESSAGE" value=":sparkles: Network 2.1" />
+    <MESSAGE value=":white_check_mark: update" />
+    <option name="LAST_COMMIT_MESSAGE" value=":white_check_mark: update" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/1PROJ$GUI.coverage" NAME="GUI Coverage Results" MODIFIED="1718265309378" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/1PROJ$IA.coverage" NAME="IA Coverage Results" MODIFIED="1718271079842" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/1PROJ$GUI.coverage" NAME="GUI Coverage Results" MODIFIED="1718280992178" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/1PROJ$Settings.coverage" NAME="Settings Coverage Results" MODIFIED="1715957615387" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/1PROJ$main.coverage" NAME="main Coverage Results" MODIFIED="1717355124283" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/1PROJ$menu.coverage" NAME="menu Coverage Results" MODIFIED="1716274385705" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -353,7 +296,7 @@
     <SUITE FILE_PATH="coverage/modules_xml$GUI.coverage" NAME="GUI Coverage Results" MODIFIED="1711871672848" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/1PROJ$LogicGame.coverage" NAME="LogicGame Coverage Results" MODIFIED="1717355156837" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/1PROJ$.coverage" NAME=" Coverage Results" MODIFIED="1715870256001" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/1PROJ$menuMain.coverage" NAME="menuMain Coverage Results" MODIFIED="1718280851409" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/1PROJ$menuMain.coverage" NAME="menuMain Coverage Results" MODIFIED="1718281652446" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/1PROJ$Music.coverage" NAME="Music Coverage Results" MODIFIED="1716282180475" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/1PROJ$network.coverage" NAME="network Coverage Results" MODIFIED="1717334320829" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/1PROJ$reseau.coverage" NAME="reseau Coverage Results" MODIFIED="1716113992364" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
