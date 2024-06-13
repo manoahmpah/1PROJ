@@ -10,19 +10,18 @@ from network import Network
 
 
 class GUIBoard:
-	def __init__(self, player1_name, player2_name):
+	def __init__(self, player1_name, player2_name, ia=False, game_mode=2):
 		pygame.init()
-		# Windows game
 
 		self.__screen = pygame.display.set_mode((1080, 730))
 		pygame.display.set_caption('yinsh')
 		self.__running = True
 		self.__background = (170, 184, 197)
-		self.__background_image = pygame.image.load('asset_plateau/img_4.png').convert()
+		self.__background_image = pygame.image.load('asset_plateau/img.png').convert()
 		self.__background_image = pygame.transform.smoothscale(self.__background_image,
 		                                                       (self.__screen.get_width(), self.__screen.get_height()))
 
-		self.__logic_obj = Logic(player1_name, player2_name)
+		self.__logic_obj = Logic(player1_name, player2_name, IA=ia, gameMode=game_mode)
 		self._create_board = self.__logic_obj.create_board()
 		self._get_board = self.__logic_obj.get_board()
 
@@ -53,10 +52,13 @@ class GUIBoard:
 		self._objet_ia = IA(self.__logic_obj)
 
 		# Network
-		if self.__logic_obj.get_server():
+
+		if self.__logic_obj.is_server_mode() and self.__logic_obj.get_server():
 			self._net = Network(12345)
-		else:
+		elif self.__logic_obj.is_server_mode() and not (self.__logic_obj.get_server()):
 			self._client = Client("192.168.1.11", 12345)
+
+		self.reveive_coordinate_x_server, self.reveive_coordinate_y_server = None, None
 
 		self._rect_error = pygame.Rect(self._rect_all.centerx - 80, self._rect_all.bottom, 200, 50)
 		self._error_message = ""
@@ -65,24 +67,6 @@ class GUIBoard:
 		self._react_rings_win_player_one = pygame.Rect(self._rect_all.left + 200, self._rect_all.top + 20, 130, 70)
 		self._color_ring_win_player_one = [(50, 50, 50) for _ in range(3)]
 		self._react_rings_win_player_two = 5
-
-	def rectangle_ring_win_player_one(self):
-		# print(self._color_ring_win_player_one)
-		pygame.draw.circle(self.__screen, self._color_ring_win_player_one[0],
-		                   (self._react_rings_win_player_one.centerx + 20, self._react_rings_win_player_one.centery),
-		                   25, 7)
-		pygame.draw.circle(self.__screen, self.__background,
-		                   (self._react_rings_win_player_one.centerx - 10, self._react_rings_win_player_one.centery),
-		                   25)
-		pygame.draw.circle(self.__screen, self._color_ring_win_player_one[1],
-		                   (self._react_rings_win_player_one.centerx - 10, self._react_rings_win_player_one.centery),
-		                   25, 7)
-		pygame.draw.circle(self.__screen, self.__background,
-		                   (self._react_rings_win_player_one.centerx - 40, self._react_rings_win_player_one.centery),
-		                   25)
-		pygame.draw.circle(self.__screen, self._color_ring_win_player_one[2],
-		                   (self._react_rings_win_player_one.centerx - 40, self._react_rings_win_player_one.centery),
-		                   25, 7)
 
 	@staticmethod
 	def __transform_cord_to_pos(x, y) -> tuple:
@@ -105,8 +89,8 @@ class GUIBoard:
 				self.__logic_obj.put(self._position_click_x, self._position_click_y)
 				self.__logic_obj.set_player_to_play((self.__logic_obj.get_player_to_play() % 2) + 1)
 				self.__logic_obj.set_ring_number_on_board(self.__logic_obj.get_ring_number_on_board() + 1)
-				self._net.send_messages(str(self._position_click_x) + ' ' + str(self._position_click_y))
 
+				self.reveive_coordinate_x_server, self.reveive_coordinate_y_server = None, None
 
 				self._error_message = ''
 			else:
@@ -230,12 +214,9 @@ class GUIBoard:
 	def choose_a_ring_to_delete_if_win(self):
 		valid_selection = False
 		while not valid_selection:
-			# Implement the logic for the player to select a ring to remove
 			event = pygame.event.poll()
 			if event.type == pygame.MOUSEBUTTONDOWN:
-				# Get the mouse coordinates
 				mouse_x, mouse_y = pygame.mouse.get_pos()
-				# Calculate the row and column based on mouse coordinates
 				if self.__pixel_to_coordinate_transformation(mouse_x, mouse_y) is not None:
 					row, column = self.__pixel_to_coordinate_transformation(mouse_x, mouse_y)
 				else:
@@ -270,15 +251,6 @@ class GUIBoard:
 		else:
 			self._error_message = 'please press a white ring !' if current_player == 1 and self._error_message == '' else 'please press a black ring !'
 
-	def __create_text_name(self, text: str, rect, color, color_bg: tuple, font_size: int):
-		if color_bg is not None:
-			pygame.draw.rect(self.__screen, color_bg, rect)
-		font = pygame.font.Font(None, font_size)
-		name = font.render(text, True, color)
-		text_rect = name.get_rect()
-		text_rect.center = rect.center
-		self.__screen.blit(name, text_rect)
-
 	def __create_text_error(self, color: tuple, font_size: int):
 		font = pygame.font.Font(None, font_size)
 		name = font.render(self._error_message, True, color)
@@ -286,42 +258,30 @@ class GUIBoard:
 		text_rect.center = (self._rect_error.centerx, self._rect_error.centery)
 		self.__screen.blit(name, text_rect)
 
-	def __player_name_display(self):
-		color_bg_name1 = (255, 255, 255) if self.__logic_obj.get_player_to_play() == 1 else None
-		if self.__logic_obj.get_player_to_play() == 2:
-			color_font_name2 = (255, 255, 255)
-			color_bg_name2 = (0, 0, 0)
-		else:
-			color_font_name2 = (0, 0, 0)
-			color_bg_name2 = None
-
-		self.__create_text_name(self.__logic_obj.get_name1(), self._rect_name1, (0, 0, 0), color_bg_name1, 29)
-		self.__create_text_name(self.__logic_obj.get_name2(), self._rect_name2, color_font_name2, color_bg_name2, 29)
-
 	def __refresh(self):
 		if self._refresh:
 			self.__screen.blit(self.__background_image, (0, 0))
 			# self.__screen.fill(self.__background)
 			self.__display_board_gui()
-			self.__player_name_display()
-			self.rectangle_ring_win_player_one()
 			pygame.display.flip()
 			self.__screen.blit(self.__background_image, (0, 0))
 			self._refresh = False
 
 	def run(self):
 
-		if self.__logic_obj.get_network():
+		if self.__logic_obj.is_server_mode():
+
 			if self.__logic_obj.get_server():
 				threading.Thread(target=self._net.run).start()
 			elif not (self.__logic_obj.get_server()):
-				threading.Thread(target=self._client.connect_to_server).start()
+				threading.Thread(target=Client("192.168.177.128", 12345).run).start()
 
 		while self.__running:
 			self.__refresh()
 			event = pygame.event.poll()
 
 			if self.__logic_obj.win_game(self._winning_move_player_one, self._winning_move_player_two):
+
 				time.sleep(2)
 				self.__running = False
 
@@ -345,6 +305,7 @@ class GUIBoard:
 					self.__move_rings()
 
 				self._refresh = True
+
 
 			elif event.type == pygame.QUIT:
 				self.__running = False

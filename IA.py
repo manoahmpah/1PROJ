@@ -33,7 +33,6 @@ class IA:
 			self._put.pop(random_index_ring)
 			self._number_of_rings -= 1
 
-			self._number_of_ring -= 1
 			self._put.pop(random_index_ring)
 
 		arrival_position = self._object_logic.get_list_possibilities()[random.randint(0, len(self._object_logic.get_list_possibilities()) - 1)]

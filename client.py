@@ -55,5 +55,5 @@ class Client:
         print("Connexion fermée")
 
 if __name__ == "__main__":
-    client = Client('127.0.0.1', 12345)
+    client = Client('192.168.177.128', 12345)
     client.run()

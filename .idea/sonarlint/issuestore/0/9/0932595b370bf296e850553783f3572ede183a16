@@ -1,12 +1,12 @@
 
-–python:S116"RRename this field "__gameMode" to match the regular expression ^[_a-z][_a-z0-9]*$.(Ë€ ù8ˆè„øü1J$9b100289-d258-41e6-b3aa-8c26cf098e9f
-—python:S117"NRename this parameter "IA" to match the regular expression ^[_a-z][a-z0-9_]*$.(€‡ìíıÿÿÿÿ8‰è„øü1J$74f1f569-b531-464e-ac08-03062fe5b554
-œpython:S117"SRename this parameter "Network" to match the regular expression ^[_a-z][a-z0-9_]*$.(€‡ìíıÿÿÿÿ8‰è„øü1J$8b468047-16d3-47ba-a444-15e31c41ef70
-›python:S117"RRename this parameter "Server" to match the regular expression ^[_a-z][a-z0-9_]*$.(€‡ìíıÿÿÿÿ8‰è„øü1J$5adcb9b1-c5b8-435d-b959-92c1ae50bab6
-python:S117"TRename this parameter "gameMode" to match the regular expression ^[_a-z][a-z0-9_]*$.(€‡ìíıÿÿÿÿ8‰è„øü1J$3a80e8d8-e09d-496b-9b3d-14290ad85997
-™python:S1005"PRename method "get_gameMode" to match the regular expression ^[a-z_][a-z0-9_]*$.(¡×ä«øÿÿÿÿ8ÍÛˆøü1J$0a871c29-33c2-4581-934e-d41564038c3c
-python:S100;"JRename method "get_IA" to match the regular expression ^[a-z_][a-z0-9_]*$.(£ËÈ¨8ÍÛˆøü1J$b6456e97-52b4-4820-b320-68753a9c1328
-–python:S117>"RRename this parameter "new_IA" to match the regular expression ^[_a-z][a-z0-9_]*$.(šŞ‰ï8ÎÛˆøü1J$22321c7a-2fde-4c0f-991f-a559ca30c805
-python:S100>"JRename method "set_IA" to match the regular expression ^[a-z_][a-z0-9_]*$.(šŞ‰ï8ÎÛˆøü1J$52b0f9c9-1ef4-406c-a525-ee319fbecb90
-python:S3923¼"RRemove this if statement or edit its code blocks so that they're not all the same.(­®Œüÿÿÿÿ8ÎÛˆøü1J$16314293-ba65-4221-bb6b-8b9a966e93ca
-špython:S3776“"TRefactor this function to reduce its Cognitive Complexity from 18 to the 15 allowed.(ãÄœŒ8ÏÛˆøü1J$ec4630f5-934c-40b6-8ff1-e3393cd9040c
+–python:S116"RRename this field "__gameMode" to match the regular expression ^[_a-z][_a-z0-9]*$.(Ë€ ù8ˆè„øü1J$3ab9fd3a-a03e-465c-94ac-fdcecebd6590
+’python:S117"NRename this parameter "IA" to match the regular expression ^[_a-z][a-z0-9_]*$.(øö³³8‰è„øü1J$a5137fea-fa06-4014-b607-bbb35273900e
+—python:S117"SRename this parameter "Network" to match the regular expression ^[_a-z][a-z0-9_]*$.(øö³³8‰è„øü1J$110e8f6f-5d67-499a-91dd-26ae4c93a14d
+–python:S117"RRename this parameter "Server" to match the regular expression ^[_a-z][a-z0-9_]*$.(øö³³8‰è„øü1J$9a643f2b-d7ab-4888-b660-2767d313dcc0
+˜python:S117"TRename this parameter "gameMode" to match the regular expression ^[_a-z][a-z0-9_]*$.(øö³³8‰è„øü1J$51e13365-d73d-41eb-8d35-b5cdad8c7f57
+™python:S1007"PRename method "get_gameMode" to match the regular expression ^[a-z_][a-z0-9_]*$.(¡×ä«øÿÿÿÿ8ÍÛˆøü1J$c9563eb2-01cc-4ddb-b3d4-045bb5dce20f
+python:S100="JRename method "get_IA" to match the regular expression ^[a-z_][a-z0-9_]*$.(£ËÈ¨8ÍÛˆøü1J$855d221e-1372-4a72-9d84-2afe6960cc01
+–python:S117@"RRename this parameter "new_IA" to match the regular expression ^[_a-z][a-z0-9_]*$.(šŞ‰ï8ÎÛˆøü1J$581cfd3f-0713-4b47-a8c3-2568b566534f
+python:S100@"JRename method "set_IA" to match the regular expression ^[a-z_][a-z0-9_]*$.(šŞ‰ï8ÎÛˆøü1J$fd029da3-2f54-43a3-a492-5e9f16dff7b0
+python:S3923¾"RRemove this if statement or edit its code blocks so that they're not all the same.(­®Œüÿÿÿÿ8ÎÛˆøü1J$a6a473f9-7be2-4a02-b25a-ad373b09f80c
+špython:S3776•"TRefactor this function to reduce its Cognitive Complexity from 18 to the 15 allowed.(ãÄœŒ8ÏÛˆøü1J$65b43fee-ebdf-4c23-a9f4-242e79b35a4b

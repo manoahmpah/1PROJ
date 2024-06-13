@@ -6,7 +6,8 @@ class Network:
         self.server_port = server_port
         self.server_socket = self.create_server()
         self.running = True
-        self.__send_message = "welcome to the server!"
+        self.__default_message = "welcome to the server!"
+        self.client_sockets = []
 
     def create_server(self):
         server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -17,22 +18,21 @@ class Network:
 
     def handle_client(self, client_socket, client_address):
         print("Accepted connection from", client_address)
+        self.client_sockets.append(client_socket)
         receive_thread = threading.Thread(target=self.receive_messages, args=(client_socket,))
-        send_thread = threading.Thread(target=self.send_messages, args=(client_socket, self.__send_message))
-
         receive_thread.start()
-        send_thread.start()
+
+        self.send_messages(self.__default_message)
 
         receive_thread.join()
-        send_thread.join()
-
         client_socket.close()
+        self.client_sockets.remove(client_socket)
         print("Connection with", client_address, "closed")
 
     def receive_messages(self, client_socket):
         while True:
             try:
-                message = client_socket.recv(12345)
+                message = client_socket.recv(1024)
                 if not message or message.decode() == "exit":
                     print("Client closed the connection.")
                     break
@@ -42,16 +42,15 @@ class Network:
                 print("Receive error:", e)
                 break
 
-    def send_messages(self, client_socket, response = ""):
-        while True:
+    def send_messages(self, message=""):
+        for client_socket in self.client_sockets:
             try:
-                client_socket.sendall(response.encode())
-                if response == "exit":
+                client_socket.sendall(message.encode())
+                if message == "exit":
                     break
-                break
             except Exception as e:
                 print("Send error:", e)
-                break
+                self.client_sockets.remove(client_socket)
 
     def run(self):
         try:
