@@ -1,6 +1,6 @@
 import pygame
 import sys
-from GUI import GUIBoard  # Importer la classe GUIBoard depuis le fichier Gui.py
+from GUI import GUIBoard
 from rules import Rules
 
 class GameMenu:
@@ -101,7 +101,7 @@ class GameMenu:
             {"label": "", "rect": pygame.Rect(option_area_x + option_width + space_between_options, option_area_y, option_width, option_height)}
         ]
 
-        self.back_button = {"label": "Back", "rect": pygame.Rect(self.screen_width - 200, self.screen_height - 100, 150, 50)}
+        self.back_button = {"label": "Retour", "rect": pygame.Rect(self.screen_width - 200, self.screen_height - 100, 150, 50)}
 
     def draw_buttons(self):
         for button in self.buttons:
@@ -147,7 +147,7 @@ class GameMenu:
         elif self.current_step == 2 and answer == "Yes":
             self.network_message_shown = True
             self.play_mode = False
-            self.show_error_message("Network game is not available yet.")
+            self.show_error_message("Le jeu Yinsh n'est pas disponible en version réseau.")
         else:
             self.current_step += 1
 
@@ -166,7 +166,7 @@ class GameMenu:
     def show_error_message(self, message):
         error_font = pygame.font.Font(None, 30)
         error_text = error_font.render(message, True, self.RED)
-        error_rect = error_text.get_rect(center=(self.screen_width // 2, self.screen_height // 2))
+        error_rect = error_text.get_rect(center=(self.screen_width // 2, self.screen_height - 200 ))
         self.screen.blit(error_text, error_rect)
         pygame.display.flip()
         pygame.time.wait(3000)

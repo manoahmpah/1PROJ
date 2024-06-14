@@ -289,11 +289,11 @@ class Logic:
 			coefficient_diagonal_y = (end_position_y - start_position_y) / -1
 			if isinstance(self._board[end_position_x][end_position_y], ring) or self._board[end_position_x][
 				end_position_y] in [-1, -2]:
-				return False, 'You can not move on a ring or a mark !'
+				return False, "Tu ne peux pas te déplacer sur une anneau ou une marque !"
 			elif not (start_position_x == end_position_x and start_position_y != end_position_y or start_position_x != end_position_x and start_position_y == end_position_y or coefficient_diagonal_x == coefficient_diagonal_y):
-				return False, "Move not aligned !"
+				return False, "Mouvemnt impossible !"
 			elif not self.check_valid_jumps(start_position_x, start_position_y, end_position_x, end_position_y):
-				return False, 'You need to stop after a mark !'
+				return False, "Vous devez vous arrêter avant un anneau !"
 			elif not self.verify_not_ring_in_lign(start_position_x, start_position_y, end_position_x, end_position_y):
 				return False, 'You can not move on a ring !'
 			elif start_position_x == end_position_x and start_position_y != end_position_y:
@@ -303,7 +303,7 @@ class Logic:
 			elif coefficient_diagonal_x == coefficient_diagonal_y:
 				return True, None
 			else:
-				return False, 'Impossible to move here !'
+				return False, "Mouvemnt impossible !"
 
 	def change_mark_on_move(self, start_position_x: int, start_position_y: int, end_position_x: int,
 	                        end_position_y: int):

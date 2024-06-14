@@ -95,7 +95,7 @@ class GUIBoard:
 				self._error_message = ''
 			else:
 				if self._error_message == '':
-					self._error_message = 'Impossible to put your ring here !'
+					self._error_message = "Il est impossible de placer un anneau ici"
 
 		return self._position_click_x, self._position_click_y
 
@@ -103,7 +103,7 @@ class GUIBoard:
 		self._position_click_x, self._position_click_y = -1, -1
 
 	def __display_board_gui(self):
-		self.__create_text_error((0, 0, 0), 20)
+		self.__create_text_error((255, 255, 255), 20)
 		for row in range(len(self._get_board)):
 			for col in range(len(self._get_board[row])):
 				pos_x, pos_y = self.__collision_area(row, col)
@@ -226,11 +226,11 @@ class GUIBoard:
 						self.__logic_obj.get_board()[row][column] = 1
 						valid_selection = True
 					else:
-						self._error_message = 'Please select a white ring' if self.__logic_obj.get_player_to_play() == 1 else 'Please select a black ring'
+						self._error_message = "S'il vous plaît selectioner un anneau violet" if self.__logic_obj.get_player_to_play() == 1 else "S'il vous plaît un anneau orange"
 						self._refresh = True
 						self.__refresh()
 				else:
-					self._error_message = 'Please select a ring to remove'
+					self._error_message = "S'il vous plaît, sélectionnez un anneau valide"
 					self._refresh = True
 					self.__refresh()
 
@@ -249,8 +249,7 @@ class GUIBoard:
 		elif self._move_click == 2:
 			self.__handle_second_click_move(mouse_coordinate_x, mouse_coordinate_y)
 		else:
-			self._error_message = 'please press a white ring !' if current_player == 1 and self._error_message == '' else 'please press a black ring !'
-
+			self._error_message = "S'il vous plaît appuyer sur un anneau violet" if current_player == 1 and self._error_message == '' else "S'il vous plaît appuyez sur un anneau orange"
 	def __create_text_error(self, color: tuple, font_size: int):
 		font = pygame.font.Font(None, font_size)
 		name = font.render(self._error_message, True, color)
@@ -261,7 +260,6 @@ class GUIBoard:
 	def __refresh(self):
 		if self._refresh:
 			self.__screen.blit(self.__background_image, (0, 0))
-			# self.__screen.fill(self.__background)
 			self.__display_board_gui()
 			pygame.display.flip()
 			self.__screen.blit(self.__background_image, (0, 0))

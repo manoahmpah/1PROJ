@@ -5,12 +5,12 @@ import subprocess
 class Rules:
     def __init__(self):
         pygame.init()
-        self.screen = pygame.display.set_mode((1080, 730))
+        self.screen = pygame.display.set_mode((1200, 730))
         self.clock = pygame.time.Clock()
-        self.images = [pygame.image.load(f'./asset_rules/{i}.png') for i in range(1, 23)]  # Assurez-vous que vos images sont nommées image_1.png, image_2.png, ..., image_22.png
-        self.images = [pygame.transform.smoothscale(image, (1080, 730)) for image in self.images]
+        self.images = [pygame.image.load(f'./asset_rules/{i}.png') for i in range(1, 23)]
+        self.images = [pygame.transform.smoothscale(image, (1200, 730)) for image in self.images]
         self.current_image_index = 0
-        self.change_button_rect = pygame.Rect(950, 20, 100, 50)
+        self.change_button_rect = pygame.Rect(950, 20, 125, 45)
         self.font = pygame.font.Font(None, 36)
         self.change_button_text = self.font.render("Changer", True, (255, 255, 255))
 
